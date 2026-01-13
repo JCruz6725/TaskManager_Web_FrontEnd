@@ -1,0 +1,16 @@
+<div class="details-component">
+    <label for="text-box" class="text-box-label">Title</label>
+    <div id="text-box" class="text-box">{{currentTask().title}}</div>
+    
+    <div>
+        <label for="text-box" class="text-box-label">Due Date</label>
+        <div id="text-box" class="text-box">{{currentTaskDate()}}</div>
+    </div>
+
+    <label for="text-box" class="text-box-label">Priority</label>
+    <div id="text-box" class="text-box">{{currentTask().priority}}</div>
+
+    <label for="text-box" class="text-box-label">Status</label>
+    <div id="text-box" class="text-box">{{currentTask().currentStatus.name}}</div>
+</div>
+
