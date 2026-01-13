@@ -1,0 +1,9 @@
+
+.full-page-container{
+    height: 100%;
+    width: 100%;
+    background-color: lightgray;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+}

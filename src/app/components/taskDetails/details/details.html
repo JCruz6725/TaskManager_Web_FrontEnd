@@ -1,16 +1,21 @@
 <div class="details-component">
-    <label for="text-box" class="text-box-label">Title</label>
-    <div id="text-box" class="text-box">{{currentTask().title}}</div>
+    <button class="edit-button">Edit</button>
+
+    <label for="title" class="text-box-label">Title</label>
+    <div id="title" class="text-box">{{currentTask().title}}</div>
     
     <div>
-        <label for="text-box" class="text-box-label">Due Date</label>
-        <div id="text-box" class="text-box">{{currentTaskDate()}}</div>
+        <label for="due-date" class="text-box-label">Due Date</label>
+        <div id="due-date" class="text-box">{{currentTaskDate()}}</div>
     </div>
 
-    <label for="text-box" class="text-box-label">Priority</label>
-    <div id="text-box" class="text-box">{{currentTask().priority}}</div>
+    <label for="priority" class="text-box-label">Priority</label>
+    <div id="priority" class="text-box">{{currentTask().priority}}</div>
 
-    <label for="text-box" class="text-box-label">Status</label>
-    <div id="text-box" class="text-box">{{currentTask().currentStatus.name}}</div>
+    <label for="status" class="text-box-label">Status</label>
+    <div id="status" class="text-box">{{currentTask().currentStatus.name}}</div>
+
+    <label for="parent" class="text-box-label"> Parent Task</label>
+    <div id="parent" class="text-box">{{currentTaskParent().title}}</div>
 </div>
 
