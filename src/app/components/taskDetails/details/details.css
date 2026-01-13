@@ -5,6 +5,15 @@
     background-color: white;
     border-radius: 6px;
 }
+
+.parent-task-button{
+    width: 320px;
+    padding: 8px;
+    margin: 10px;
+    background-color: rgb(228, 211, 233);
+    border-radius: 6px;
+    border: none;
+}
  
 .text-box-label {
     width: 300px;

@@ -38,4 +38,8 @@ export class Details {
     
   }
 
+  onParentTaskClick(){
+    
+  }
+
 }
