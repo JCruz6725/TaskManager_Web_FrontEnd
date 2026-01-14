@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { RegisterUser } from "../models/register-user";
-import { LoginUser } from "../models/login-user";
+import { RegisterUser } from "../Models/register-user";
+import { LoginUser } from "../Models/login-user";
 
 @Injectable({  providedIn: 'root'})
 export class UserAuthService {

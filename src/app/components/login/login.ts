@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth.service';
-import { RegisterUser } from '../../models/register-user';
-import { LoginUser } from '../../models/login-user';
+import { RegisterUser } from '../../Models/register-user';
+import { LoginUser } from '../../Models/login-user';
 
 @Component({
   selector: 'app-login',
