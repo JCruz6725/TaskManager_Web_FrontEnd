@@ -1,0 +1,31 @@
+<div class="login-container">
+  <h1>Login</h1>
+  <h3>Please enter your credentials to access your account.</h3>
+
+  <form #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
+    <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" [(ngModel)]="model.email" name="email" required />
+    
+    <br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="model.password" name="password" required />
+    <br><br>
+
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </div>
+  </form>
+
+  <p *ngIf="errorMessage()" style="color: red;">
+    {{ errorMessage() }}
+  </p>
+  <p *ngIf="successMessage()" style="color: green;">
+    {{ successMessage() }}
+  </p>
+
+  <p *ngIf="errorMessage()">
+    Don't have an account? <a routerLink="/signup">Sign up here</a>
+  </p>
+</div>
+
