@@ -1,0 +1,13 @@
+.sign-up-container {
+    text-align: center;
+    border-style: solid;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: center;
+    label {
+        display :block;
+        margin-bottom: 5px;
+    }
+}

@@ -1,0 +1,9 @@
+.center{
+  text-align: center;
+  font-size: 40px;
+}
+.boarder{
+display:flex;
+gap:40px;
+justify-content : center;
+}
