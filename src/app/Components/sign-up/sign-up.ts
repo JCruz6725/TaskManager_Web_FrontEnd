@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
 import { RegisterUser } from '../../Models/register-user';
@@ -19,27 +19,27 @@ export class SignupComponent {
     email: '',
     password: ''
   };
-  errorMessage: string | null = null;
-  successMessage: string | null = null;
+  errorMessage = signal<string | null>(null);
+  successMessage = signal<string | null>(null);
 
   submitForm(form: any) {
-    this.errorMessage = null;
-    this.successMessage = null;
+     this.errorMessage.set(null);
+    this.successMessage.set(null);
     if (form.invalid) {
-      this.errorMessage = 'Please fill in all required fields correctly.';
+      this.errorMessage.set('Please fill in all required fields correctly.');
       return;
     }
 
     this.authService.registerUser(this.model).subscribe({
       next: (response) => {
-        this.successMessage = 'Registration successful!';
+        this.successMessage.set('Registration successful!');
         console.log('User registered successfully', response);
       },
       error: (error) => {
         if (error.status === 400) {
-          this.errorMessage = "Email already in use. Please use a different email.";
+          this.errorMessage.set("Email already in use. Please use a different email.");
         } else {
-          this.errorMessage = 'Registration failed. Please try again.';
+          this.errorMessage.set('Registration failed. Please try again.');
         }
       }
     });

@@ -17,35 +17,15 @@
     </div>
   </form>
 
-  <p *ngIf="errorMessage" style="color: red;">
-    {{ errorMessage }}
+  <p *ngIf="errorMessage()" style="color: red;">
+    {{ errorMessage() }}
   </p>
-  <p *ngIf="successMessage" style="color: green;">
-    {{ successMessage }}
+  <p *ngIf="successMessage()" style="color: green;">
+    {{ successMessage() }}
   </p>
 
-  <p *ngIf="errorMessage">
+  <p *ngIf="errorMessage()">
     Don't have an account? <a routerLink="/signup">Sign up here</a>
   </p>
 </div>
 
-
-<!-- 
-<div class="login-container">
-  <h1>Login</h1>
-  <h3>Please enter your credentials to access your account.</h3>
-
-  <form >
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required />
-    <br><br>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password"name="password" required />
-    <br><br>
-
-    <button type="submit">Login</button>
-  </form>
-
-</div>
- -->
