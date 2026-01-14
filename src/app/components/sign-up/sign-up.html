@@ -4,7 +4,8 @@
 
     <div class="form-container">
         <form #signUpForm="ngForm" (ngSubmit)="submitForm(signUpForm)">
-            <label for="firstName">First Name:</label>
+            <div class="form-group">
+            <label class="fname" for="firstName">First Name:</label>
             <input type="text" id="firstName" [(ngModel)]="model.firstName" name="firstName" required  #firstName="ngModel" />
             <div *ngIf="firstName.invalid && firstName.touched" class="error" style="color: red;">
                 First Name is required.
@@ -31,10 +32,15 @@
                 Password is required
             </div>
             <br><br>
-
+</div>
             <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+               <br><br>
         </form>
 
         <p *ngIf="errorMessage" style="color: red;"> {{ errorMessage }}
         </p>
         <p *ngIf="successMessage" style="color: green;"> {{ successMessage }} </p>
+
+        <a routerLink="/login">Already have an account? Login here</a>
+    </div>
+</div>
