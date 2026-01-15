@@ -8,3 +8,8 @@
 .task-info {
     text-align: center;
 }
+
+.alarm{
+    position: relative;
+    top: 6px;
+}
