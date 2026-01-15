@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
 import { RegisterUser } from '../../Models/register-user';
 import { LoginUser } from '../../Models/login-user';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -42,6 +43,7 @@ export class LoginComponent {
         } 
       }
     });
+    
   }
 
 }
