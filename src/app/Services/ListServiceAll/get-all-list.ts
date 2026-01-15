@@ -1,22 +1,25 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserTokenService } from '../UserToken/user-token.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ListService {
   private http = inject(HttpClient);
-  private headers = new HttpHeaders({
-    UserId: '2157303F-4E90-4E43-82B0-AE93C44D85ED'
-  });
-
+  private userIdTokenService = inject(UserTokenService)
+  
   AllList(): Observable<any[]> {
-    return this.http.get<any[]>('https://localhost:7177/list', { headers: this.headers });
+    return this.http.get<any[]>('https://localhost:7177/list', { headers: this.MakeApiHeader() });
   }
-   SingleList(listId:string|undefined): Observable<any[]> {
-    return this.http.get<any[]>('https://localhost:7177/list/'+ listId, { headers:this.headers });
+  SingleList(listId: string | undefined): Observable<any[]> {
+    return this.http.get<any[]>('https://localhost:7177/list/'+ listId, { headers: this.MakeApiHeader() });
   }
 
+  MakeApiHeader(): HttpHeaders {
+    return new HttpHeaders({
+      UserId: this.userIdTokenService.GetUserIdToken() ?? (() => { throw new Error("User ID Token is null"); })()
+    });
+  }
 }
-

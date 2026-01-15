@@ -1,1 +1,6 @@
- <router-outlet> </router-outlet>
+<div>
+    @for (Link of Links; track Link ) {
+    <button matButton [routerLink]="Link.Path">{{Link.DisplayName}}</button>
+    }
+</div>
+<router-outlet> </router-outlet>

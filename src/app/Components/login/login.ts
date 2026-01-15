@@ -4,15 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
 import { RegisterUser } from '../../Models/register-user';
 import { LoginUser } from '../../Models/login-user';
+import { UserTokenService } from '../../Services/UserToken/user-token.service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class LoginComponent {
+  private router = inject(Router);
    private authService = inject(UserAuthService);
     model: LoginUser = {
       email: '',
@@ -20,6 +23,7 @@ export class LoginComponent {
     };
     errorMessage = signal<string | null>(null);
     successMessage = signal<string | null>(null);
+    private userTokenService = inject(UserTokenService);
 
     submitForm(form: any) {
     this.errorMessage.set(null);
@@ -34,6 +38,8 @@ export class LoginComponent {
       next: (response) => {
         this.successMessage.set('Login successful!');
         console.log('User logged in successfully', response);
+        this.userTokenService.SetUserIdToken(response as string);
+        this.router.navigate(['/home']);  
       },
       error: (error) => {
         if (error.status === 400) {
@@ -43,5 +49,5 @@ export class LoginComponent {
       }
     });
   }
-
+  
 }
