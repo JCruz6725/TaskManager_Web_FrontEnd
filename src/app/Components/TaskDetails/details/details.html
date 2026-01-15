@@ -1,0 +1,29 @@
+
+
+<div class="container">
+    <div class="simple-details">
+        <button class="edit-button">Edit</button>
+    
+        <label for="title" class="text-box-label">Title</label>
+        <div id="title" class="text-box">{{currentTask().title}}</div>
+        
+        <div>
+            <label for="due-date" class="text-box-label">Due Date</label>
+            <div id="due-date" class="text-box">{{currentTaskDate()}}</div>
+        </div>
+    
+        <label for="status" class="text-box-label">Status</label>
+        <div id="status" class="text-box">{{currentTask().currentStatus.name}}</div>
+    </div>
+    <div class="complex-details">
+        <label for="priority" class="text-box-label">Priority</label>
+        <div id="priority" class="text-box">{{currentTask().priority}}</div>
+    
+        <label for="parent" class="text-box-label"> Parent Task</label>  
+        <!--<button id="parent" class="parent-task-button" (click)="onParentTaskClick()">Id: {{currentTask().parentId}}  <br> Title: {{currentTaskParent().title}} </button>-->
+        <div class="clickable-task">
+            <a id="parent" routerLink="/taskDetails/:{{currentTask().parentId}}" >Id: {{currentTask().parentId}}  <br> Title: {{currentTaskParent().title}}</a>
+        </div>
+    </div>
+</div>
+
