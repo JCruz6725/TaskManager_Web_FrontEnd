@@ -16,7 +16,8 @@
     <div id="status" class="text-box">{{currentTask().currentStatus.name}}</div>
 
     <label for="parent" class="text-box-label"> Parent Task</label>  <br>
-    <button id="parent" class="parent-task-button" (click)="onParentTaskClick()">Id: {{currentTask().parentId}} <br> Title: {{currentTaskParent().title}} </button>
+    <button id="parent" class="parent-task-button" (click)="onParentTaskClick()">Id: {{currentTask().parentId}}  <br> Title: {{currentTaskParent().title}} </button>
+    <a routerLink="/taskDetails/:{{currentTask().parentId}}">click</a>
     
 </div>
 

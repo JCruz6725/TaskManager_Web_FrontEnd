@@ -3,7 +3,7 @@ import { TaskDetailsPage } from './components/taskDetails/task-details-page/task
 
 export const routes: Routes = [
     {
-        path: 'taskDetails',
+        path: 'taskDetails/:taskId',
         component: TaskDetailsPage
     }
 ];

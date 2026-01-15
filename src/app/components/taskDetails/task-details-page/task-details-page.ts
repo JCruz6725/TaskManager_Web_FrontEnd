@@ -4,7 +4,7 @@ import { Details } from '../details/details';
 
 @Component({
   selector: 'app-task-details-page',
-  imports: [Details,],
+  imports: [Details],
   templateUrl: './task-details-page.html',
   styleUrl: './task-details-page.css',
 })
