@@ -17,6 +17,7 @@
 
       <button type="submit" [disabled]="loginForm.invalid">Login</button>
     </div>
+    <a routerLink="/signup">Don't have an account? Sign up here</a>
   </form>
 
   <p *ngIf="errorMessage()" style="color: red;">
