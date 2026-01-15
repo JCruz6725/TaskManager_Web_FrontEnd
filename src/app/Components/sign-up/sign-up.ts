@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
 import { RegisterUser } from '../../Models/register-user';
 import { CommonModule } from '@angular/common';
+import { UserTokenService } from '../../Services/UserToken/user-token.service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -22,9 +23,10 @@ export class SignupComponent {
   };
   errorMessage = signal<string | null>(null);
   successMessage = signal<string | null>(null);
+  private userTokenService = inject(UserTokenService);
 
   submitForm(form: any) {
-     this.errorMessage.set(null);
+    this.errorMessage.set(null);
     this.successMessage.set(null);
     if (form.invalid) {
       this.errorMessage.set('Please fill in all required fields correctly.');
@@ -35,6 +37,7 @@ export class SignupComponent {
       next: (response) => {
         this.successMessage.set('Registration successful!');
         console.log('User registered successfully', response);
+        this.userTokenService.SetUserIdToken(response as string);
       },
       error: (error) => {
         if (error.status === 400) {
