@@ -11,7 +11,9 @@
 
   <!-- This holds your todo items -->
   <div class="boarder">
-    <ng-content></ng-content>
+    @for (task of listSize(); track task.id){
+      <app-task [taskId] = "task.id"></app-task>
+    }
   </div>
 
   <!-- Add button -->
