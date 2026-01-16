@@ -3,10 +3,11 @@ import { ListService } from '../../../Services/ListServiceAll/get-all-list';
 import { OnInit,input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { Task } from '../task/task';
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule,MatIcon],
+  imports: [CommonModule,MatIcon, Task],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })
@@ -15,6 +16,7 @@ export class Single implements OnInit {
 
     // userSingleList = signal<any[]>([]);
     listname = signal<string>('')
+    listSize = signal<any[]>([]);
 
   constructor(private service: ListService) {}
 
@@ -25,6 +27,7 @@ export class Single implements OnInit {
   getSingleList() {
     this.service.SingleList(this.dataID()).subscribe((result: any) => {
       this.listname.set(result.name);
+      this.listSize.set(result.taskItems);
     });
   }
 }
