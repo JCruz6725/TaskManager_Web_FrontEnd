@@ -31,7 +31,7 @@ export class TaskDetailsPage {
       })
     }
     else{
-      this.sharedSvc.currentData$.subscribe(data => this.urlTaskId.set(data));
+      this.sharedSvc.currentDataChild$.subscribe(data => this.urlTaskId.set(data));
     }
     
     console.log("taskId: "+this.urlTaskId())
@@ -40,7 +40,7 @@ export class TaskDetailsPage {
     //get task data from service api
     this.taskSvc.getTask(this.urlTaskId()).subscribe((res:any) => {
       //hydrate our shared data service (for other components use)
-      this.sharedSvc.transmitData(res)
+      this.sharedSvc.transmitDataChild(res)
       this.taskSvc.getTask(res.parentId).subscribe((res:any) => {
         this.sharedSvc.transmitDataParent(res);
       })

@@ -12,11 +12,11 @@ export class DataSharingService {
     UserId: '8051A558-6F25-409B-9823-D5F5603EE625'
   });
 
-  private dataStream = new BehaviorSubject<any>({});
-  currentData$ = this.dataStream.asObservable();
+  private dataStreamChild = new BehaviorSubject<any>({});
+  currentDataChild$ = this.dataStreamChild.asObservable();
 
-  transmitData(newMessage: any) : void {
-    this.dataStream.next(newMessage);
+  transmitDataChild(newMessage: any) : void {
+    this.dataStreamChild.next(newMessage);
   }
 
   private dataStreamParent = new BehaviorSubject<any>({});

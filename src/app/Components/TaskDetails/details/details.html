@@ -25,7 +25,9 @@
             <label for="parent" class="text-box-label"> Parent Task</label>  
             @if (currentTask().parentId != null){
                 <div class="clickable-task" routerLink="/taskDetails/{{currentTask().parentId}}" (click)="onParentClick()">
-                    <a id="parent">Id: {{currentTask().parentId}}  <br> Title: {{currentTaskParent().title}}</a>
+                    <a id="parent">
+                        {{currentTaskParent().title}} <br>
+                        Id: {{currentTask().parentId}}</a>
                 </div>
             }
             @else{

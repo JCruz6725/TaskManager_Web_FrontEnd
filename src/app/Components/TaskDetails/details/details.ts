@@ -24,7 +24,7 @@ export class Details {
 
   ngOnInit() {
     //grab our data from our shared service
-    this.sharedSvc.currentData$.subscribe((data) => {
+    this.sharedSvc.currentDataChild$.subscribe((data) => {
       this.currentTask.set(data);
     })
     this.sharedSvc.currentDataParent$.subscribe((data) => {
@@ -40,7 +40,7 @@ export class Details {
   }
 
   onParentClick(){
-    this.sharedSvc.transmitData(this.currentTask().parentId);
+    this.sharedSvc.transmitDataChild(this.currentTask().parentId);
     this.getData.emit();
   }
 
