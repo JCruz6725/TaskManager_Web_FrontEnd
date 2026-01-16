@@ -1,8 +1,9 @@
 import { Component, inject, Signal, signal, } from '@angular/core';
 import { Details } from '../details/details';
-import { GetTaskDetailsService } from '../../../Services/GETTaskDetails/get-task-details-service';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { TaskService } from '../../../Services/TaskServices/task-service';
+import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 
 
 @Component({
@@ -12,35 +13,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './task-details-page.css',
 })
 export class TaskDetailsPage {
-  //public task = signal<any| null>(null);
-  public task : any| null = null;
-private svc = inject(GetTaskDetailsService)
-private router = inject(ActivatedRoute)
+  private taskSvc = inject(TaskService);
+  private sharedSvc = inject(DataSharingService);
+  private router = inject(ActivatedRoute);
 
-private sub : Subscription | null = null
+  private urlTaskId = signal<string>('');
 
-ngOnInit () {
-  let id : string = "";
-
-  this.router.params.subscribe(
-  (prm) => {
-    id = prm['id']
-
-
-  }
-
-
-  )
-
-  
-  console.log(id)
-
-
-  this.svc.getTaskDetails(id).subscribe((res : any) => 
-    {
-      this.task = res ;
-
-     
+  ngOnInit(){
+    this.router.params.subscribe((prm) => {
+      this.urlTaskId.set(prm['id']);
     })
+
+    //get task data from service api
+    this.taskSvc.getTask(this.urlTaskId()).subscribe((res:any) => {
+      this.sharedSvc.transmitData(res);
+    });
+
+    //hydrate our shared data service (for other components use)
+    
   }
+
 }

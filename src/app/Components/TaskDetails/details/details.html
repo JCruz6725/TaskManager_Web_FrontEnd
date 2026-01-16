@@ -24,6 +24,7 @@
         <div class="clickable-task">
             <a id="parent" routerLink="/taskDetails/:{{currentTask().parentId}}" >Id: {{currentTask().parentId}}  <br> Title: {{currentTaskParent().title}}</a>
         </div>
+        <button routerLink="/taskDetails/:{{currentTask().parentId}}"> click me</button>
     </div>
 </div>
 
