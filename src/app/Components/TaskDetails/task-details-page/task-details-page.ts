@@ -24,13 +24,13 @@ export class TaskDetailsPage {
       this.urlTaskId.set(prm['id']);
     })
 
+    console.log("taskID: "+ this.urlTaskId());
     //get task data from service api
     this.taskSvc.getTask(this.urlTaskId()).subscribe((res:any) => {
+      //hydrate our shared data service (for other components use)
       this.sharedSvc.transmitData(res);
+      console.log("response: " + res.title)
     });
-
-    //hydrate our shared data service (for other components use)
-    
   }
 
 }
