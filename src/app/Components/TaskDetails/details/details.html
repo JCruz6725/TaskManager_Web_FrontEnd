@@ -1,9 +1,8 @@
 
 
 <div class="container">
+    <button class="edit-button">Edit</button>
     <div class="simple-details">
-        <button class="edit-button">Edit</button>
-    
         <label for="title" class="text-box-label">Title</label>
         <div id="title" class="text-box">{{currentTask().title}}</div>
         
@@ -24,18 +23,16 @@
         <div class="parent-container">
             <label for="parent" class="text-box-label"> Parent Task</label>  
             @if (currentTask().parentId != null){
-                <div class="clickable-task" routerLink="/taskDetails/{{currentTask().parentId}}" (click)="onParentClick()">
-                    <a id="parent">
-                        {{currentTaskParent().title}} <br>
-                        Id: {{currentTask().parentId}}</a>
+                <div id="parent" class="clickable-task" routerLink="/taskDetails/{{currentTask().parentId}}" (click)="onParentClick()">
+                    {{currentTaskParent().title}} <br>
+                    Id: {{currentTask().parentId}}
                 </div>
             }
             @else{
                 <div id="parent" class="text-box">No current Parent task</div>
             }
         </div>
-
-        
+ 
     </div>
 </div>
 
