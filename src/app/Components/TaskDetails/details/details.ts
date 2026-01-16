@@ -1,4 +1,4 @@
-import { Component, inject, signal, input, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, inject, signal, input, SimpleChange, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
@@ -19,9 +19,11 @@ export class Details {
   public currentTaskDate = signal<any>(null);
   public currentTaskParent = signal<any>(null);
 
+  @Output("getData") getData: EventEmitter<any> = new EventEmitter();
 
 
   ngOnInit() {
+    //grab our data from our shared service
     this.sharedSvc.currentData$.subscribe((data) => {
       this.currentTask.set(data);
     })
@@ -32,6 +34,11 @@ export class Details {
     else{
       this.currentTaskDate.set('No Current Due Date');
     }
+  }
+
+  onParentClick(){
+    this.sharedSvc.transmitData(this.currentTask().parentId);
+    this.getData.emit();
   }
 
 
