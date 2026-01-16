@@ -27,7 +27,6 @@
                 <div class="clickable-task" routerLink="/taskDetails/{{currentTask().parentId}}" (click)="onParentClick()">
                     <a id="parent">Id: {{currentTask().parentId}}  <br> Title: {{currentTaskParent().title}}</a>
                 </div>
-                <!--<button routerLink="/taskDetails/:{{currentTask().parentId}}"> click me</button>-->
             }
             @else{
                 <div id="parent" class="text-box">No current Parent task</div>
