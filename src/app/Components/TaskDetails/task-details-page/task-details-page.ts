@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
+import { submit } from '@angular/forms/signals';
 
 
 @Component({
@@ -39,7 +40,10 @@ export class TaskDetailsPage {
     //get task data from service api
     this.taskSvc.getTask(this.urlTaskId()).subscribe((res:any) => {
       //hydrate our shared data service (for other components use)
-      this.sharedSvc.transmitData(res);
+      this.sharedSvc.transmitData(res)
+      this.taskSvc.getTask(res.parentId).subscribe((res:any) => {
+        this.sharedSvc.transmitDataParent(res);
+      })
     });
   }
 

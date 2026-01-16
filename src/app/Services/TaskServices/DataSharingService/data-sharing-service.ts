@@ -18,4 +18,11 @@ export class DataSharingService {
   transmitData(newMessage: any) : void {
     this.dataStream.next(newMessage);
   }
+
+  private dataStreamParent = new BehaviorSubject<any>({});
+  currentDataParent$ = this.dataStreamParent.asObservable();
+
+  transmitDataParent(newMessage: any) : void {
+    this.dataStreamParent.next(newMessage);
+  }
 }

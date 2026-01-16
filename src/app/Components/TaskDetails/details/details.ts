@@ -27,6 +27,9 @@ export class Details {
     this.sharedSvc.currentData$.subscribe((data) => {
       this.currentTask.set(data);
     })
+    this.sharedSvc.currentDataParent$.subscribe((data) => {
+      this.currentTaskParent.set(data);
+    })
 
     if (this.currentTask().dueDate != null){
       this.currentTaskDate.set(new Date(this.currentTask().dueDate));
