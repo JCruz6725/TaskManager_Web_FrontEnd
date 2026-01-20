@@ -4,10 +4,11 @@ import { OnInit,input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { Task } from '../task/task';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule,MatIcon, Task],
+  imports: [CommonModule,MatIcon, Task, RouterLink],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })
