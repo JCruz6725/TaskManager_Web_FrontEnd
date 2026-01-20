@@ -12,8 +12,10 @@
   <!-- This holds your todo items -->
   <div class="boarder">
     @for (task of listSize(); track task.id){
-      <app-task [taskId] = "task.id"></app-task>
-    }
+      <a routerLink="/taskDetails/{{task.id}}">
+        <app-task [taskId] = "task.id"></app-task>
+      </a>
+    }  
   </div>
 
   <!-- Add button -->
