@@ -13,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 export class Task {
   apiService : TaskService = inject(TaskService);
   taskId = input<string>("");
+  status : any;
+  errorMessage : any;
 
   taskName = signal<string>("");
   taskDueDate = signal<any>(null);
@@ -22,5 +24,11 @@ export class Task {
       this.taskName.set(res.title);
       this.taskDueDate.set(new Date(res.dueDate));
     });
+  }
+
+  onDelClick(){
+    this.apiService.deleteTask(this.taskId()).subscribe((res:any) => {
+      console.log("Deleted task " + res.title);
+    })
   }
 }
