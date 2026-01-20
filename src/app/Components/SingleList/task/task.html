@@ -1,10 +1,13 @@
 
 <div class="container">
-    <p class="task-info">{{taskName()}}</p>
-    <p class="task-info">
-        <mat-icon class="alarm">alarm icon</mat-icon>
-        {{taskDueDate() | date: 'short'}}
-    </p>
+    <div class="task-info">
+        <p>{{taskName()}}</p>
+        <p>
+            <mat-icon class="alarm">alarm icon</mat-icon>
+            {{taskDueDate() | date: 'short'}}
+        </p>
+    </div>
+    
     <button class="trash-can" (click)="onDelClick()">
         <mat-icon>delete outline icon</mat-icon>
     </button>
