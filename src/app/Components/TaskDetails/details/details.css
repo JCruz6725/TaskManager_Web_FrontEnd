@@ -39,6 +39,7 @@
 }
 .clickable-task:hover {
     background-color: rgb(205, 190, 209);
+    cursor: pointer;
 }
 
 
