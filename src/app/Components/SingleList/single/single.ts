@@ -31,6 +31,7 @@ export class Single implements OnInit {
       this.listSize.set(result.taskItems);
     });
   }
+
 }
 // getSingleList() {
 //     this.service.SingleList(this.dataID()).subscribe((result: any[]) => {
