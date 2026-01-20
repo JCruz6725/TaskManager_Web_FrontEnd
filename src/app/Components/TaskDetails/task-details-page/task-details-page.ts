@@ -5,11 +5,12 @@ import { ActivatedRoute } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { submit } from '@angular/forms/signals';
+import { ViewNotes } from '../view-notes/view-notes';
 
 
 @Component({
   selector: 'app-task-details-page',
-  imports: [Details],
+  imports: [Details, ViewNotes],
   templateUrl: './task-details-page.html',
   styleUrl: './task-details-page.css',
 })
