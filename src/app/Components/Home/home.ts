@@ -1,17 +1,23 @@
 import { ListService } from '../../Services/ListServiceAll/get-all-list';
 import { Component, signal, OnInit } from '@angular/core';
 import { Single } from '../SingleList/single/single';
+import { ListCreation } from '../CreateList/list-creation/list-creation';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [Single],
+  imports: [Single, ListCreation,CommonModule],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })
 export class Home implements OnInit {
   public userList = signal<any[]>([]);
 
+  newList = false;
+  toggleInput(): void {
+    this.newList = !this.newList;
+  }
   constructor(private service: ListService) {}
 
   ngOnInit(): void {

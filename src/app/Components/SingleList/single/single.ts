@@ -11,10 +11,9 @@ import { MatIcon } from '@angular/material/icon';
   styleUrl: './single.css',
 })
 export class Single implements OnInit {
-   dataID = input<string>();
 
-    // userSingleList = signal<any[]>([]);
-    listname = signal<string>('')
+  dataID = input<string>();
+  listname = signal<string>('')
 
   constructor(private service: ListService) {}
 
@@ -28,7 +27,3 @@ export class Single implements OnInit {
     });
   }
 }
-// getSingleList() {
-//     this.service.SingleList(this.dataID()).subscribe((result: any[]) => {
-//       this.userSingleList.set(result);
-//     });
