@@ -15,7 +15,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 })
 export class CreateDetails {
 
-
   taskForm = new FormGroup({
     title: new FormControl(''),
     dueDate: new FormControl(''),
