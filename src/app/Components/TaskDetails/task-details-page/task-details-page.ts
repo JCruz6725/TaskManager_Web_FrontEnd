@@ -25,24 +25,24 @@ export class TaskDetailsPage {
   }
 
   getData(){
+    //grab current child task id from url
     if (this.urlTaskId() == null){
       this.router.params.subscribe((prm) => {
         this.urlTaskId.set(prm['id']);
       })
     }
-    else{
-      this.sharedSvc.currentDataChild$.subscribe(data => this.urlTaskId.set(data));
+    else{ //grab current child id from shared service
+      this.sharedSvc.currentChildData$.subscribe(data => this.urlTaskId.set(data));
     }
-    
-    console.log("taskId: "+this.urlTaskId())
-    //
 
     //get task data from service api
     this.taskSvc.getTask(this.urlTaskId()).subscribe((res:any) => {
       //hydrate our shared data service (for other components use)
-      this.sharedSvc.transmitDataChild(res)
+      this.sharedSvc.transmitChildData(res)
+      //get task data for our parent task from api
       this.taskSvc.getTask(res.parentId).subscribe((res:any) => {
-        this.sharedSvc.transmitDataParent(res);
+        //hydrate our shared service
+        this.sharedSvc.transmitParentData(res);
       })
     });
   }

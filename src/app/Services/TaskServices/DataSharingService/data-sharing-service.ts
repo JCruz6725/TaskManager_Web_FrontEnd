@@ -6,23 +6,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class DataSharingService {
-  private http = inject(HttpClient);
-  private getTaskByIdUrl = 'https://localhost:7177/Task/';
-  private header = new HttpHeaders ({
-    UserId: '8051A558-6F25-409B-9823-D5F5603EE625'
-  });
 
-  private dataStreamChild = new BehaviorSubject<any>({});
-  currentDataChild$ = this.dataStreamChild.asObservable();
-
-  transmitDataChild(newMessage: any) : void {
-    this.dataStreamChild.next(newMessage);
+  //Property to hold current child task data
+  private childDataStream = new BehaviorSubject<any>({});
+  currentChildData$ = this.childDataStream.asObservable();
+  //Method to hydrate our property
+  transmitChildData(newMessage: any) : void {
+    this.childDataStream.next(newMessage);
   }
 
-  private dataStreamParent = new BehaviorSubject<any>({});
-  currentDataParent$ = this.dataStreamParent.asObservable();
-
-  transmitDataParent(newMessage: any) : void {
-    this.dataStreamParent.next(newMessage);
+  //Property to hold the child's parent data
+  private parentDataStream = new BehaviorSubject<any>({});
+  currentParentData$ = this.parentDataStream.asObservable();
+  //Method to hydrate our proprty
+  transmitParentData(newMessage: any) : void {
+    this.parentDataStream.next(newMessage);
   }
 }
