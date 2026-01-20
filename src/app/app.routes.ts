@@ -37,7 +37,7 @@ export const routes: Routes = [
     },
     
     {
-        path: 'createTask',
+        path: 'createTask/:id',
         component: CreateTaskPage
     }
 

@@ -18,6 +18,7 @@ export class Single implements OnInit {
     // userSingleList = signal<any[]>([]);
     listname = signal<string>('')
     listSize = signal<any[]>([]);
+    listId = signal<string>('');
 
   constructor(private service: ListService) {}
 
@@ -29,6 +30,7 @@ export class Single implements OnInit {
     this.service.SingleList(this.dataID()).subscribe((result: any) => {
       this.listname.set(result.name);
       this.listSize.set(result.taskItems);
+      this.listId.set(result.id);
     });
   }
 
