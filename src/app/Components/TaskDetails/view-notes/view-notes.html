@@ -1,23 +1,27 @@
-
-  <div class="notes-container">
+<div class="notes-container">
   <h3 class="header"><strong>Notes</strong></h3>
-  
+
   @if (notes().length === 0) {
   <div class="null">
     <p>No notes for this task.</p>
   </div>
-   }  
- @for (note of notes(); track note.id) {
-   <div class="note-box">
-       <div readonly class="note-textarea">
-         {{ note.note }}
-        </div>
-
-        <div class="note-meta">
-        Created: {{ note.createdDate | date:'short' }}
-        </div>
-   </div>
   }
-   </div>
+  @for (note of notes(); track note.id) {
+  <div class="note-box">
+    <div readonly class="note-textarea">
 
-   
+      <button class="delete-btn" (click)="DeleteNote($index)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      {{ note.note }}
+    </div>
+
+    <div class="note-meta">
+      Created: {{ note.createdDate | date:'short' }}
+    </div>
+  </div>
+  }
+
+
+</div>

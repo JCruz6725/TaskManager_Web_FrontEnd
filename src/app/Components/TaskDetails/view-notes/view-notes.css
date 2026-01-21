@@ -1,5 +1,4 @@
-
-.note-textarea{
+.note-textarea {
     width: 300px;
     height: 50px;
     padding: 8px;
@@ -8,30 +7,40 @@
     border-radius: 6px;
 }
 
-.note-meta{
+.note-meta {
     font-size: 15px;
     margin-left: 10px;
 }
 
-.header{
+.header {
     font-size: 24px;
     font-weight: bold;
     padding: 8px;
     margin: 10px;
 }
 
-.null{
-      width: 150px;
+.null {
+    width: 150px;
     height: 50px;
     padding: 8px;
     margin: 10px;
     border-radius: 6px;
 
-   background-color: white;
+    background-color: white;
 }
-.notes-container{ 
+
+.notes-container {
     display: flex;
     flex-direction: column;
     order: 3;
     text-align: left;
+}
+
+.delete-btn {
+    background-color: white;
+    border-radius: 5px;
+    right: 820px;
+    cursor: pointer;
+    position: absolute;
+
 }
