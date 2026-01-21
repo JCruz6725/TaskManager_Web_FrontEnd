@@ -1,23 +1,37 @@
-.notes-container {
-   display: flex;
-    flex-direction: row;
+
+.note-textarea{
+    width: 300px;
+    height: 50px;
+    padding: 8px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 6px;
 }
 
-.note-box {
-  margin-bottom: 15px;
+.note-meta{
+    font-size: 15px;
+    margin-left: 10px;
 }
 
-.note-text {
-  width: 100%;
-  min-height: 80px;
-  resize: none;
-  border: 1px solid #6d2525;
-  padding: 8px;
-  background-color: #1d0c0c;
+.header{
+    font-size: 24px;
+    font-weight: bold;
+    padding: 8px;
+    margin: 10px;
 }
 
-.note-meta {
-  font-size: 12px;
-  color: gray;
-  margin-top: 4px;
+.null{
+      width: 150px;
+    height: 50px;
+    padding: 8px;
+    margin: 10px;
+    border-radius: 6px;
+
+   background-color: white;
+}
+.notes-container{ 
+    display: flex;
+    flex-direction: column;
+    order: 3;
+    text-align: left;
 }

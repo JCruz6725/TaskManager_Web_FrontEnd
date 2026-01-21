@@ -1,34 +1,23 @@
-<!-- <div class="notes-container"> 
- <h3>Task Notes ({{ notes().length }})</h3>
-
-   @if (notes().length === 0){
-        <p>No notes available for this task.</p>
-     }
-
-     @for (note of notes(); track note.id){
-        <div class="note-item">
-            <p>{{ note.note }}</p>
-            <small>Created: {{ note.createdDate | date:'short' }}</small>
-        </div>
-    }
-  </div> -->
 
   <div class="notes-container">
-  <h3>Notes </h3>
-
+  <h3 class="header"><strong>Notes</strong></h3>
+  
   @if (notes().length === 0) {
+  <div class="null">
     <p>No notes for this task.</p>
-  }
-
-  @for (note of notes(); track note.id) {
-    <div class="note-box">
-      <textarea  class="note-text">
+  </div>
+   }  
+ @for (note of notes(); track note.id) {
+   <div class="note-box">
+       <div readonly class="note-textarea">
          {{ note.note }}
-      </textarea>
+        </div>
 
-      <div class="note-meta">
+        <div class="note-meta">
         Created: {{ note.createdDate | date:'short' }}
-      </div>
-    </div>
+        </div>
+   </div>
   }
-</div>
+   </div>
+
+   
