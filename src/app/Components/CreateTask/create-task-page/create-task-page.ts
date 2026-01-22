@@ -38,7 +38,7 @@ export class CreateTaskPage {
     //create task
     this.taskObj = {
       title: this.taskData().title,
-      dueDate: "2002-10-17T21:29:49.863Z",
+      dueDate: this.taskData().dueDate,//"2002-10-17T21:29:49.863Z",
       priority: this.taskData().priority,
       parentTaskId: this.taskData().parent,
       listId: this.urlListId()
@@ -46,6 +46,7 @@ export class CreateTaskPage {
     
     //api call
     this.taskSvc.postTask(this.taskObj).subscribe((data) => {
+      console.log("Task created and posted successfully!");
       console.log(data);
     })
   }
