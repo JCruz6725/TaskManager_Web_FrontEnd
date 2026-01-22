@@ -3,12 +3,9 @@
         <label for="title" class="text-box-label">Title</label> 
         <input id="title" name="title" class="text-box" type="text" placeholder="Enter your task title" [(ngModel)]="newTask.title"/>
 
-        <label for="status" class="text-box-label">Status</label>
-        <input id="status" name="status" class="text-box" type="text" placeholder="Enter your task status" [(ngModel)]="newTask.status"/>
-
         <div class="due-date-container">
             <label for="due-date" class="text-box-label">Due Date</label>
-            <input id="due-date" name="due-date" class="text-box" type="date" placeholder="Enter your task due date" matInput [(ngModel)]="newTask.dueDate" [matDatepicker]="dueDatePicker"/>
+            <input id="due-date" name="due-date" class="text-box" type="date" matInput [matDatepicker]="dueDatePicker" [(ngModel)]="newTask.dueDate"/>
             <mat-datepicker-toggle matSuffix [for]="dueDatePicker" class="date-picker"></mat-datepicker-toggle>
             <mat-datepicker #dueDatePicker></mat-datepicker>
         </div>
@@ -19,12 +16,12 @@
         <input id="priority" name="priority" class="text-box" type="text" placeholder="Enter your task priority" [(ngModel)]="newTask.priority"/>
 
         <label for="parent" class="text-box-label"> Parent Task</label>  
-        <input id="parent" name="parent" class="text-box" type="text" placeholder="Enter the parent task's title" [(ngModel)]="newTask.parentId"/>    
+        <input id="parent" name="parent" class="text-box" type="text" placeholder="Enter the parent task's title" [(ngModel)]="newTask.parentId"/>   
     </form>
 </div>
 
 <form #taskForm="ngForm"  class="button">
-    <button class="submit-button" (click)="onSubmit()">
+    <button class="submit-button" (click)="onSubmit()" routerLink="/home">
         <mat-icon>stars</mat-icon>
         Submit
     </button>

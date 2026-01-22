@@ -16,7 +16,7 @@ export class TaskService {
   }
 
   postTask(task: any){
-    return this.http.post<any>(this.getTaskByIdUrl, task, { headers: this.MakeApiHeader() })
+    return this.http.post<any>('https://localhost:7177/task', task, { headers: this.MakeApiHeader() })
   }
 
   MakeApiHeader(): HttpHeaders {

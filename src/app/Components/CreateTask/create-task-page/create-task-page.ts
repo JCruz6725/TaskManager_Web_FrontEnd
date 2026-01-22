@@ -14,12 +14,10 @@ import { DataSharingService } from '../../../Services/TaskServices/DataSharingSe
 })
 export class CreateTaskPage {
   private taskSvc = inject(TaskService);
-  private listSvc = inject(ListService);
   private sharedSvc = inject(DataSharingService);
   private router = inject(ActivatedRoute);
 
   private urlListId = signal<string>('');
-
   private taskData = signal<any>('');
   taskObj : any;
 
@@ -36,23 +34,19 @@ export class CreateTaskPage {
     this.sharedSvc.currentChildData$.subscribe((data) => {
       this.taskData.set(data);
     })
+
     //create task
     this.taskObj = {
       title: this.taskData().title,
-      dueDate: this.taskData().dueDate,
-      priority: this.taskData().priority
-    }
-
-  }
-
-  SaveData(){
-    //save task to database
-    this.taskSvc.postTask(this.taskData());
-
-    //add status
-    //add list
-    //add parent
-
-    //Add notes to task
+      dueDate: "2002-10-17T21:29:49.863Z",
+      priority: this.taskData().priority,
+      parentTaskId: this.taskData().parent,
+      listId: this.urlListId()
+    };
+    
+    //api call
+    this.taskSvc.postTask(this.taskObj).subscribe((data) => {
+      console.log(data);
+    })
   }
 }
