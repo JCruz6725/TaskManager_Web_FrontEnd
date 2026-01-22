@@ -2,10 +2,8 @@
 
     <div class="boarder"></div>
 
-    <input class="list-title"
-      matInput
-      type="text"
-      required
+    <input #listTitleInput class="list-title"
+      matInput type="text" required
       [(ngModel)]="inputValue"
       (keydown.enter)="postSingleList()"
       (input)="showErrorMessage = false";
