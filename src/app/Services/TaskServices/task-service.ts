@@ -15,6 +15,10 @@ export class TaskService {
     return this.http.get<any>(this.getTaskByIdUrl + taskId, { headers: this.MakeApiHeader() });
   }
 
+  postTask(task: any){
+    return this.http.post<any>(this.getTaskByIdUrl, task, { headers: this.MakeApiHeader() })
+  }
+
   MakeApiHeader(): HttpHeaders {
     return new HttpHeaders({
       UserId: this.userIdTokenService.GetUserIdToken() ?? (() => { throw new Error("User ID Token is null"); })()

@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CreateDetails } from '../create-details/create-details';
+import { TaskService } from '../../../Services/TaskServices/task-service';
+import { signal } from '@angular/core';
+import { ActivatedRoute, provideRouter } from '@angular/router';
+import { ListService } from '../../../Services/ListServiceAll/get-all-list';
+import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 
 @Component({
   selector: 'app-create-task-page',
@@ -8,5 +13,46 @@ import { CreateDetails } from '../create-details/create-details';
   styleUrl: './create-task-page.css',
 })
 export class CreateTaskPage {
+  private taskSvc = inject(TaskService);
+  private listSvc = inject(ListService);
+  private sharedSvc = inject(DataSharingService);
+  private router = inject(ActivatedRoute);
 
+  private urlListId = signal<string>('');
+
+  private taskData = signal<any>('');
+  taskObj : any;
+
+  ngOnInit() {
+    //grab list id from url
+    this.router.params.subscribe((prm) => {
+      this.urlListId.set(prm['id']);
+    })
+
+  }
+
+  onNotify(){ 
+    //when notified of new info, grab data from shared service
+    this.sharedSvc.currentChildData$.subscribe((data) => {
+      this.taskData.set(data);
+    })
+    //create task
+    this.taskObj = {
+      title: this.taskData().title,
+      dueDate: this.taskData().dueDate,
+      priority: this.taskData().priority
+    }
+
+  }
+
+  SaveData(){
+    //save task to database
+    this.taskSvc.postTask(this.taskData());
+
+    //add status
+    //add list
+    //add parent
+
+    //Add notes to task
+  }
 }

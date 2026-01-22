@@ -1,29 +1,36 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CreateTask } from '../../../Models/create-task';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule, } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
+import { output } from '@angular/core';
 
 
 @Component({
   selector: 'app-create-details',
-  imports: [ReactiveFormsModule, MatIconModule, MatDatepickerModule, MatNativeDateModule],
+  imports: [ReactiveFormsModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, FormsModule],
   templateUrl: './create-details.html',
   styleUrl: './create-details.css',
 })
 export class CreateDetails {
+  private sharedSvc : DataSharingService = inject(DataSharingService);
+  notify = output<string>();
 
-  taskForm = new FormGroup({
-    title: new FormControl(''),
-    dueDate: new FormControl(''),
-    status: new FormControl(''),
-    priority: new FormControl(''),
-    parentTask: new FormControl('')
-  })
+  newTask: CreateTask = {
+    title: '',
+    dueDate: '',
+    status: '',
+    priority: 0,
+    parentId: '',
+  };
 
-  onSubmit(){
-    
-  }
+    onSubmit() {
+      //send our data to our shared service
+      this.sharedSvc.transmitChildData(this.newTask);
+      //notify our parent component of new data
+      this.notify.emit('');
+    }
+
 }

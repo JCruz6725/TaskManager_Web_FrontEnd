@@ -1,32 +1,29 @@
 <div class="container">
-    <form [formGroup]="taskForm" class="left-details">
+    <form #taskForm="ngForm"  class="left-details">
         <label for="title" class="text-box-label">Title</label> 
-        <input id="title" class="text-box" type="text" placeholder="Enter your task title" formControlName="title"/>
+        <input id="title" name="title" class="text-box" type="text" placeholder="Enter your task title" [(ngModel)]="newTask.title"/>
 
         <label for="status" class="text-box-label">Status</label>
-        <input id="status" class="text-box" type="text" placeholder="Enter your task status" formControlName="status"/>
+        <input id="status" name="status" class="text-box" type="text" placeholder="Enter your task status" [(ngModel)]="newTask.status"/>
 
         <div class="due-date-container">
             <label for="due-date" class="text-box-label">Due Date</label>
-            <input id="due-date" class="text-box" type="text" placeholder="Enter your task due date" matInput formControlName="dueDate" [matDatepicker]="dueDatePicker"/>
+            <input id="due-date" name="due-date" class="text-box" type="date" placeholder="Enter your task due date" matInput [(ngModel)]="newTask.dueDate" [matDatepicker]="dueDatePicker"/>
             <mat-datepicker-toggle matSuffix [for]="dueDatePicker" class="date-picker"></mat-datepicker-toggle>
             <mat-datepicker #dueDatePicker></mat-datepicker>
         </div>
     </form>
-    <form [formGroup]="taskForm" class="right-details">
-        <div class="Priority-container">
-            <label for="priority" class="text-box-label">Priority</label> 
-            <input id="priority" class="text-box" type="text" placeholder="Enter your task priority" formControlName="priority"/>
-        </div>
 
-        <div class="parent-container">
-            <label for="parent" class="text-box-label"> Parent Task</label>  
-            <input id="parent" class="text-box" type="text" placeholder="Enter the parent task's title" formControlName="parentTask"/>    
-        </div>
+    <form #taskForm="ngForm"  class="right-details">
+        <label for="priority" class="text-box-label">Priority</label> 
+        <input id="priority" name="priority" class="text-box" type="text" placeholder="Enter your task priority" [(ngModel)]="newTask.priority"/>
+
+        <label for="parent" class="text-box-label"> Parent Task</label>  
+        <input id="parent" name="parent" class="text-box" type="text" placeholder="Enter the parent task's title" [(ngModel)]="newTask.parentId"/>    
     </form>
 </div>
 
-<form [formGroup]="taskForm">
+<form #taskForm="ngForm"  class="button">
     <button class="submit-button" (click)="onSubmit()">
         <mat-icon>stars</mat-icon>
         Submit

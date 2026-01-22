@@ -1,11 +1,7 @@
-export class CreateTask {
+export interface CreateTask {
     title: string;
     dueDate: string;
+    status: string;
     priority: number;
-
-    constructor(title:string, dueDate:string, priority:number){
-        this.title = title;
-        this.dueDate = dueDate;
-        this.priority = priority;
-    }
+    parentId: string;
 }
