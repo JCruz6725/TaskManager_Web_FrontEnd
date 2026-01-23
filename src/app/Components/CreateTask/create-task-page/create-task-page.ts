@@ -14,6 +14,7 @@ import { DataSharingService } from '../../../Services/TaskServices/DataSharingSe
 })
 export class CreateTaskPage {
   private taskSvc = inject(TaskService);
+  private listSvc = inject(ListService);
   private sharedSvc = inject(DataSharingService);
   private router = inject(ActivatedRoute);
 
@@ -25,6 +26,11 @@ export class CreateTaskPage {
     //grab list id from url
     this.router.params.subscribe((prm) => {
       this.urlListId.set(prm['id']);
+    })
+
+    //grab all tasks (in a list) from api and store in shared service
+    this.listSvc.SingleList(this.urlListId()).subscribe((data:any) => {
+      this.sharedSvc.transmitListData(data.taskItems);
     })
 
   }
@@ -40,9 +46,14 @@ export class CreateTaskPage {
       title: this.taskData().title,
       dueDate: this.taskData().dueDate,
       priority: this.taskData().priority,
-      parentTaskId: this.taskData().parent,
+      parentTaskId: this.taskData().parentId,
       listId: this.urlListId()
     };
+/*     console.log(this.taskObj.title);
+    console.log(this.taskObj.dueDate);
+    console.log(this.taskObj.priority);
+    console.log(this.taskObj.parentTaskId);
+    console.log(this.taskObj.listId); */
     
     //api call
     this.taskSvc.postTask(this.taskObj).subscribe((data) => {
