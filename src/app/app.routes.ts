@@ -3,6 +3,7 @@ import { SignupComponent } from './Components/sign-up/sign-up';
 import { LoginComponent } from './Components/login/login';
 import { Home } from './Components/Home/home';
 import { TaskDetailsPage } from './Components/TaskDetails/task-details-page/task-details-page';
+import { EditDetailsPage } from './Components/EditTaskDetails/edit-details-page/edit-details-page';
 
 export const routes: Routes = [
     {
@@ -32,6 +33,12 @@ export const routes: Routes = [
         path:'taskDetails/:id',
         component : TaskDetailsPage
 
+    },
+
+    {
+        path:'editTaskDetails',
+        component : EditDetailsPage,
+        title: 'Edit Task Details'
     }
 
 ];

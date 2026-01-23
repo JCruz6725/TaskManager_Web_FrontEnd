@@ -14,16 +14,31 @@ export class ViewNotes {
   private sharedSvc = inject(DataSharingService);
   public notes = signal<any[]>([]);
 
+  // ngOnInit() {
+  //   this.sharedSvc.currentChildData$.subscribe(task => {
+  //     console.log('Task in ViewNotes:', task);
+  //     if (!task || !task.notes) {
+  //       this.notes.set([]);
+  //       return;
+  //     }
+  //     this.notes.set(task.notes);
+  //   });
+  // }
   ngOnInit() {
-    this.sharedSvc.currentChildData$.subscribe(task => {
-      console.log('Task in ViewNotes:', task);
-      if (!task || !task.notes) {
-        this.notes.set([]);
-        return;
-      }
-      this.notes.set(task.notes);
-    });
-  }
+  this.sharedSvc.currentChildData$.subscribe(task => {
+    this.notes.set(task?.notes ?? []);
+  });
+
+  // this.sharedSvc.currentNoteData$.subscribe(note => {
+  //   if (note?.id) {
+  //     this.notes.update(n => [...n, note]);
+  //   }
+  // });
+}
+
+
+
+
 
   DeleteNote(index: number) {
     let currentNotes = this.notes();
