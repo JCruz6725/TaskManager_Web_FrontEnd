@@ -1,13 +1,21 @@
 
 <!-- Display all data -->
-  <!-- <p>{{userSingleList() | json}} --> <!-- </p> -->
+<!-- <p>{{userSingleList() | json}} --> <!-- </p> -->
 
 <div class="list-column">
-
   <!-- Title (looks like a button, not clickable) -->
+  @if(State() == 'view'){
   <div class="list-title">
     {{ listname() }}
   </div>
+  }
+  @if(State() == 'edit'){
+  <input class="list-title" type="text" [(ngModel)]="listname" (keydown.enter)="UpdateList()" />
+@if (listname() == '') {
+    <p class="errorColor"> List Name Cannot Be Empty </p>
+  }
+}
+
 
   <!-- This holds your todo items -->
   <div class="boarder">
@@ -21,8 +29,27 @@
   <!-- Add button -->
   <button class="add-btn">+</button>
 
-  <button class="delete-btn">
-    <mat-icon>delete</mat-icon>
-  </button>
+  <!-- Tool Bar -->
+
+  <span class="toolbar-location">
+    <button mat-icon-button class="custom-toolbar-btn"
+      [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
+      (mouseover)="menuTrigger.openMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+      <span (mouseleave)="menuTrigger.closeMenu()">
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Delete</span>
+        </button>
+        <button mat-menu-item (click)="flipState()">
+          <mat-icon>edit</mat-icon>
+          <span>Edit</span>
+        </button>
+      </span>
+    </mat-menu>
+  </span>
 </div>
 
+<!-- <app-list-creation *ngIf="isEditing" [currentTitle]="currentTitle" (getAllList)="getAllList()" (toggleInputChange)="isEditing = $event" ></app-list-creation> -->

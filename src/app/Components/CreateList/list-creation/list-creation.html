@@ -1,0 +1,25 @@
+<div class="list-column">
+
+    <div class="boarder"></div>
+
+    <input #listTitleInput class="list-title"
+      matInput type="text" required
+      [(ngModel)]="inputValue"
+      (keydown.enter)="postSingleList()"
+      (input)="showErrorMessage = false";
+    />
+    @if (inputValue) {
+    <button
+      matSuffix
+      matIconButton
+      aria-label="Clear"
+      (click)="inputValue = ''; showErrorMessage = false">
+    </button>
+    } @if (showErrorMessage) {
+    <mat-error class="errorColor"> List Name Cannot Be Empty </mat-error>
+    }
+  </div>
+
+
+  <!-- CALL isEditing maybe NGIF (How to use the old input box area )
+   EDIT = "FALSE EXIT MODE " " TRUE ENTERS MODE " -->
