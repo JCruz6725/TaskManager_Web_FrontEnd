@@ -56,20 +56,5 @@ export class ListCreation {
   }
 
   //  Working on Update List Function
-  UpdateList(): void {
-    if (!this.inputValue || !this.inputValue.trim()) {
-      this.showErrorMessage = true;
-      console.log(' Error : Input is empty');
-      return;
-    }
-    this.showErrorMessage = false;
-    console.log('Entered Title Name: ', this.inputValue);
 
-    this.listservice.UpdateList(this.listId, this.inputValue).subscribe((response) => {
-      this.inputValue = '';
-      // exit edit mode
-      this.isEditing = false;
-      this.getAllList.emit();
-    });
-  }
 }
