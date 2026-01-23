@@ -10,20 +10,20 @@
   </div>
   }
   @if(State() == 'edit'){
-  <input class="list-title" type="text" [(ngModel)]="listname" (keydown.enter)="UpdateList()" />
-@if (listname() == '') {
-    <p class="errorColor"> List Name Cannot Be Empty </p>
+  <input class="list-title" type="text" [(ngModel)]="listname"
+    (keydown.enter)="UpdateList()" />
+  @if (listname() == '') {
+  <p class="errorColor"> List Name Cannot Be Empty </p>
   }
-}
-
+  }
 
   <!-- This holds your todo items -->
   <div class="boarder">
     @for (task of listSize(); track task.id){
-      <a routerLink="/taskDetails/{{task.id}}">
-        <app-task [taskId] = "task.id"></app-task>
-      </a>
-    }  
+    <a routerLink="/taskDetails/{{task.id}}">
+      <app-task [taskId]="task.id"></app-task>
+    </a>
+    }
   </div>
 
   <!-- Add button -->
