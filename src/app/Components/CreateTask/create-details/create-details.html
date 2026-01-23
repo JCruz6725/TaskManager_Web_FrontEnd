@@ -5,9 +5,9 @@
 
         <div class="due-date-container">
             <label for="due-date" class="text-box-label">Due Date</label>
-            <input id="due-date" name="due-date" class="text-box" type="date" matInput [matDatepicker]="dueDatePicker" [(ngModel)]="newTask.dueDate"/>
-            <mat-datepicker-toggle matSuffix [for]="dueDatePicker" class="date-picker"></mat-datepicker-toggle>
-            <mat-datepicker #dueDatePicker></mat-datepicker>
+            <input class="text-box" name="due-date" matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newTask.dueDate">
+            <mat-datepicker-toggle matSuffix [for]="picker" class="date-picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
         </div>
     </form>
 
@@ -33,7 +33,7 @@
 </div>
 
 <form #taskForm="ngForm"  class="button">
-    <button class="submit-button" (click)="onSubmit()" routerLink="/home">
+    <button class="submit-button" (click)="onSubmit('/home')" >
         <mat-icon>stars</mat-icon>
         Submit
     </button>

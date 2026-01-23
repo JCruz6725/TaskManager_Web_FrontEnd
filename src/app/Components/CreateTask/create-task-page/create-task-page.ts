@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CreateDetails } from '../create-details/create-details';
 import { TaskService } from '../../../Services/TaskServices/task-service';
 import { signal } from '@angular/core';
-import { ActivatedRoute, provideRouter } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ListService } from '../../../Services/ListServiceAll/get-all-list';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 
@@ -49,11 +49,6 @@ export class CreateTaskPage {
       parentTaskId: this.taskData().parentId,
       listId: this.urlListId()
     };
-/*     console.log(this.taskObj.title);
-    console.log(this.taskObj.dueDate);
-    console.log(this.taskObj.priority);
-    console.log(this.taskObj.parentTaskId);
-    console.log(this.taskObj.listId); */
     
     //api call
     this.taskSvc.postTask(this.taskObj).subscribe((data) => {

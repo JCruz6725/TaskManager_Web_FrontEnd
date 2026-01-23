@@ -5,18 +5,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule, } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { formatDate } from '@angular/common';
-import { MatOption } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { DetailedTask } from '../../../Models/detailed-task';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
   selector: 'app-create-details',
-  imports: [ReactiveFormsModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, FormsModule, RouterLink, MatOption, MatFormFieldModule, MatSelectModule, MatInputModule],
+  imports: [ReactiveFormsModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, FormsModule, RouterLink, MatFormFieldModule, MatSelectModule, MatInputModule],
   templateUrl: './create-details.html',
   styleUrl: './create-details.css',
 })
@@ -24,6 +24,7 @@ export class CreateDetails {
   private sharedSvc : DataSharingService = inject(DataSharingService);
   notify = output<string>();
   newDate:any;
+  private router = inject(Router);
 
   public searchParent = signal<string>('');
   public searchResult = signal<Array<any>>([]);
@@ -31,11 +32,10 @@ export class CreateDetails {
   public selectedInput = signal<any>({});
   private tempO: Array<DetailedTask> = [];
   
-   ngOnInit(){
+  ngOnInit(){
     this.sharedSvc.currentListData$.subscribe((data) => {
       this.tempO = data;
     })
-    console.log(this.tempO)
   } 
 
   newTask: CreateTask = {
@@ -63,7 +63,7 @@ export class CreateDetails {
   }
 
 
-  onSubmit() {
+  onSubmit(path: string) {
     if (this.newTask.dueDate != null){
       this.newDate = formatDate(this.newTask.dueDate, 'yyyy-MM-dd', 'en')
       this.newTask.dueDate = this.newDate
@@ -73,6 +73,8 @@ export class CreateDetails {
     this.sharedSvc.transmitChildData(this.newTask);
     //notify our parent component of new data
     this.notify.emit('');
+    //navigate back to home
+    this.router.navigateByUrl(path);
   }
 
 }
