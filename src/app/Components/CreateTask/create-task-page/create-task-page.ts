@@ -50,7 +50,7 @@ export class CreateTaskPage {
       listId: this.urlListId()
     };
     
-    //api call
+    //api call to post task creation
     this.taskSvc.postTask(this.taskObj).subscribe((data) => {
       console.log("Task created and posted successfully!");
       console.log(data);
