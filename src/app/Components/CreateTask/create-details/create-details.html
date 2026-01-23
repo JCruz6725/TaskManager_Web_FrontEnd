@@ -15,8 +15,20 @@
         <label for="priority" class="text-box-label">Priority</label> 
         <input id="priority" name="priority" class="text-box" type="text" placeholder="Enter your task priority" [(ngModel)]="newTask.priority"/>
 
-        <label for="parent" class="text-box-label"> Parent Task</label>  
-        <input id="parent" name="parent" class="text-box" type="text" placeholder="Enter the parent task's title" [(ngModel)]="newTask.parentId"/>   
+        <div class="parent-task-container">
+            <label for="parent" class="text-box-label"> Parent Task</label>  
+            <input id="parent" name="parent" class="text-box" type="text" 
+                (keyup)="fetchParentTask($event)"
+                placeholder="Enter the parent task's title" [(ngModel)]="searchParent"
+                /> 
+                @if (barIsActive){
+                    <div class="dropdown-container">
+                        @for(task of searchResult(); track task){
+                            <p class="dropdown-options" (click)="onSelectTask(task)">{{task.title}}</p>
+                        }
+                    </div>
+                }
+        </div>
     </form>
 </div>
 

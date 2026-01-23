@@ -38,7 +38,7 @@ export class CreateTaskPage {
     //create task
     this.taskObj = {
       title: this.taskData().title,
-      dueDate: this.taskData().dueDate,//"2002-10-17T21:29:49.863Z",
+      dueDate: this.taskData().dueDate,
       priority: this.taskData().priority,
       parentTaskId: this.taskData().parent,
       listId: this.urlListId()
