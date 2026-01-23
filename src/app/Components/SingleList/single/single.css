@@ -41,11 +41,21 @@
 }
 
 /* Trash Button top-right */
-.delete-btn{
+.toolbar-location {
  position: absolute;
   top: 8px;
   right: 8px;
-  background-color: #c9c5ff;
   border-radius: 6px;
-
 }
+
+
+/* Change button background and icon color */
+.custom-toolbar-btn {
+  background-color:#7a7a7a;
+  color: rgb(2, 0, 0);
+  border-radius: 4px;
+  border: none;
+}
+
+
+

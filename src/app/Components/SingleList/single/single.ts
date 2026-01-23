@@ -3,10 +3,15 @@ import { ListService } from '../../../Services/ListServiceAll/get-all-list';
 import { OnInit,input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { ListCreation } from '../../CreateList/list-creation/list-creation';
+
+
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule,MatIcon],
+  imports: [CommonModule, MatIcon, MatToolbarModule, MatMenuModule,ListCreation],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })

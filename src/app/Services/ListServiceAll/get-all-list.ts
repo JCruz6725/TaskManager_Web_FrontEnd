@@ -28,4 +28,8 @@ export class ListService {
     const body = { name: inputValue };
     return this.http.post<any>('https://localhost:7177/list', body, { headers: this.MakeApiHeader() });
   }
+  UpdateList(listId: string | undefined, inputValue: string | undefined): Observable<any[]> {
+    const body ={ name: inputValue };
+    return this.http.put<any[]>('https://localhost:7177/list/' + listId + '/edit-list', body, { headers: this.MakeApiHeader() });
+  }
 }
