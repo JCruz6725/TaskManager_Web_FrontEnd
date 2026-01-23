@@ -3,6 +3,8 @@ import { ListService } from '../../../Services/ListServiceAll/get-all-list';
 import { OnInit,input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
+import { Task } from '../task/task';
+import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from "@angular/forms";
@@ -12,19 +14,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule, MatIcon, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule],
+  imports: [CommonModule,MatIcon],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })
 export class Single implements OnInit {
-  showErrorMessage: boolean = false;
-  dataID = input<string>();
-  listname = signal<string>('')
+   dataID = input<string>();
 
-  @Output('getAllList') getAllList: EventEmitter<any> = new EventEmitter();
-
-  public State = signal<'view' | 'edit'>('view');
-
+    // userSingleList = signal<any[]>([]);
+    listname = signal<string>('')
 
   constructor(private service: ListService) {}
 
@@ -35,6 +33,7 @@ export class Single implements OnInit {
   getSingleList() {
     this.service.SingleList(this.dataID()).subscribe((result: any) => {
       this.listname.set(result.name);
+      this.listSize.set(result.taskItems);
     });
   }
 
