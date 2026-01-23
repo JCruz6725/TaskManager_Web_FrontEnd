@@ -14,15 +14,20 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule,MatIcon],
+  imports: [CommonModule, MatIcon, RouterLink, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })
 export class Single implements OnInit {
-   dataID = input<string>();
+  dataID = input<string>();
+  listSize = signal<any[]>([]);
+  userSingleList = signal<any[]>([]);
+  listname = signal<string>('')
+  showErrorMessage = signal<boolean>(false);
 
-    // userSingleList = signal<any[]>([]);
-    listname = signal<string>('')
+  public State = signal<'view' | 'edit'>('view')
+
+  @Output('getAllList') getAllList: EventEmitter<any> = new EventEmitter();
 
   constructor(private service: ListService) {}
 
@@ -49,11 +54,11 @@ export class Single implements OnInit {
 
     UpdateList(): void {
       if (!this.listname() || this.listname().trim() === '') {
-        this.showErrorMessage = true;
+        this.showErrorMessage.set(true);
         console.log(' Error : Input is empty');
         return;
       }
-      this.showErrorMessage = false;
+        this.showErrorMessage.set(false);
       console.log('Entered Title Name: ', this.listname());
 
       this.service.UpdateList(this.dataID(), this.listname()).subscribe({ next:(response) => {
