@@ -3,6 +3,7 @@ import { Component, inject, input, Input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { MatIconModule } from '@angular/material/icon';
+import { NoteService } from '../../../Services/note-service';
 
 @Component({
   selector: 'app-view-notes',
@@ -12,18 +13,10 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ViewNotes {
   private sharedSvc = inject(DataSharingService);
+  private notSvc = inject(NoteService)
   public notes = signal<any[]>([]);
+  public taskId = signal<string | null>(null);
 
-  // ngOnInit() {
-  //   this.sharedSvc.currentChildData$.subscribe(task => {
-  //     console.log('Task in ViewNotes:', task);
-  //     if (!task || !task.notes) {
-  //       this.notes.set([]);
-  //       return;
-  //     }
-  //     this.notes.set(task.notes);
-  //   });
-  // }
   ngOnInit() {
   this.sharedSvc.currentChildData$.subscribe(task => {
     this.notes.set(task?.notes ?? []);
@@ -35,16 +28,11 @@ export class ViewNotes {
   //   }
   // });
 }
+ 
 
+     
 
-
-
-
-  DeleteNote(index: number) {
-    let currentNotes = this.notes();
-    let confirmDelet = confirm("Are you sure you want to delete this note?");
-    if (confirmDelet) {
-      currentNotes.splice(index, 1);
-    }
   }
-}
+
+
+

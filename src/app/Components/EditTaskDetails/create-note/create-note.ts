@@ -11,8 +11,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './create-note.css',
 })
 export class CreateNote {
-//shared serice
-
     sharedSvc = inject(DataSharingService);
    noteSvc = inject(NoteService);
 
