@@ -28,6 +28,7 @@ export class Single implements OnInit {
   public State = signal<'view' | 'edit'>('view')
 
   @Output('getAllList') getAllList: EventEmitter<any> = new EventEmitter();
+    listId = signal<string>('');
 
   constructor(private service: ListService) {}
 
@@ -39,6 +40,7 @@ export class Single implements OnInit {
     this.service.SingleList(this.dataID()).subscribe((result: any) => {
       this.listname.set(result.name);
       this.listSize.set(result.taskItems);
+      this.listId.set(result.id);
     });
   }
 

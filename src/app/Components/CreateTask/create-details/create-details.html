@@ -1,0 +1,41 @@
+<div class="container">
+    <form #taskForm="ngForm"  class="left-details">
+        <label for="title" class="text-box-label">Title</label> 
+        <input id="title" name="title" class="text-box" type="text" placeholder="Enter your task title" [(ngModel)]="newTask.title"/>
+
+        <div class="due-date-container">
+            <label for="due-date" class="text-box-label">Due Date</label>
+            <input class="text-box" name="due-date" matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newTask.dueDate">
+            <mat-datepicker-toggle matSuffix [for]="picker" class="date-picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </div>
+    </form>
+
+    <form #taskForm="ngForm"  class="right-details">
+        <label for="priority" class="text-box-label">Priority</label> 
+        <input id="priority" name="priority" class="text-box" type="text" placeholder="Enter your task priority" [(ngModel)]="newTask.priority"/>
+
+        <div class="parent-task-container">
+            <label for="parent" class="text-box-label"> Parent Task</label>  
+            <input id="parent" name="parent" class="text-box" type="text" 
+                (keyup)="fetchParentTask($event)"
+                placeholder="Enter the parent task's title" [(ngModel)]="searchParent"
+                /> 
+                @if (barIsActive){
+                    <div class="dropdown-container">
+                        @for(task of searchResult(); track task){
+                            <p class="dropdown-options" (click)="onSelectTask(task)">{{task.title}}</p>
+                        }
+                    </div>
+                }
+        </div>
+    </form>
+</div>
+
+<form #taskForm="ngForm"  class="button">
+    <button class="submit-button" (click)="onSubmit('/home')" >
+        <mat-icon>stars</mat-icon>
+        Submit
+    </button>
+</form>
+
