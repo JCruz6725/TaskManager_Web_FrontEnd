@@ -14,9 +14,9 @@
             <label for="priority" class="text-box-label">Priority</label>
             <div id="priority" class="text-box">{{currentTask().priority}}</div>
         </div>
-        
+
         <div class="parent-container">
-            <label for="parent" class="text-box-label"> Parent Task</label>  
+            <label for="parent" class="text-box-label"> Parent Task</label>
             @if (currentTask().parentId != null){
                 <div id="parent" class="clickable-task" routerLink="/taskDetails/{{currentTask().parentId}}" (click)="onParentClick()">
                     {{currentTaskParent().title}} <br>
@@ -27,7 +27,7 @@
                 <div id="parent" class="text-box">No current Parent task</div>
             }
         </div>
- 
+
     </div>
 </div>
 
