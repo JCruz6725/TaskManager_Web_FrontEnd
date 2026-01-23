@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { Task } from '../task/task';
 import { RouterLink } from '@angular/router';
+import { CdkDropList, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule,MatIcon, Task, RouterLink],
+  imports: [CommonModule,MatIcon, Task, RouterLink, CdkDropList, CdkDrag],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })
@@ -30,6 +31,10 @@ export class Single implements OnInit {
       this.listname.set(result.name);
       this.listSize.set(result.taskItems);
     });
+  }
+
+  drop(event: CdkDragDrop<any>){
+    console.log("dropped");
   }
 }
 // getSingleList() {

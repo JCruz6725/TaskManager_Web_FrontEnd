@@ -1,12 +1,12 @@
 
-  <p class=center>Home</p>
+<p class=center>Home</p>
 
 
-  <button (click)=" getAllList()" class="Success">Load User</button>
+<button (click)=" getAllList()" class="Success">Load User</button>
 
 
 
-<div class="boarder">
+<div class="boarder" cdkDropListGroup>
 @for ( list of userList(); track list.id){
 
   <app-single [dataID]=" list.id"></app-single>

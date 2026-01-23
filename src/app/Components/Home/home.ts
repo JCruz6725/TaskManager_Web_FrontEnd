@@ -1,11 +1,12 @@
 import { ListService } from '../../Services/ListServiceAll/get-all-list';
 import { Component, signal, OnInit } from '@angular/core';
 import { Single } from '../SingleList/single/single';
+import { CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [Single],
+  imports: [Single, CdkDropListGroup],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })

@@ -10,10 +10,10 @@
   </div>
 
   <!-- This holds your todo items -->
-  <div class="boarder">
+  <div class="boarder" cdkDropList (cdkDropListDropped)="drop($event)">
     @for (task of listSize(); track task.id){
       <a routerLink="/taskDetails/{{task.id}}">
-        <app-task [taskId] = "task.id"></app-task>
+        <app-task [taskId] = "task.id" cdkDrag></app-task>
       </a>
     }  
   </div>
