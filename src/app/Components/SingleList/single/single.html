@@ -10,8 +10,12 @@
   </div>
   }
   @if(State() == 'edit'){
-  <input class="list-title" [(ngModel)]="listname" />
+  <input class="list-title" type="text" [(ngModel)]="listname" (keydown.enter)="UpdateList()" />
+@if (listname() == '') {
+    <p class="errorColor"> List Name Cannot Be Empty </p>
   }
+}
+
 
   <!-- This holds your todo items -->
   <div class="boarder">

@@ -1,25 +1,27 @@
-import { Component,signal} from '@angular/core';
+import { Component,EventEmitter,signal} from '@angular/core';
 import { ListService } from '../../../Services/ListServiceAll/get-all-list';
-import { OnInit,input } from '@angular/core';
+import { OnInit,input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { ListCreation } from '../../CreateList/list-creation/list-creation';
 import { FormsModule } from "@angular/forms";
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule, MatIcon, MatToolbarModule, MatMenuModule, ListCreation, FormsModule],
+  imports: [CommonModule, MatIcon, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })
 export class Single implements OnInit {
-
+  showErrorMessage: boolean = false;
   dataID = input<string>();
   listname = signal<string>('')
+
+  @Output('getAllList') getAllList: EventEmitter<any> = new EventEmitter();
 
   public State = signal<'view' | 'edit'>('view');
 
@@ -37,7 +39,7 @@ export class Single implements OnInit {
   }
 
 
-  flipState() { 
+  flipState() {
     if (this.State() === 'view') {
       this.State.set('edit');
      }
@@ -46,24 +48,20 @@ export class Single implements OnInit {
      }
   }
 
+    UpdateList(): void {
+      if (!this.listname() || this.listname().trim() === '') {
+        this.showErrorMessage = true;
+        console.log(' Error : Input is empty');
+        return;
+      }
+      this.showErrorMessage = false;
+      console.log('Entered Title Name: ', this.listname());
 
+      this.service.UpdateList(this.dataID(), this.listname()).subscribe({ next:(response) => {
+        this.State.set('view');
+        this.getAllList.emit();
 
+      }});
+    }
 
-    // UpdateList(): void {
-    //   if (!this.inputValue || !this.inputValue.trim()) {
-    //     this.showErrorMessage = true;
-    //     console.log(' Error : Input is empty');
-    //     return;
-    //   }
-    //   this.showErrorMessage = false;
-    //   console.log('Entered Title Name: ', this.inputValue);
-
-    //   this.listservice.UpdateList(this.listId, this.inputValue).subscribe((response) => {
-    //     this.inputValue = '';
-    //     // exit edit mode
-    //     this.isEditing = false;
-    //     this.getAllList.emit();
-    //   });
-    // }
-  
 }

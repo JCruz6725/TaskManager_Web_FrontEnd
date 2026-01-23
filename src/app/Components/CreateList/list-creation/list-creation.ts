@@ -49,12 +49,5 @@ export class ListCreation {
       this.listTitleInput.nativeElement.focus();
     }
   }
-  startEdit(): void {
-    this.isEditing = true;
-    this.inputValue = this.currentTitle || '';
-    setTimeout(() => this.focusOnListTitle());
-  }
-
-  //  Working on Update List Function
 
 }

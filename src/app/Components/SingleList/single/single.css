@@ -57,5 +57,9 @@
   border: none;
 }
 
-
+.errorColor {
+  color: red;
+  font-size: large;
+padding: 25px;
+}
 

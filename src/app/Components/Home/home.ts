@@ -16,7 +16,7 @@ export class Home implements OnInit {
   public userList = signal<any[]>([]);
 
   @ViewChild(ListCreation) listCreation?: ListCreation;
-
+  @ViewChild(Single) singleList?: Single;
   newList = false;
 
 
