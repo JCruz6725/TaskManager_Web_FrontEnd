@@ -4,6 +4,7 @@ import { LoginComponent } from './Components/login/login';
 import { Home } from './Components/Home/home';
 import { TaskDetailsPage } from './Components/TaskDetails/task-details-page/task-details-page';
 import { EditDetailsPage } from './Components/EditTaskDetails/edit-details-page/edit-details-page';
+import { CreateTaskPage } from './Components/CreateTask/create-task-page/create-task-page';
 
 export const routes: Routes = [
     {
@@ -29,6 +30,7 @@ export const routes: Routes = [
         redirectTo: "login",
         pathMatch: "full"
     },
+
     {
         path:'taskDetails/:id',
         component : TaskDetailsPage
@@ -39,6 +41,11 @@ export const routes: Routes = [
         path:'editTaskDetails',
         component : EditDetailsPage,
         title: 'Edit Task Details'
+    },
+    
+    {
+        path: 'createTask/:id',
+        component: CreateTaskPage
     }
 
 ];

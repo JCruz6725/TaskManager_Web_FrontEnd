@@ -23,6 +23,13 @@ export class DataSharingService {
     this.parentDataStream.next(newMessage);
   }
 
+  //to hold all tasks in a list data
+  private listDataStream = new BehaviorSubject<any>({});
+  currentListData$ = this.listDataStream.asObservable();
+  transmitListData(newMessage: any) : void {
+    this.listDataStream.next(newMessage);
+  }
+
    private noteDataStream = new BehaviorSubject<any>({});
    currentNoteData$ = this.noteDataStream.asObservable()
     transmitNoteData(newMessage: any) : void {
