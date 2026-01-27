@@ -1,8 +1,13 @@
-
 .full-page-container{
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
     background-color: lightgray;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    width: auto;
 }

@@ -26,7 +26,7 @@ export class Single implements OnInit {
   listname = signal<string>('')
   showErrorMessage = signal<boolean>(false);
 
-  private apiService : TaskService = inject(TaskService);
+  private taskSvc : TaskService = inject(TaskService);
   private router : Router = inject(Router);
 
   public State = signal<'view' | 'edit'>('view')
@@ -74,7 +74,7 @@ export class Single implements OnInit {
   }
 
   onTaskDelClick(taskId:string){
-    this.apiService.deleteTask(taskId).subscribe((res:any) => {
+    this.taskSvc.deleteTask(taskId).subscribe((res:any) => {
       console.log("Deleted task " + res.title);
       this.getSingleList();
     })
