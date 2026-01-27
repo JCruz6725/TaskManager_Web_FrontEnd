@@ -29,6 +29,6 @@
    margin-top: auto;
    background-color: purple;
    color: white;
+   font-size: 20px;
 }
-
 .submit-note:hover{background-color: rgb(29, 27, 28); color:purple;}
