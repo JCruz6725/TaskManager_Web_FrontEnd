@@ -1,0 +1,34 @@
+.notes-container{
+    display: flex;
+    flex-direction: column;
+    order: 2;
+}
+
+.note-textarea{
+    width: 330px;
+    height: 100px;
+    padding: 20px;
+    margin: 10px;
+    background-color: white;
+    field-sizing: content;
+    min-height: 2em;
+    max-height: 300px;
+    overflow: auto;
+    resize: none;
+    border-radius: 30px;
+}
+
+.submit-note{
+   text-align: center;
+   cursor: pointer;
+   border-radius: 50px;
+   width: 300px;    
+   margin: 30px;
+    padding: 5px;
+    height: 40px;
+   margin-top: auto;
+   background-color: purple;
+   color: white;
+}
+
+.submit-note:hover{background-color: rgb(29, 27, 28); color:purple;}

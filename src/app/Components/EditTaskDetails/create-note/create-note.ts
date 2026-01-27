@@ -3,10 +3,11 @@ import { NoteService } from '../../../Services/NoteServices/note-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-create-note',
-  imports: [ CommonModule, FormsModule],
+  imports: [ CommonModule, FormsModule, MatIconModule],
   templateUrl: './create-note.html',
   styleUrl: './create-note.css',
 })
