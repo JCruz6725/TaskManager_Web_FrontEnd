@@ -39,7 +39,7 @@ export class ViewNotes {
     console.log(taskId)
     if(!taskId)
       return;
-     if(!confirm('Delete Note'))
+     if(!confirm('Are you sure you want to delete note'))
       return;
      this.noteSvc.deleteNote(taskId, noteId)
       .subscribe({

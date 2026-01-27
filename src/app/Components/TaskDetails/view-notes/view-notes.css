@@ -15,13 +15,20 @@
     field-sizing: content;
     min-height: 2em;
     max-height: 300px;
-    overflow: auto;
+    overflow:auto;
     resize: none;
+    border-radius: 20px;
 }
 
 .note-meta {
     font-size: 15px;
     margin-left: 10px;
+    background-color: white;
+    width: 190px;
+    padding: 1px;
+    border-radius: 5px;
+    /* background-color: rgb(155, 47, 155); */
+    color: black;
 }
 
 .header {
@@ -43,11 +50,14 @@
 .delete-btn {
     background-color: whitesmoke;
     position: absolute;
-    left: 347px;
-    border-radius: 5px;
+    left: 382px;
+    border-radius: 10px;
     padding: 2px;
     cursor: pointer;
-    margin-top: -18px;
+    margin-top: -10px;
+    color: red;
+
+
 }
 
-.delete-btn:hover{background-color: white; color: red;}
+.delete-btn:hover{background-color: black; color: red;}

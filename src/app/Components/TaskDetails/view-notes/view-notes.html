@@ -7,20 +7,14 @@
   </div>
   }
   @for (note of notes(); track note.id) {
-  <div class="note-box">
     <div readonly class="note-textarea">
-
       <button class="delete-btn" (click)="DeleteNote(note.id)" >
         <mat-icon>delete</mat-icon>
       </button>
-
       {{ note.note }}
     </div>
-
     <div class="note-meta">
       Created: {{ note.createdDate | date:'short' }}
     </div>
-  </div>
   }
-
 </div>
