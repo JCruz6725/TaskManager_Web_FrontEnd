@@ -1,6 +1,3 @@
-<!-- Display all data -->
-<!-- <p>{{userSingleList() | json}} --> <!-- </p> -->
-
 <div class="list-column">
   <!-- Title (looks like a button, not clickable) -->
   @if(State() == 'view'){
@@ -16,7 +13,7 @@
   }
   @if (State() == 'delete'){
   <p>Are you sure you want to delete this list?</p>
-  <button (click)="DeleteList()">Yes</button>
+  <button (click)="DeleteList() ; State.set('view')">Yes</button>
   <button (click)="State.set('view')">No</button>
   }
   @if(showErrorMessage()==true){

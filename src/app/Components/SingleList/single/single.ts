@@ -40,7 +40,6 @@ export class Single implements OnInit {
     });
   }
 
-
   flipState() {
     if (this.State() === 'view') {
       this.State.set('edit');
@@ -78,47 +77,13 @@ export class Single implements OnInit {
       },
       error: (err: { status: number; }) => {
         if (err.status === 400) {
+          setTimeout(() => {
+            this.showErrorMessage.set(false);
+          }, 3000);
           this.showErrorMessage.set(true);
           return
         }
       }
-    }
-    );
+    });
   }
 }
-//  DeleteList(): void {
-
-//       error:(HttpErrorResponse: { status: number; }) => {
-//       if (HttpErrorResponse.status === 400) {
-//         this.showErrorMessage.set(true);
-//         this.State.set('delete');
-//         console.log(' Error : Cannot delete list with tasks');
-//         return;
-//       }
-//     }
-//       this.showErrorMessage.set(false);
-
-//       this.service.DeleteList(this.dataID()).subscribe({ next:(response) => {
-//         this.State.set('view');
-//         this.getAllList.emit();
-//       }});
-
-//       }
-//     }
-
-//  DeleteList(): void {
-//       this.showErrorMessage.set(false);
-
-//       this.service.DeleteList(this.dataID()).subscribe({ next:(response) => {
-//         this.State.set('view');
-//         this.getAllList.emit();
-//       },
-//       error:(error) => {
-//       if (error.status === 400) {
-//         this.showErrorMessage.set(true);
-//         // this.State.set('delete');
-//       }
-//     }
-// }
-
-//       );
