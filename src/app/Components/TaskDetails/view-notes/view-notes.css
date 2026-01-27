@@ -40,13 +40,14 @@
     background-color: white;
 }
 
-
-
 .delete-btn {
-    background-color: white;
+    background-color: whitesmoke;
     position: absolute;
-    left: 348px;
+    left: 347px;
     border-radius: 5px;
     padding: 2px;
     cursor: pointer;
+    margin-top: -18px;
 }
+
+.delete-btn:hover{background-color: white; color: red;}
