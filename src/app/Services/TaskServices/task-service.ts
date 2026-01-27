@@ -20,6 +20,10 @@ export class TaskService {
     return this.http.delete<any>(this.getTaskByIdUrl + taskId, { headers: this.MakeApiHeader() })
   }
 
+  postTask(task: any){
+    return this.http.post<any>('https://localhost:7177/task', task, { headers: this.MakeApiHeader() })
+  }
+
   MakeApiHeader(): HttpHeaders {
     return new HttpHeaders({
       UserId: this.userIdTokenService.GetUserIdToken() ?? (() => { throw new Error("User ID Token is null"); })()
