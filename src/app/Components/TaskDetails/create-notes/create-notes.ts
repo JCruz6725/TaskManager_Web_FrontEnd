@@ -1,18 +1,18 @@
-import { Component, inject, signal } from '@angular/core';
-import { NoteService } from '../../../Services/NoteServices/note-service';
-import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
+import { NoteService } from '../../../Services/NoteServices/note-service';
 
 @Component({
-  selector: 'app-create-note',
+  selector: 'app-create-notes',
   imports: [ CommonModule, FormsModule, MatIconModule],
-  templateUrl: './create-note.html',
-  styleUrl: './create-note.css',
+  templateUrl: './create-notes.html',
+  styleUrl: './create-notes.css',
 })
-export class CreateNote {
-    sharedSvc = inject(DataSharingService);
+export class CreateNotes {
+sharedSvc = inject(DataSharingService);
    noteSvc = inject(NoteService);
 
   currentTask: any = null;
@@ -49,10 +49,4 @@ export class CreateNote {
         }
       });
   }
-
-  }
-
-
-
-
-
+}

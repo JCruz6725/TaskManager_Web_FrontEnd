@@ -1,7 +1,8 @@
 .notes-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     order: 2;
+   
 }
 
 .note-textarea{
@@ -16,6 +17,7 @@
     overflow: auto;
     resize: none;
     border-radius: 30px;
+    left: 400px;
 }
 
 .submit-note{
