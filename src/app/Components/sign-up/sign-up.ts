@@ -25,6 +25,8 @@ export class SignupComponent {
   successMessage = signal<string | null>(null);
   private userTokenService = inject(UserTokenService);
 
+
+
   submitForm(form: any) {
     this.errorMessage.set(null);
     this.successMessage.set(null);

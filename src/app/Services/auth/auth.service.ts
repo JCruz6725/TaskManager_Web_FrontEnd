@@ -7,15 +7,11 @@ import { LoginUser } from "../../Models/login-user";
 export class UserAuthService {
 //   private http = Inject(HttpClient);
  constructor(private http: HttpClient) {}
-private baseUrl = 'https://localhost:7177/'; 
+private baseUrl = 'https://localhost:7177/';
 
     registerUser(userRegister: RegisterUser) {
         return this.http.post(`${this.baseUrl}user`, userRegister);
     }
-    
-    // loginUser(userLogin: { email: string; password: string }) {
-    //     return this.http.post(`${this.baseUrl}user/login`, userLogin);
-    // }
 
      loginUser(userLogin: LoginUser){
         return this.http.post(`${this.baseUrl}user/login`, userLogin);
