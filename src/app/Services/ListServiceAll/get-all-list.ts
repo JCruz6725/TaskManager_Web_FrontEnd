@@ -32,4 +32,9 @@ export class ListService {
     const body ={ title : inputValue };
     return this.http.put<any[]>('https://localhost:7177/list/' + listId + '/edit-list', body, { headers: this.MakeApiHeader() });
   }
+
+  MoveTask(inputlistId: string, inputtaskId: string):any{
+    const body = {taskId: inputtaskId};
+    return this.http.post('https://localhost:7177/list/' + inputlistId + '/move-task', body, { headers: this.MakeApiHeader()})
+  }
 }

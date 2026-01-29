@@ -55,24 +55,32 @@ export class Single implements OnInit {
      }
   }
 
-    UpdateList(): void {
-      if (!this.listname() || this.listname().trim() === '') {
-        this.showErrorMessage.set(true);
-        console.log(' Error : Input is empty');
-        return;
-      }
-        this.showErrorMessage.set(false);
-      console.log('Entered Title Name: ', this.listname());
-
-      this.service.UpdateList(this.dataID(), this.listname()).subscribe({ next:(response) => {
-        this.State.set('view');
-        this.getAllList.emit();
-
-      }});
+  UpdateList(): void {
+    if (!this.listname() || this.listname().trim() === '') {
+      this.showErrorMessage.set(true);
+      console.log(' Error : Input is empty');
+      return;
     }
+      this.showErrorMessage.set(false);
+    console.log('Entered Title Name: ', this.listname());
 
-    drop(event: CdkDragDrop<any>){
-      console.log("dropped");
-    }
+    this.service.UpdateList(this.dataID(), this.listname()).subscribe({ next:(response) => {
+      this.State.set('view');
+      this.getAllList.emit();
+
+    }});
+  }
+;
+  drop(event: CdkDragDrop<any>){
+    console.log("dragged task: "+event.item.data);
+    console.log("resulting list: "+event.container.data);
+    //api call
+    this.service.MoveTask(event.container.data, event.item.data).subscribe((data:any) => {
+      console.log("successful: ");
+      console.log(data);
+    })
+    //getsinglelist
+    this.getAllList.emit();
+  }
 
 }
