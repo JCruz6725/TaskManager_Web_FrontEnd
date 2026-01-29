@@ -1,11 +1,10 @@
 <body>
     <div class="full-page-container">
-        <div><app-details (getData)="getData()"></app-details> </div>
-        <div><app-view-notes></app-view-notes> </div>
-        <div><app-create-notes></app-create-notes></div>
-       
-    </div>
-    
-       
+        <app-details (getData)="getData()"></app-details>
 
+        <div class="notes-row">
+         <app-view-notes></app-view-notes> 
+         <app-create-notes></app-create-notes>
+        </div>
+    </div>
 </body>

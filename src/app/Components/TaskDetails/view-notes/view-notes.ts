@@ -27,26 +27,37 @@ export class ViewNotes {
         this.notes.set([]);
         return;
       }
-      this.notes.set(task.notes);
+      // this.notes.set(task.notes);
+      this.notes.set([...task.notes]);
+
       this.taskId.set(task.id)
     });
+
+    this.sharedSvc.currentNoteData$.subscribe(note => {
+      if(!note)
+        return;
+      this.notes.update(existing => [...existing, note]);
+  });
+
   }
 
    DeleteNote(noteId: string) {
 
-    console.log("note id " + noteId)
-    const taskId = this.taskId();
-    console.log(taskId)
-    if(!taskId)
-      return;
-     if(!confirm('Are you sure you want to delete note'))
-      return;
-     this.noteSvc.deleteNote(taskId, noteId)
-      .subscribe({
-        next: () => {
-          this.notes.update(n => n.filter(note => note.id !== noteId));
-        }
-      });
+    // console.log("note id " + noteId)
+    // const taskId = this.taskId();
+    // console.log(taskId)
+    // if(!taskId)
+    //   return;
+    //  if(!confirm('Are you sure you want to delete note'))
+    //   return;
+    //  this.noteSvc.deleteNote(taskId, noteId)
+    //   .subscribe({
+    //     next: () => {
+    //       this.notes.update(n => n.filter(note => note.id !== noteId));
+    //     }
+    //   });
+
+    this.notes.update(existing => existing.filter(n => n.id != noteId));
      }
 
 }
