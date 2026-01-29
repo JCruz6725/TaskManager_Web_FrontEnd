@@ -1,5 +1,5 @@
 import { ListService } from '../../Services/ListServiceAll/get-all-list';
-import { Component, signal, OnInit, viewChild, ViewChild } from '@angular/core';
+import { Component, signal, OnInit, ViewChild } from '@angular/core';
 import { Single } from '../SingleList/single/single';
 import { ListCreation } from '../CreateList/list-creation/list-creation';
 import { CommonModule } from '@angular/common';
@@ -18,6 +18,7 @@ export class Home implements OnInit {
 
   @ViewChild(ListCreation) listCreation?: ListCreation;
   @ViewChild(Single) singleList?: Single;
+
   newList = false;
 
 
