@@ -1,24 +1,35 @@
-import { Component,signal} from '@angular/core';
+import { Component,EventEmitter,signal} from '@angular/core';
 import { ListService } from '../../../Services/ListServiceAll/get-all-list';
-import { OnInit,input } from '@angular/core';
+import { OnInit,input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { Task } from '../task/task';
 import { RouterLink } from '@angular/router';
 import { CdkDropList, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { FormsModule } from "@angular/forms";
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule,MatIcon, Task, RouterLink, CdkDropList, CdkDrag],
+  imports: [CommonModule, MatIcon, RouterLink, CdkDropList, CdkDrag, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })
 export class Single implements OnInit {
-   dataID = input<string>();
+  dataID = input<string>();
+  listSize = signal<any[]>([]);
+  userSingleList = signal<any[]>([]);
+  listname = signal<string>('')
+  showErrorMessage = signal<boolean>(false);
 
-    // userSingleList = signal<any[]>([]);
-    listname = signal<string>('')
-    listSize = signal<any[]>([]);
+  public State = signal<'view' | 'edit'>('view')
+
+  @Output('getAllList') getAllList: EventEmitter<any> = new EventEmitter();
+    listId = signal<string>('');
 
   constructor(private service: ListService) {}
 
@@ -30,14 +41,38 @@ export class Single implements OnInit {
     this.service.SingleList(this.dataID()).subscribe((result: any) => {
       this.listname.set(result.name);
       this.listSize.set(result.taskItems);
+      this.listId.set(result.id);
     });
   }
 
-  drop(event: CdkDragDrop<any>){
-    console.log("dropped");
+
+  flipState() {
+    if (this.State() === 'view') {
+      this.State.set('edit');
+     }
+    else if (this.State() === 'edit') {
+      this.State.set('view');
+     }
   }
+
+    UpdateList(): void {
+      if (!this.listname() || this.listname().trim() === '') {
+        this.showErrorMessage.set(true);
+        console.log(' Error : Input is empty');
+        return;
+      }
+        this.showErrorMessage.set(false);
+      console.log('Entered Title Name: ', this.listname());
+
+      this.service.UpdateList(this.dataID(), this.listname()).subscribe({ next:(response) => {
+        this.State.set('view');
+        this.getAllList.emit();
+
+      }});
+    }
+
+    drop(event: CdkDragDrop<any>){
+      console.log("dropped");
+    }
+
 }
-// getSingleList() {
-//     this.service.SingleList(this.dataID()).subscribe((result: any[]) => {
-//       this.userSingleList.set(result);
-//     });
