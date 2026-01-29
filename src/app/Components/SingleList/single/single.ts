@@ -92,11 +92,14 @@ export class Single implements OnInit {
     console.log("dragged task: "+event.item.data);
     console.log("resulting list: "+event.container.data);
     //api call
-    this.service.MoveTask(event.container.data, event.item.data).subscribe((data:any) => {
-      console.log("successful: ");
-      console.log(data);
-    })
+    if (event.previousContainer.data !== event.container.data){
+      this.service.MoveTask(event.container.data, event.item.data).subscribe((data:any) => {
+        console.log("successful: ");
+        console.log(data);
+        this.getAllList.emit();
+      })
+    }
     //getsinglelist
-    this.getAllList.emit();
+    
   }
 }
