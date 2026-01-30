@@ -1,6 +1,5 @@
 .full-page-container{
-    height: 100%;
-    width: 100%;
+    flex-direction: column;
     flex-direction: column;
     justify-content: center;
     background-color: lightgray;
@@ -21,4 +20,23 @@
 .delete-btn:hover {
     background-color: rgb(101, 0, 0);
     cursor: pointer;
+}
+
+.notes-row{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 20px;
+    justify-content: center;
+    /* margin-top: 30px; */
+}
+
+.task-row {
+     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 20px;
+    justify-content: center;
 }
