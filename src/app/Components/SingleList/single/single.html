@@ -1,31 +1,33 @@
-<div class="list-column">
+<div class="list-column" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="dataID()">
   <!-- Title (looks like a button, not clickable) -->
   @if(State() == 'view'){
-  <div class="list-title">
-    {{ listname() }}
-  </div>
+    <div class="list-title">
+      {{ listname() }}
+    </div>
   }
   @if(State() == 'edit'){
-  <input class="list-title" type="text" [(ngModel)]="listname" (keydown.enter)="UpdateList()" />
+    <input class="list-title" type="text" [(ngModel)]="listname" (keydown.enter)="UpdateList()" />
   @if (listname() == '') {
-  <p class="errorColor"> List Name Cannot Be Empty </p>
+    <p class="errorColor"> List Name Cannot Be Empty </p>
   }
   }
   @if (State() == 'delete'){
-  <p>Are you sure you want to delete this list?</p>
-  <button (click)="DeleteList() ; State.set('view')">Yes</button>
-  <button (click)="State.set('view')">No</button>
+    <p>Are you sure you want to delete this list?</p>
+    <button (click)="DeleteList() ; State.set('view')">Yes</button>
+    <button (click)="State.set('view')">No</button>
   }
   @if(showErrorMessage()==true){
-  <p class="errorColor" > Cannot delete a list with tasks. Please remove all tasks first. </p>
+    <p class="errorColor" > Cannot delete a list with tasks. Please remove all tasks first. </p>
   }
 
   <!-- This holds your todo items -->
-  <div class="boarder" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="dataID()">
+  <div class="boarder"  >
     @for (task of listSize(); track task.id){
-      <a routerLink="/taskDetails/{{task.id}}">
-        <app-task [taskId]="task.id" cdkDrag [cdkDragData]="task.id"></app-task>
-      </a>
+      <div cdkDrag [cdkDragData]="task.id">
+        <a routerLink="/taskDetails/{{task.id}}">
+          <app-task [taskId]="task.id" ></app-task>
+        </a>
+      </div>
     }
   </div>
 

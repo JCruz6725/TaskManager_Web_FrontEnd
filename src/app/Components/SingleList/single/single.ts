@@ -26,6 +26,7 @@ export class Single implements OnInit {
   listId = signal<string>('');
 
   @Output('getAllList') getAllList: EventEmitter<any> = new EventEmitter();
+  @Output('updateLists') updateList: EventEmitter<any> = new EventEmitter();
 
   public State = signal<'view' | 'edit' | 'delete'>('view')
 
@@ -97,6 +98,7 @@ export class Single implements OnInit {
         console.log("successful: ");
         console.log(data);
         this.getAllList.emit();
+        this.updateList.emit();
       })
     }
     //getsinglelist

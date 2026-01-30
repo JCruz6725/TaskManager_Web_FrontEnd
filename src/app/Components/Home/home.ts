@@ -1,8 +1,9 @@
 import { ListService } from '../../Services/ListServiceAll/get-all-list';
-import { Component, signal, OnInit, ViewChild } from '@angular/core';
+import { Component, signal, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { Single } from '../SingleList/single/single';
 import { ListCreation } from '../CreateList/list-creation/list-creation';
 import { CommonModule } from '@angular/common';
+import { QueryList } from '@angular/core';
 
 import { CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 
@@ -17,7 +18,7 @@ export class Home implements OnInit {
   public userList = signal<any[]>([]);
 
   @ViewChild(ListCreation) listCreation?: ListCreation;
-  @ViewChild(Single) singleList?: Single;
+  @ViewChildren(Single) singleList?: QueryList<Single>;
 
   newList = false;
 
@@ -41,6 +42,12 @@ export class Home implements OnInit {
       this.userList.set(result);
     });
 
+  }
+
+  updateLists(){
+    this.singleList?.forEach(element => {
+      element.getSingleList();
+    });
   }
 
 }
