@@ -7,15 +7,12 @@
 
 .note-textarea {
     width: 330px;
-    /* height: 80px; */
     padding: 20px;
     margin: 10px;
     background-color: white;
-    /* field-sizing: content;
-    min-height: 2em;
     max-height: 300px;
     overflow:auto;
-    resize: none; */
+    resize: none;
     border-radius: 20px;
     position: relative;
   
@@ -28,7 +25,6 @@
     width: 190px;
     padding: 1px;
     border-radius: 5px;
-    /* background-color: rgb(155, 47, 155); */
     color: black;
 }
 
@@ -50,7 +46,7 @@
 
 .delete-btn {
     background-color: purple;
-    /* position: absolute; */
+    position: absolute;
     /* left: 382px; */
     top: 8px;
     right: 10px;

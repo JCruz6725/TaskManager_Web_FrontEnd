@@ -25,25 +25,15 @@ sharedSvc = inject(DataSharingService);
     });
   }
 
-
-
-
   submitNote() {
     this.errorMessage.set(null);
-
     if (!this.noteText().trim()) {
       this.errorMessage.set('Note cannot be empty.');
       return;
     }
-
     this.noteSvc.createNote(this.currentTask.id, this.noteText())
       .subscribe({
         next: (savedNote) => {
-          const updatedTask = {...this.currentTask,
-            notes: [(this.currentTask.notes ?? []), savedNote],
-          };
-
-          this.sharedSvc.transmitChildData(updatedTask);
           this.sharedSvc.transmitNoteData(savedNote);
           this.noteText.set('');
         },

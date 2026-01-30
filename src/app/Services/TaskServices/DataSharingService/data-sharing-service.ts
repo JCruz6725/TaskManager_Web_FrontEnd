@@ -31,7 +31,7 @@ export class DataSharingService {
   }
 
    private noteDataStream = new BehaviorSubject<any>({});
-   currentNoteData$ = this.noteDataStream.asObservable()
+   currentNoteData$ = this.noteDataStream.asObservable();
     transmitNoteData(newMessage: any) : void {
       this.noteDataStream.next(newMessage);
     }

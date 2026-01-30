@@ -10,25 +10,18 @@
     padding: 20px;
     margin: 10px;
     background-color: white;
-    /* field-sizing: content; */
-    /* min-height: 2em; */
-    /* max-height: 300px; */
-    /* overflow: auto; */
     resize: none;
     border-radius: 30px;
-    /* left: 400px; */
 }
 
 .submit-note{
-   /* text-align: center; */
+   text-align: center;
    cursor: pointer;
    border-radius: 50px;
    width: 300px;    
    height: 40px;
    margin: 10px auto;
-    /* padding: 5px; */
     height: 40px;
-   /* margin-top: auto; */
    background-color: purple;
    color: white;
    font-size: 20px;
