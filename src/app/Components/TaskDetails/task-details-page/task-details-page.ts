@@ -1,10 +1,8 @@
 import { Component, inject, Signal, signal, } from '@angular/core';
 import { Details } from '../details/details';
-import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
-import { submit } from '@angular/forms/signals';
 import { ViewNotes } from '../view-notes/view-notes';
 import { CreateNotes } from '../create-notes/create-notes';
 
@@ -18,7 +16,8 @@ import { CreateNotes } from '../create-notes/create-notes';
 export class TaskDetailsPage {
   private taskSvc = inject(TaskService);
   private sharedSvc = inject(DataSharingService);
-  private router = inject(ActivatedRoute);
+  private activeRouter = inject(ActivatedRoute);
+  private router = inject(Router);
 
   private urlTaskId = signal<any>(null);
 
@@ -29,7 +28,7 @@ export class TaskDetailsPage {
   getData(){
     //grab current child task id from url
     if (this.urlTaskId() == null){
-      this.router.params.subscribe((prm) => {
+      this.activeRouter.params.subscribe((prm) => {
         this.urlTaskId.set(prm['id']);
       })
     }
@@ -47,6 +46,13 @@ export class TaskDetailsPage {
         this.sharedSvc.transmitParentData(res);
       })
     });
+  }
+
+  onDelClick(){
+    this.taskSvc.deleteTask(this.urlTaskId()).subscribe((res:any) => {
+      console.log("Deleted task " + res.title);
+      this.router.navigateByUrl('/home');
+    })
   }
 
 }

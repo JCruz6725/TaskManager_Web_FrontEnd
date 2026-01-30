@@ -3,6 +3,7 @@ import { TaskService } from '../../../Services/TaskServices/task-service';
 import { signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -14,6 +15,8 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 export class Task {
   apiService : TaskService = inject(TaskService);
   taskId = input<string>("");
+  status : any;
+  errorMessage : any;
 
   taskName = signal<string>("");
   taskDueDate = signal<any>(null);
@@ -24,4 +27,5 @@ export class Task {
       this.taskDueDate.set(new Date(res.dueDate));
     });
   }
+
 }

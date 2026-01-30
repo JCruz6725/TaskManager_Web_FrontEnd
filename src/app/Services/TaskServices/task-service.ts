@@ -11,10 +11,15 @@ export class TaskService {
   private userIdTokenService = inject(UserTokenService);
   private getTaskByIdUrl = 'https://localhost:7177/task/';
 
+
   getTask(taskId: string){
     return this.http.get<any>(this.getTaskByIdUrl + taskId, { headers: this.MakeApiHeader() });
   }
    
+
+  deleteTask(taskId: string){
+    return this.http.delete<any>(this.getTaskByIdUrl + taskId, { headers: this.MakeApiHeader() })
+  }
 
   postTask(task: any){
     return this.http.post<any>('https://localhost:7177/task', task, { headers: this.MakeApiHeader() })
