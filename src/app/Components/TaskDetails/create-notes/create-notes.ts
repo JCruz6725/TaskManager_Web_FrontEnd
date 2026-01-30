@@ -36,9 +36,6 @@ sharedSvc = inject(DataSharingService);
         next: (savedNote) => {
           this.sharedSvc.transmitNoteData(savedNote);
           this.noteText.set('');
-        },
-        error: () => {
-          this.errorMessage.set('Failed to save note.');
         }
       });
   }

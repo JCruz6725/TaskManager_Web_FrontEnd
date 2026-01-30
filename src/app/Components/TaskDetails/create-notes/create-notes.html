@@ -1,11 +1,9 @@
 <div class="notes-container">
-  <textarea  [(ngModel)]="noteText" class="note-textarea" 
-    placeholder="Type your note here..." 
-   ></textarea>
-   <button (click)="submitNote()" class="submit-note">
-     <mat-icon>stars</mat-icon>
+  <textarea [(ngModel)]="noteText" class="note-textarea" placeholder="Type your note here..."></textarea>
+  <button (click)="submitNote()" class="submit-note">
+    <mat-icon>stars</mat-icon>
     Add Note
-    </button>
+  </button>
+  <p *ngIf="errorMessage()" > {{ errorMessage() }}
+  </p>
 </div>
-
-

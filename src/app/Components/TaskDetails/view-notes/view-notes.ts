@@ -19,17 +19,17 @@ export class ViewNotes {
 
   public taskId = signal<string | null>(null)
   public notes = signal<TaskNote[]>([]);
- 
+
   ngOnInit() {
     this.sharedSvc.currentChildData$.subscribe(task => {
       if (!task || !Array.isArray(task.notes)) {
-        this .notes.set([]);
+        this.notes.set([]);
         return;
       }
-       const sortedNotes = task.notes.sort(
-        (a:TaskNote , b: TaskNote) => 
-          new Date(b.createdDate).getTime()  - 
-         new Date(a.createdDate).getTime() 
+      const sortedNotes = task.notes.sort(
+        (a: TaskNote, b: TaskNote) =>
+          new Date(b.createdDate).getTime() -
+          new Date(a.createdDate).getTime()
       );
       this.notes.set(sortedNotes);
       this.taskId.set(task.id)
@@ -37,28 +37,30 @@ export class ViewNotes {
     });
 
     this.sharedSvc.currentNoteData$.subscribe(note => {
-      if(!note)
+      if (!note)
         return;
-         this.notes.update(existing => {
-          const update = [...existing, note];
-          return update.sort((a, b) =>
-         new Date(b.createdDate).getTime() -
-          new Date(a.createdDate).getTime() 
-      )});
-  });
+      this.notes.update(existing => {
+        const update = [...existing, note];
+        return update.sort((a, b) =>
+          new Date(b.createdDate).getTime() -
+          new Date(a.createdDate).getTime()
+        )
+      });
+    });
   }
 
-   DeleteNote(noteId: string) {
+  DeleteNote(noteId: string) {
     const taskId = this.taskId();
-    if(!taskId)
+    if (!taskId)
       return;
-     if(!confirm('Are you sure you want to delete this note'))
+    if (!confirm('Are you sure you want to delete this note'))
       return;
-     this.noteSvc.deleteNote(taskId, noteId)
+    this.noteSvc.deleteNote(taskId, noteId)
       .subscribe({
         next: () => {
           this.notes.update(n => n.filter(note => note.id !== noteId));
         }
       });
-     }
+  }
+
 }
