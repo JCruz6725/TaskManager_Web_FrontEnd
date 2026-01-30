@@ -1,5 +1,4 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RequestHelperService } from '../BaseService/request-helper-service';
 
@@ -7,7 +6,6 @@ import { RequestHelperService } from '../BaseService/request-helper-service';
   providedIn: 'root',
 })
 export class ListService {
-  private http = inject(HttpClient);
   private Service = inject(RequestHelperService)
 
   AllList(): Observable<any[]> {

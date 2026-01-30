@@ -1,5 +1,4 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { RequestHelperService } from '../BaseService/request-helper-service';
 
 @Injectable({
@@ -7,7 +6,6 @@ import { RequestHelperService } from '../BaseService/request-helper-service';
 })
 export class TaskService {
 
-  private http = inject(HttpClient);
   private Service = inject(RequestHelperService)
 
   getTask(taskId: string){
