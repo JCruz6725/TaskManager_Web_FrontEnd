@@ -21,9 +21,11 @@ export class ListService {
   CreateList(inputValue: string | undefined): Observable<any> {
        return this.Service.post<any>('/list', { name: inputValue });
   }
+
   UpdateList(listId: string | undefined, inputValue: string | undefined): Observable<any[]> {
     return this.Service.put<any[]>('/list/' + listId + '/edit-list', { title: inputValue });
   }
+
   DeleteList(listId: string | undefined): Observable<any[]> {
     return this.Service.delete<any[]>('/list/' + listId);
   }
