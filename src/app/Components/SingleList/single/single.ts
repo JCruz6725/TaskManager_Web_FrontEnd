@@ -90,18 +90,11 @@ export class Single implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>){
-    console.log("dragged task: "+event.item.data);
-    console.log("resulting list: "+event.container.data);
-    //api call
     if (event.previousContainer.data !== event.container.data){
       this.service.MoveTask(event.container.data, event.item.data).subscribe((data:any) => {
-        console.log("successful: ");
-        console.log(data);
-        this.getAllList.emit();
+        console.log("successfully moved task " + event.item.data + " from list " + event.previousContainer.data + " to list " + event.container.data);
         this.updateList.emit();
       })
     }
-    //getsinglelist
-    
   }
 }

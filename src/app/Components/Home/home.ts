@@ -41,7 +41,6 @@ export class Home implements OnInit {
     this.service.AllList().subscribe((result: any[]) => {
       this.userList.set(result);
     });
-
   }
 
   updateLists(){

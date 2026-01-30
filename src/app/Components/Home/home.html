@@ -4,15 +4,15 @@
 
 <div class="boarder" cdkDropListGroup>
   @for ( list of userList(); track list.id){
-  <app-single [dataID]=" list.id" (getAllList)="getAllList()" (updateLists)="updateLists()"></app-single>
+    <app-single [dataID]=" list.id" (getAllList)="getAllList()" (updateLists)="updateLists()"></app-single>
   }
   <app-list-creation *ngIf="newList" (getAllList)="getAllList()"
-    (toggleInputChange)="newList = $event"></app-list-creation>
-
+    (toggleInputChange)="newList = $event">
+  </app-list-creation>
   <div>
-
     <button (click)="toggleInput()" class="addList-btn">+</button>
   </div>
+</div>
 
 
 
