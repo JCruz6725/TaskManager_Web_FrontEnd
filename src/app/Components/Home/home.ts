@@ -17,6 +17,7 @@ export class Home implements OnInit {
 
   @ViewChild(ListCreation) listCreation?: ListCreation;
   @ViewChild(Single) singleList?: Single;
+
   newList = false;
 
 
