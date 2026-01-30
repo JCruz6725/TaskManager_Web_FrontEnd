@@ -1,0 +1,29 @@
+.notes-container{
+    display: flex;
+    flex-direction: column;
+    width: 360px;   
+}
+
+.note-textarea{
+    width: 330px;
+    height: 100px;
+    padding: 20px;
+    margin: 10px;
+    background-color: white;
+    resize: none;
+    border-radius: 30px;
+}
+
+.submit-note{
+   text-align: center;
+   cursor: pointer;
+   border-radius: 50px;
+   width: 300px;    
+   height: 40px;
+   margin: 10px auto;
+    height: 40px;
+   background-color: purple;
+   color: white;
+   font-size: 20px;
+}
+.submit-note:hover{background-color: rgb(29, 27, 28); color:white;}

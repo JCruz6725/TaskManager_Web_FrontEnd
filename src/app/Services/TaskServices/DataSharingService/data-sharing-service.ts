@@ -28,4 +28,10 @@ export class DataSharingService {
   transmitListData(newMessage: any) : void {
     this.listDataStream.next(newMessage);
   }
+
+   private noteDataStream = new BehaviorSubject<any>({});
+   currentNoteData$ = this.noteDataStream.asObservable();
+    transmitNoteData(newMessage: any) : void {
+      this.noteDataStream.next(newMessage);
+    }
 }
