@@ -8,11 +8,11 @@
 .delete-btn {
     position: relative;
     top: 50px;
-    left: 695px;
+    left: 1350px;
     order: 3;
     background-color: red;
     color: white;
-    width: 70px;
+    width: 100px;
     border: none;
     border-radius: 3px;
     padding: 5px;

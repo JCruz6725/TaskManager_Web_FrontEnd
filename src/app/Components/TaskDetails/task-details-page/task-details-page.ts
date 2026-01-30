@@ -1,10 +1,8 @@
 import { Component, inject, Signal, signal, } from '@angular/core';
 import { Details } from '../details/details';
-import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
-import { submit } from '@angular/forms/signals';
 import { ViewNotes } from '../view-notes/view-notes';
 import { CreateNotes } from '../create-notes/create-notes';
 
