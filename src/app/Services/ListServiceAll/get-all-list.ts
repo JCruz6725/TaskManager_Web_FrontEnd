@@ -32,4 +32,7 @@ export class ListService {
     const body ={ title : inputValue };
     return this.http.put<any[]>('https://localhost:7177/list/' + listId + '/edit-list', body, { headers: this.MakeApiHeader() });
   }
+  DeleteList(listId: string | undefined): Observable<any[]> {
+    return this.http.delete<any[]>('https://localhost:7177/list/' + listId , { headers: this.MakeApiHeader() });
+  }
 }
