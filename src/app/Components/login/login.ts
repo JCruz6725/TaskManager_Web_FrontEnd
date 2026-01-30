@@ -2,9 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
-import { RegisterUser } from '../../Models/register-user';
 import { LoginUser } from '../../Models/login-user';
-import { UserTokenService } from '../../Services/UserToken/user-token.service';
 import { Router, RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
 
@@ -17,17 +15,16 @@ import { RequestHelperService } from '../../Services/BaseService/request-helper-
 })
 export class LoginComponent {
   private router = inject(Router);
-   private authService = inject(UserAuthService);
-    model: LoginUser = {
-      email: '',
-      password: ''
-    };
-    errorMessage = signal<string | null>(null);
-    successMessage = signal<string | null>(null);
-    private userTokenService = inject(UserTokenService);
-    private Service = inject(RequestHelperService);
+  private authService = inject(UserAuthService);
+  model: LoginUser = {
+    email: '',
+    password: ''
+  };
+  errorMessage = signal<string | null>(null);
+  successMessage = signal<string | null>(null);
+  private Service = inject(RequestHelperService);
 
-    submitForm(form: any) {
+  submitForm(form: any) {
     this.errorMessage.set(null);
     this.successMessage.set(null);
 
@@ -40,7 +37,6 @@ export class LoginComponent {
       next: (response) => {
         this.successMessage.set('Login successful!');
         console.log('User logged in successfully', response);
-        this.userTokenService.SetUserIdToken(response as string);
         this.Service.SetUserIdToken(response as string);
 
         this.router.navigate(['/home']);
@@ -48,7 +44,7 @@ export class LoginComponent {
       error: (error) => {
         if (error.status === 400) {
           this.errorMessage.set("Login failed. Please try again.");
-          console.log('Login failed:', error );
+          console.log('Login failed:', error);
         }
       }
     });
