@@ -35,7 +35,7 @@ export class CreateTaskPage {
 
   }
 
-  onNotify(){ 
+  onNotify(){
     //when notified of new info, grab data from shared service
     this.sharedSvc.currentChildData$.subscribe((data) => {
       this.taskData.set(data);
@@ -49,7 +49,7 @@ export class CreateTaskPage {
       parentTaskId: this.taskData().parentId,
       listId: this.urlListId()
     };
-    
+
     //api call to post task creation
     this.taskSvc.postTask(this.taskObj).subscribe((data) => {
       console.log("Task created and posted successfully!");

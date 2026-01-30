@@ -1,5 +1,5 @@
 import { ListService } from './../../../Services/ListServiceAll/get-all-list';
-import {Component,EventEmitter, inject,Input, OnInit,Output,ViewChild,ElementRef,} from '@angular/core';
+import {Component,EventEmitter, inject,Input,Output,ViewChild,ElementRef,} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
