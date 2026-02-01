@@ -33,7 +33,9 @@ export class TaskDetailsPage {
       })
     }
     else{ //grab current child id from shared service
-      this.sharedSvc.currentChildData$.subscribe(data => this.urlTaskId.set(data));
+      this.sharedSvc.currentChildData$.subscribe((data) => {
+        this.urlTaskId.set(data);
+      });
     }
 
     //get task data from service api
@@ -41,10 +43,12 @@ export class TaskDetailsPage {
       //hydrate our shared data service (for other components use)
       this.sharedSvc.transmitChildData(res)
       //get task data for our parent task from api
-      this.taskSvc.getTask(res.parentId).subscribe((res:any) => {
-        //hydrate our shared service
-        this.sharedSvc.transmitParentData(res);
-      })
+      if (res.parentId != null){
+        this.taskSvc.getTask(res.parentId).subscribe((res:any) => {
+          //hydrate our shared service
+          this.sharedSvc.transmitParentData(res);
+        })
+      }
     });
   }
 

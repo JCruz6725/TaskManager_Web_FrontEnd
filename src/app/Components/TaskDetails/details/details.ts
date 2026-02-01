@@ -26,17 +26,19 @@ export class Details {
     //grab our data from our shared service
     this.sharedSvc.currentChildData$.subscribe((data) => {
       this.currentTask.set(data);
+
+      if (this.currentTask().dueDate != null){
+        this.currentTaskDate.set(new Date(this.currentTask().dueDate));
+      }
+      else{
+        this.currentTaskDate.set('No Current Due Date');
+      }
     })
     this.sharedSvc.currentParentData$.subscribe((data) => {
       this.currentTaskParent.set(data);
     })
 
-    if (this.currentTask().dueDate != null){
-      this.currentTaskDate.set(new Date(this.currentTask().dueDate));
-    }
-    else{
-      this.currentTaskDate.set('No Current Due Date');
-    }
+    
   }
 
   onParentClick(){

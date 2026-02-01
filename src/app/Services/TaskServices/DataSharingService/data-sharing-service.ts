@@ -1,6 +1,6 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +15,7 @@ export class DataSharingService {
     this.childDataStream.next(newMessage);
   }
 
-  //Property to hold the child's parent data
+  //Property to hold the child's parent data 
   private parentDataStream = new BehaviorSubject<any>({});
   currentParentData$ = this.parentDataStream.asObservable();
   //Method to hydrate our proprty
@@ -30,9 +30,9 @@ export class DataSharingService {
     this.listDataStream.next(newMessage);
   }
 
-   private noteDataStream = new BehaviorSubject<any>({});
-   currentNoteData$ = this.noteDataStream.asObservable();
-    transmitNoteData(newMessage: any) : void {
-      this.noteDataStream.next(newMessage);
-    }
+  private noteDataStream = new BehaviorSubject<any>({});
+  currentNoteData$ = this.noteDataStream.asObservable();
+  transmitNoteData(newMessage: any) : void {
+    this.noteDataStream.next(newMessage);
+  }
 }
