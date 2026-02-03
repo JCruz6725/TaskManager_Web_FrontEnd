@@ -28,7 +28,7 @@ export class Details {
       this.currentTask.set(data);
 
       if (this.currentTask().dueDate != null){
-        this.currentTaskDate.set(new Date(this.currentTask().dueDate));
+        this.currentTaskDate.set((new Date(this.currentTask().dueDate).toLocaleDateString()));
       }
       else{
         this.currentTaskDate.set('No Current Due Date');
