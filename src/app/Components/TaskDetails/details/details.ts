@@ -19,6 +19,8 @@ export class Details {
   public currentTaskDate = signal<any>(null);
   public currentTaskParent = signal<any>(null);
 
+  public isEditing = signal<boolean>(false);
+
   @Output("getData") getData: EventEmitter<any> = new EventEmitter();
 
 
@@ -46,7 +48,9 @@ export class Details {
     this.getData.emit();
   }
 
-
+  onEditClick(){
+    this.isEditing.set(true);
+  }
 
 }
 
