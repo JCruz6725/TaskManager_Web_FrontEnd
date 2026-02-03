@@ -33,9 +33,7 @@ export class TaskDetailsPage {
       })
     }
     else{ //grab current child id from shared service
-      this.sharedSvc.currentChildData$.subscribe((data) => {
-        this.urlTaskId.set(data);
-      });
+      this.sharedSvc.currentChildData$.subscribe(data => this.urlTaskId.set(data));
     }
 
     //get task data from service api

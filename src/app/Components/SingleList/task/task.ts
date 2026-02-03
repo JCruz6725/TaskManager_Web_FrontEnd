@@ -23,9 +23,8 @@ export class Task {
     this.apiService.getTask(this.taskId()).subscribe((res:any)=>{
       this.taskName.set(res.title);
       if (res.dueDate){
-        this.taskDueDate.set(this.datePipe.transform(new Date(res.dueDate), 'yyy-MM-dd'));
-        console.log('duedate after transformation: ')
-        console.log(this.taskDueDate())
+        //this.taskDueDate.set('HAS DUE DATE')
+        this.taskDueDate.set((new Date(res.dueDate)).toLocaleDateString());
       }
       else{
         this.taskDueDate.set('No current due date')
