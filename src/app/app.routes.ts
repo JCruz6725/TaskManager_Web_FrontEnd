@@ -4,7 +4,6 @@ import { LoginComponent } from './Components/login/login';
 import { Home } from './Components/Home/home';
 import { TaskDetailsPage } from './Components/TaskDetails/task-details-page/task-details-page';
 import { CreateTaskPage } from './Components/CreateTask/create-task-page/create-task-page';
-import { EditTask } from './Components/EditTask/edit-task/edit-task';
 
 export const routes: Routes = [
     {
@@ -40,11 +39,6 @@ export const routes: Routes = [
     {
         path: 'createTask/:id',
         component: CreateTaskPage
-    },
-
-    {
-        path: 'editTask',
-        component: EditTask
     }
 
 ];

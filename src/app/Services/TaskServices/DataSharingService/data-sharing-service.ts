@@ -22,6 +22,14 @@ export class DataSharingService {
     this.parentDataStream.next(newMessage);
   }
 
+  //property to hold data being edited
+  private editDataStream = new BehaviorSubject<any>({});
+  currentEditData$ = this.editDataStream.asObservable();
+  //Method to hydrate our proprty
+  transmitEditData(newMessage: any) : void {
+    this.editDataStream.next(newMessage);
+  }
+
   //to hold all tasks in a list data
   private listDataStream = new BehaviorSubject<any>({});
   currentListData$ = this.listDataStream.asObservable();
@@ -29,9 +37,9 @@ export class DataSharingService {
     this.listDataStream.next(newMessage);
   }
 
-   private noteDataStream = new BehaviorSubject<any>({});
-   currentNoteData$ = this.noteDataStream.asObservable();
-    transmitNoteData(newMessage: any) : void {
-      this.noteDataStream.next(newMessage);
-    }
+  private noteDataStream = new BehaviorSubject<any>({});
+  currentNoteData$ = this.noteDataStream.asObservable();
+  transmitNoteData(newMessage: any) : void {
+    this.noteDataStream.next(newMessage);
+  }
 }

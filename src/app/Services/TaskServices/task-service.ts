@@ -18,6 +18,13 @@ export class TaskService {
 
   postTask(task: any){
     return this.Service.post<any>('/task', task);
-    }
-   }
+  }
+
+  putTask(task: any, taskId:string){
+    console.log("before api");
+    console.log(task);
+    return this.Service.put<any>('/task/' + taskId, task);
+  }
+
+}
 

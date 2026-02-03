@@ -5,6 +5,7 @@ import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { ViewNotes } from '../view-notes/view-notes';
 import { CreateNotes } from '../create-notes/create-notes';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class TaskDetailsPage {
   private router = inject(Router);
 
   private urlTaskId = signal<any>(null);
+  private intervalSub : Subscription = new Subscription;
+
 
   ngOnInit(){
     this.getData();
@@ -46,6 +49,27 @@ export class TaskDetailsPage {
         this.sharedSvc.transmitParentData(res);
       })
     });
+
+/* 
+    //grab list id from url
+    this.router.params.subscribe((prm) => {
+      this.urlListId.set(prm['id']);
+    })
+
+    //grab all tasks (in a list) from api and store in shared service
+    this.listSvc.SingleList(this.urlListId()).subscribe((data:any) => {
+      this.sharedSvc.transmitListData(data.taskItems);
+    }) */
+  }
+
+  postData(){
+    console.log("here");
+    this.sharedSvc.currentEditData$.subscribe((data:any) => {
+      this.taskSvc.putTask(data, data.id).subscribe((res: any) => {
+        console.log("api call made: ")
+        console.log(res);
+      })
+    }).unsubscribe();
   }
 
   onDelClick(){
