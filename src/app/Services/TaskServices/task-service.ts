@@ -11,6 +11,12 @@ export class TaskService {
   getTask(taskId: string){
     return this.Service.get<any>('/task/' + taskId);
   }
+
+
+  deleteTask(taskId: string){
+    return this.http.delete<any>(this.getTaskByIdUrl + taskId, { headers: this.MakeApiHeader() })
+  }
+
   postTask(task: any){
     return this.Service.post<any>('/task', task);
     }

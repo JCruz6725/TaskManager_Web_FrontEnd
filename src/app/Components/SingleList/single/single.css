@@ -63,3 +63,16 @@
 padding: 25px;
 }
 
+/*trash can button for each task*/
+.trash-can {
+  position: relative;
+  left: 230px;
+  bottom: 118px;
+  border: none;
+  border-radius: 10px;
+  width: 40px;
+}
+.trash-can:hover {
+  background-color: rgb(73, 73, 73);
+  cursor: pointer;
+}

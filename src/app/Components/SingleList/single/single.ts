@@ -8,6 +8,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { TaskService } from '../../../Services/TaskServices/task-service';
+
+
 
 @Component({
   selector: 'app-single',
@@ -21,6 +24,8 @@ export class Single implements OnInit {
   userSingleList = signal<any[]>([]);
   listname = signal<string>('');
   showErrorMessage = signal<boolean>(false);
+
+  private taskSvc : TaskService = inject(TaskService);
   service = inject(ListService);
   listId = signal<string>('');
 
@@ -86,4 +91,12 @@ export class Single implements OnInit {
       }
     });
   }
+
+  onTaskDelClick(taskId:string){
+    this.taskSvc.deleteTask(taskId).subscribe((res:any) => {
+      console.log("Deleted task " + res.title);
+      this.getSingleList();
+    })
+  }
+
 }

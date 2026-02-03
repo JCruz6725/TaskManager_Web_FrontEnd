@@ -1,11 +1,15 @@
 <body>
     <div class="full-page-container">
         <div class="task-row" >
-        <app-details (getData)="getData()"></app-details>
-    </div>
-        <div class="notes-row">
-         <app-view-notes></app-view-notes> 
-         <app-create-notes></app-create-notes>
+            <app-details (getData)="getData()"></app-details>
+            
         </div>
+        <div class="notes-row">
+            <app-view-notes></app-view-notes> 
+            <app-create-notes></app-create-notes>
+        </div>
+        <button class="delete-btn" (click)="onDelClick()">
+            DELETE TASK
+        </button>
     </div>
 </body>
