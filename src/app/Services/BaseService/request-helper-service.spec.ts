@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserTokenService } from './user-token.service';
+import { RequestHelperService } from './request-helper-service';
 
-describe('UserTokenService', () => {
-  let service: UserTokenService;
+describe('RequestHelperService', () => {
+  let service: RequestHelperService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(UserTokenService);
+    service = TestBed.inject(RequestHelperService);
   });
 
   it('should be created', () => {
