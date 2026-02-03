@@ -1,29 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { UserTokenService } from '../UserToken/user-token.service';
+import { RequestHelperService } from '../BaseService/request-helper-service';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class NoteService {
-  private http = inject(HttpClient);
-  private userIdTokenService = inject(UserTokenService);
+  private Service = inject(RequestHelperService);
 
   createNote(taskId: string, noteText: string) {
-    const url = `https://localhost:7177/Task/${taskId}/notes`;
-    return this.http.post<any>(url,
-      { noteText }, { headers: this.makeApiHeader() });
+    return this.Service.post<any>(`/task/${taskId}/notes`, { noteText });
   }
 
   deleteNote(taskId: string, noteId: string) {
-    const url = `https://localhost:7177/Task/${taskId}/notes/${noteId}`
-    return this.http.delete<any>(url,
-      { headers: this.makeApiHeader() });
-  }
-
-  private makeApiHeader(): HttpHeaders {
-    return new HttpHeaders({
-      UserId: this.userIdTokenService.GetUserIdToken() ?? (() => { throw new Error("User ID Token is null"); })()
-    });
+    return this.Service.delete<any>(`/task/${taskId}/notes/${noteId}`);
   }
 }
