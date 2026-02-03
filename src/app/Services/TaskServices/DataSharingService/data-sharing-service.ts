@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class DataSharingService {
-
   //Property to hold current child task data
   private childDataStream = new BehaviorSubject<any>({});
   currentChildData$ = this.childDataStream.asObservable();
