@@ -12,9 +12,8 @@ export class TaskService {
     return this.Service.get<any>('/task/' + taskId);
   }
 
-
   deleteTask(taskId: string){
-    return this.http.delete<any>(this.getTaskByIdUrl + taskId, { headers: this.MakeApiHeader() })
+    return this.Service.delete<any>('/task/' + taskId);
   }
 
   postTask(task: any){
