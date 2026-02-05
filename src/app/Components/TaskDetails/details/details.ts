@@ -7,7 +7,7 @@ import { DataSharingService } from '../../../Services/TaskServices/DataSharingSe
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, ],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
@@ -19,8 +19,9 @@ export class Details {
   public currentTaskDate = signal<any>(null);
   public currentTaskParent = signal<any>(null);
 
+
   @Output("getData") getData: EventEmitter<any> = new EventEmitter();
-  @Output()
+  @Output() toggleStatusChange = new EventEmitter();
 
   ngOnInit() {
     //grab our data from our shared service
@@ -48,11 +49,12 @@ export class Details {
   }
 onCompleteClick(){
     this.taskSvc.statusTask(this.currentTask().id).subscribe((res:any) => {
-
+      //refresh our data after status change
+      this.sharedSvc.transmitChildData(res);
+      this.toggleStatusChange.emit();
       console.log("Task marked as complete: " + res.title);
+
     })
   }
-
-
 }
 

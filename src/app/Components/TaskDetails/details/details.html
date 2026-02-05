@@ -7,8 +7,10 @@
         <div id="due-date" class="text-box">{{currentTaskDate()}}</div>
 
         <label for="status" class="text-box-label">Status</label>
-        <div id="status" class="text-box">{{currentTask().currentStatus.name}}</div>
-        <button class="complete-button" (click)="onCompleteClick()">Mark as Complete</button>
+        <div id="status" class="text-box" >{{currentTask().currentStatus.name}}
+        <button class="complete-button"  (click)="onCompleteClick()">Mark as Complete</button>
+        </div>
+        <div class="text-box">Date Created:  {{currentTask().createdDate}}</div>
     </div>
     <div class="complex-details">
         <div class="Priority-container">

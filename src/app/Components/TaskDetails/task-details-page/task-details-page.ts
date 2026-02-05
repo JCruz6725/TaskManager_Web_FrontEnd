@@ -55,4 +55,10 @@ export class TaskDetailsPage {
     })
   }
 
+  ontoggleStatusChange(taskId: any){
+    this.urlTaskId.set(taskId);
+    //refresh our data after status change
+    this.getData();
+  }
+
 }
