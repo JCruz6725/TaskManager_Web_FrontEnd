@@ -1,4 +1,4 @@
-import { Component, inject, Signal, signal, } from '@angular/core';
+import { Component, inject, signal, } from '@angular/core';
 import { Details } from '../details/details';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';

@@ -3,7 +3,6 @@ import { TaskService } from '../../../Services/TaskServices/task-service';
 import { signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-task',

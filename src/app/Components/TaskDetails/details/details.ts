@@ -20,7 +20,7 @@ export class Details {
   public currentTaskParent = signal<any>(null);
 
   @Output("getData") getData: EventEmitter<any> = new EventEmitter();
-
+  @Output()
 
   ngOnInit() {
     //grab our data from our shared service
@@ -39,13 +39,19 @@ export class Details {
     }
   }
 
+
   onParentClick(){
     //update our child data in our shared service
     this.sharedSvc.transmitChildData(this.currentTask().parentId);
     //recall our parent component to re-render our page
     this.getData.emit();
   }
+onCompleteClick(){
+    this.taskSvc.statusTask(this.currentTask().id).subscribe((res:any) => {
 
+      console.log("Task marked as complete: " + res.title);
+    })
+  }
 
 
 }
