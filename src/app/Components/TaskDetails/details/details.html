@@ -65,15 +65,15 @@
                     <input id="parent" name="parent" class="text-box" type="text" 
                         (keyup)="fetchParentTask($event)"
                         placeholder="{{currentTaskParent().title}}" [(ngModel)]="searchParent"
-                        /> 
+                    /> 
+                </div>
+                @if (barIsActive){
+                    <div class="dropdown-container">
+                        @for(task of searchResult(); track task){
+                            <p class="dropdown-options" (click)="onSelectTask(task)">{{task.title}}</p>
+                        }
                     </div>
-                    @if (barIsActive){
-                        <div class="dropdown-container">
-                            @for(task of searchResult(); track task){
-                                <p class="dropdown-options" (click)="onSelectTask(task)">{{task.title}}</p>
-                            }
-                        </div>
-                    }
+                }
             </div>
 
         </form>
@@ -87,5 +87,4 @@
 @else{
     <button class="edit-save-button" (click)="onSaveClick()">Save Changes</button>
 }
-<!-- <button class="edit-button" routerLink="/editTask">Edit</button> -->
 
