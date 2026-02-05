@@ -1,4 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background-color: lightgray;
+    background: var(--mat-sys-primary-container);
+    background-color: var(--mat-sys-surface);
+  
+}
+
+.list-column{
+    background: var(--mat-sys-primary-container);
+}
+
+.nav-bar{
+    background: var(--mat-sys-primary-container);
+
+
 }

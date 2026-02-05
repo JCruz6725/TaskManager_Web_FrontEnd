@@ -2,7 +2,7 @@
 .list-column {
   width: 280px;
   min-height: 200px;
-  background-color: #bdbdbd;
+  /* background-color: #bdbdbd; */
   border-radius: 8px;
   padding: 16px;
   position: relative;
