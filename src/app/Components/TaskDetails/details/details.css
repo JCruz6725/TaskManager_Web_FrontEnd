@@ -65,3 +65,24 @@
     right: 48px;
 }
 
+.dropdown-container {
+    position: relative;
+    bottom: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 0px;
+    border-radius: 6px;
+}
+
+.dropdown-options {
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    padding: 5px;
+    width: 300px;
+    position: relative;
+    left: 12px;
+    margin: 0px;
+}
+.dropdown-options:hover {
+    background-color: aliceblue;
+    cursor: pointer;
+}
