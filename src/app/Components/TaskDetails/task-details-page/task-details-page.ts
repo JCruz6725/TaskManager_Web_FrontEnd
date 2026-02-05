@@ -5,7 +5,7 @@ import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { ViewNotes } from '../view-notes/view-notes';
 import { CreateNotes } from '../create-notes/create-notes';
-import { Subscription } from 'rxjs';
+import { ListService } from '../../../Services/ListServiceAll/get-all-list';
 
 
 @Component({
@@ -17,57 +17,43 @@ import { Subscription } from 'rxjs';
 export class TaskDetailsPage {
   private taskSvc = inject(TaskService);
   private sharedSvc = inject(DataSharingService);
+  private listSvc = inject(ListService)
   private activeRouter = inject(ActivatedRoute);
   private router = inject(Router);
 
   private urlTaskId = signal<any>(null);
-  private intervalSub : Subscription = new Subscription;
-
+  public urlListId = signal<any>(null);
 
   ngOnInit(){
-    this.getData();
+    //grab task and list id from url, pass taskid to getData()
+    this.activeRouter.params.subscribe((prm) => {
+      this.urlListId.set(prm['listId']);
+      this.urlTaskId.set(prm['taskId'])
+      this.getData(this.urlTaskId());
+    })
+    
   }
 
-  getData(){
-    //grab current child task id from url
-    if (this.urlTaskId() == null){
-      this.activeRouter.params.subscribe((prm) => {
-        this.urlTaskId.set(prm['id']);
-      })
-    }
-    else{ //grab current child id from shared service
-      this.sharedSvc.currentChildData$.subscribe(data => this.urlTaskId.set(data));
-    }
-
-    //get task data from service api
-    this.taskSvc.getTask(this.urlTaskId()).subscribe((res:any) => {
-      //hydrate our shared data service (for other components use)
+  getData(taskId: string){
+    //get task and parent data from service api & hydrate our shared service(for other components use)
+    this.taskSvc.getTask(taskId).subscribe((res:any) => {
       this.sharedSvc.transmitChildData(res)
-      //get task data for our parent task from api
-      this.taskSvc.getTask(res.parentId).subscribe((res:any) => {
-        //hydrate our shared service
+      this.taskSvc.getTask(res.parentTaskId).subscribe((res:any) => {
         this.sharedSvc.transmitParentData(res);
       })
     });
 
-/* 
-    //grab list id from url
-    this.router.params.subscribe((prm) => {
-      this.urlListId.set(prm['id']);
-    })
-
-    //grab all tasks (in a list) from api and store in shared service
+    //grab all tasks (in a list) from api and store in shared service (for editing task usage)
     this.listSvc.SingleList(this.urlListId()).subscribe((data:any) => {
       this.sharedSvc.transmitListData(data.taskItems);
-    }) */
+    }) 
   }
 
-  postData(){
-    console.log("here");
+  //post task after editing
+  postData(taskId: string){
     this.sharedSvc.currentEditData$.subscribe((data:any) => {
       this.taskSvc.putTask(data, data.id).subscribe((res: any) => {
-        console.log("api call made: ")
-        console.log(res);
+        this.getData(taskId);
       })
     }).unsubscribe();
   }

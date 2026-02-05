@@ -19,17 +19,16 @@
 
             <div class="parent-container">
                 <label for="parent" class="text-box-label"> Parent Task</label>
-                @if (currentTask().parentId != null){
-                    <div id="parent" class="clickable-task" routerLink="/taskDetails/{{currentTask().parentId}}" (click)="onParentClick()">
+                @if (currentTask().parentTaskId != null){
+                    <div id="parent" class="clickable-task" routerLink="/taskDetails/{{currentTask().parentTaskId}}/{{urlListId}}" (click)="onParentClick()">
                         {{currentTaskParent().title}} <br>
-                        Id: {{currentTask().parentId}}
+                        Id: {{currentTask().parentTaskId}}
                     </div>
                 }
                 @else{
                     <div id="parent" class="text-box">No current Parent task</div>
                 }
             </div>
-
         </div>
     }
     <!--Editing state-->
@@ -40,13 +39,12 @@
                 <input type="text" name="title" id="title" class="text-box" placeholder="{{currentTask().title}}" [(ngModel)]="currentTask().title"/>
             </div>
 
-            <div class="due-date-container">
-                <label for="due-date" class="text-box-label">Due Date</label>
-                <div>
-                    <input class="text-box" name="due-date" matInput [matDatepicker]="picker" placeholder="{{currentTaskDate()}}" [(ngModel)]="currentTask().dueDate"> 
-                    <mat-datepicker-toggle matSuffix [for]="picker" class="date-picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </div>
+
+            <label for="due-date" class="text-box-label">Due Date</label>
+            <div>
+                <input class="text-box" name="due-date" matInput [matDatepicker]="picker" placeholder="{{currentTaskDate()}}" [(ngModel)]="currentTask().dueDate"> 
+                <mat-datepicker-toggle matSuffix [for]="picker" class="date-picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
             </div>
 
             <!--Not editable-->

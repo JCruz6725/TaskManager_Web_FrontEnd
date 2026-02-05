@@ -21,8 +21,6 @@ export class TaskService {
   }
 
   putTask(task: any, taskId:string){
-    console.log("before api");
-    console.log(task);
     return this.Service.put<any>('/task/' + taskId, task);
   }
 

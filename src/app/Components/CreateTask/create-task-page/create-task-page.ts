@@ -46,7 +46,7 @@ export class CreateTaskPage {
       title: this.taskData().title,
       dueDate: this.taskData().dueDate,
       priority: this.taskData().priority,
-      parentTaskId: this.taskData().parentId,
+      parentTaskId: this.taskData().parentTaskId,
       listId: this.urlListId()
     };
 

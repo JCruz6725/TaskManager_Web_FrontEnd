@@ -3,9 +3,10 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
-import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DetailedTask } from '../../../Models/detailed-task';
+import { Input } from '@angular/core';
 
 
 @Component({
@@ -26,17 +27,21 @@ export class Details {
 
   @Output("getData") getData: EventEmitter<any> = new EventEmitter();
   @Output("postData") postData: EventEmitter<any> = new EventEmitter();
+  @Input() urlListId : any; //used to pass into url
 
 
   ngOnInit() {
-    //grab our data from our shared service
+    //grab our task, parent, and list data from our shared service
     this.sharedSvc.currentChildData$.subscribe((data) => {
       this.currentTask.set(data);
     })
     this.sharedSvc.currentParentData$.subscribe((data) => {
       this.currentTaskParent.set(data);
     })
-
+    this.sharedSvc.currentListData$.subscribe((data) => { //this data is utilized within our editing state
+      this.options = data;
+    })
+    
     if (this.currentTask().dueDate != null){
       this.currentTaskDate.set(new Date(this.currentTask().dueDate));
     }
@@ -47,10 +52,8 @@ export class Details {
   }
 
   onParentClick(){
-    //update our child data in our shared service
-    this.sharedSvc.transmitChildData(this.currentTask().parentId);
-    //recall our parent component to re-render our page
-    this.getData.emit();
+    //recall our parent component with new taskId to re-render our page
+    this.getData.emit(this.currentTask().parentTaskId);
   }
 
   onEditClick(){
@@ -68,20 +71,6 @@ export class Details {
   public barIsActive: boolean = true;
   public searchParent = signal<string>('');
 
-  onSaveClick() {
-    const sendingTask = this.currentTask();
-    //hydrate shared service to make api call
-    this.sharedSvc.transmitEditData(sendingTask);
-
-    console.log("emitting postData")
-    this.postData.emit();
-
-
-/*     this.isEditing.set(false);
-    console.log("emitting getData");
-    this.getData.emit(); */
-  }
-
   //triggered everytime something is typed in parent search bar
   fetchParentTask(task: any){
     if (task.target.value === ''){ //if nothing in search bar, set result to empty
@@ -97,10 +86,15 @@ export class Details {
   //triggered when a task is selected from dropdown menu
   onSelectTask(task:any){
     this.searchParent.set(task.title);
-    //this.newTask.parentId = task.id; 
-    console.log("taskId: "+task.id)
-    this.currentTask().parentId.set(task.id);
+    this.currentTask().parentTaskId = task.id;
+    this.currentTask().parentTaskId = task.id
     this.barIsActive = false;
+  }
+
+  onSaveClick() {
+    this.sharedSvc.transmitEditData(this.currentTask());
+    this.postData.emit(this.currentTask().id);
+    this.isEditing.set(false);
   }
 
 }

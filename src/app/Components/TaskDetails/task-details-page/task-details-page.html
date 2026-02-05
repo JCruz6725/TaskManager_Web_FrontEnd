@@ -1,7 +1,7 @@
 <body>
     <div class="full-page-container">
         <div class="task-row" >
-            <app-details (getData)="getData()" (postData)="postData()"></app-details>
+            <app-details (getData)="getData($event)" (postData)="postData($event)" [urlListId]="urlListId()"></app-details>
             
         </div>
         <div class="notes-row">
