@@ -13,7 +13,7 @@
   position: absolute;
   top: 8px;
   left: 8px;
-  background-color: #c9c5ff;
+  /* background-color: #c9c5ff; */
   padding: 6px 14px;
   border-radius: 6px;
   font-size: 14px;
@@ -32,7 +32,7 @@
 .add-btn {
   width: 100%;
   margin-top: 15px;
-  background-color: #7a7a7a;
+  /* background-color: #7a7a7a; */
   border: none;
   border-radius: 6px;
   padding: 12px;
@@ -40,7 +40,7 @@
   cursor: pointer;
 }
 
-/* Trash Button top-right */
+/* Tool Bar top-right */
 .toolbar-location {
  position: absolute;
   top: 8px;
@@ -50,12 +50,12 @@
 
 
 /* Change button background and icon color */
-.custom-toolbar-btn {
+/* .custom-toolbar-btn {
   background-color:#7a7a7a;
   color: rgb(2, 0, 0);
   border-radius: 4px;
   border: none;
-}
+} */
 
 .errorColor {
   color: red;
@@ -69,10 +69,10 @@ padding: 25px;
   left: 230px;
   bottom: 118px;
   border: none;
-  border-radius: 10px;
-  width: 40px;
+  /* border-radius: 10px; */
+  /* width: 40px; */
 }
-.trash-can:hover {
+/* .trash-can:hover {
   background-color: rgb(73, 73, 73);
   cursor: pointer;
-}
+} */
