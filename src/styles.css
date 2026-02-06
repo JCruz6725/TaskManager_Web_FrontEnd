@@ -2,7 +2,7 @@
 body {
     background: var(--mat-sys-primary-container);
     background-color: var(--mat-sys-surface);
-  
+
 }
 
 .list-column{
@@ -13,4 +13,44 @@ body {
     background: var(--mat-sys-primary-container);
 
 
+}
+
+.addList-btn{
+    background: var(--mat-sys-secondary-fixed-dim);
+}
+.list-title {
+    background: var(--mat-sys-secondary-fixed-dim);
+}
+.add-btn {
+    background: var(--mat-sys-secondary-fixed-dim);
+}
+.custom-toolbar-btn {
+    background-color: var(--mat-sys-secondary-fixed-dim);
+    color: rgb(0, 0, 2);
+    border-radius: 4px;
+    border: none;
+}
+
+/* MAYBE WE DECIDE ON ONE COLOR FOR ALL HOVER */
+.trash-can:hover {
+    background-color: var(--mat-sys-secondary-fixed);
+    color: rgb(32, 7, 255);
+    border-radius: 4px;
+    border: none;
+}
+.trash-can {
+    background-color: var(--mat-sys-primary-container);
+    /* color: rgb(10, 0, 66); */
+    border-radius: 10px;
+    width: 40px;
+}
+.container {
+    background-color: var(--mat-sys-secondary-fixed-dim);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 3px;
+}
+
+.alarm{
+    color: rgb(32, 7, 255);
 }

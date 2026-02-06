@@ -40,12 +40,12 @@
   <span class="toolbar-location">
     <button mat-icon-button class="custom-toolbar-btn" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
       (mouseover)="menuTrigger.openMenu()">
-      <mat-icon>menu</mat-icon>
+      <mat-icon class="toolbar-tools">menu</mat-icon>
     </button>
-    <mat-menu #menu="matMenu" [overlapTrigger]="false">
+    <mat-menu  #menu="matMenu" [overlapTrigger]="false">
       <span (mouseleave)="menuTrigger.closeMenu()">
         <button mat-menu-item (click)="State.set('delete')">
-          <mat-icon>delete</mat-icon>
+          <mat-icon >delete</mat-icon>
           <span>Delete</span>
         </button>
         <button mat-menu-item (click)="flipState()">
