@@ -36,3 +36,9 @@ body {
   margin: 0;
   height: 100%;
 }
+
+:root {
+  @include mat.fab-overrides((
+    container-elevation-shadow: 0,
+  ));
+}

@@ -5,11 +5,12 @@ import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { ViewNotes } from '../view-notes/view-notes';
 import { CreateNotes } from '../create-notes/create-notes';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-task-details-page',
-  imports: [Details, ViewNotes, CreateNotes],
+  imports: [Details, ViewNotes, CreateNotes, MatButtonModule],
   templateUrl: './task-details-page.html',
   styleUrl: './task-details-page.css',
 })

@@ -45,17 +45,17 @@
 }
 
 .delete-btn {
-    background: var(--mat-sys-primary-container);
+    /* background: var(--mat-sys-primary-container); */
     position: absolute;
-    top: 8px;
+    top: 10px;
     right: 10px;
-    border-radius: 10px;
-    padding: 4px;
+    /* border-radius: 10px;
+    padding: 4px; */
     cursor: pointer;
 }
 
-.delete-btn:hover {
+/* .delete-btn:hover {
     background-color:#c3c1fd;
 
-    /* color: #c3c1fd; */
-}
+    color: #c3c1fd;
+} */

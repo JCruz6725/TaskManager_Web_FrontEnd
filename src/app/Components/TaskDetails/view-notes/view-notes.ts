@@ -5,10 +5,11 @@ import { DataSharingService } from '../../../Services/TaskServices/DataSharingSe
 import { MatIconModule } from '@angular/material/icon';
 import { NoteService } from '../../../Services/NoteServices/note-service';
 import { TaskNote } from '../../../Models/task-note'
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-view-notes',
-  imports: [CommonModule, FormsModule, MatIconModule],
+  imports: [CommonModule, FormsModule, MatIconModule, MatButtonModule],
   templateUrl: './view-notes.html',
   styleUrl: './view-notes.css',
 })

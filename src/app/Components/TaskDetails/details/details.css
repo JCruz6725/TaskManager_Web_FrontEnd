@@ -47,14 +47,14 @@
     position: relative;
     left: 750px;
     bottom: 250px;
-    padding: 10px;
+ /*    padding: 10px;
     border: none;
     border-radius: 20px;
-    background-color: var(--mat-sys-surface);
+    background-color: var(--mat-sys-surface); */
 }
-.edit-button:hover {
+/* .edit-button:hover {
     background-color:#c3c1fd;
     cursor: pointer;
-}
+} */
 
 

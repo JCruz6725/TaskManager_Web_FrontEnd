@@ -11,11 +11,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { DetailedTask } from '../../../Models/detailed-task';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-create-details',
-  imports: [ReactiveFormsModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, FormsModule, MatFormFieldModule, MatSelectModule, MatInputModule],
+  imports: [ReactiveFormsModule, MatIconModule, MatDatepickerModule, MatNativeDateModule, FormsModule, MatFormFieldModule, MatSelectModule, MatInputModule, MatButtonModule],
   templateUrl: './create-details.html',
   styleUrl: './create-details.css',
 })

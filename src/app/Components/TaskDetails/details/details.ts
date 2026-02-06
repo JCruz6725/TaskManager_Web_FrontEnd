@@ -3,11 +3,12 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, MatButtonModule],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })

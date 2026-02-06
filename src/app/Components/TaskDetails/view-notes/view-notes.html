@@ -8,7 +8,7 @@
   }
   @for (note of notes(); track note.id) {
   <div readonly class="note-textarea">
-    <button class="delete-btn" (click)="DeleteNote(note.id)">
+    <button matIconButton class="delete-btn" (click)="DeleteNote(note.id)">
       <mat-icon>delete</mat-icon>
     </button>
     {{ note.note }}

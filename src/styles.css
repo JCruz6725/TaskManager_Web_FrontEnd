@@ -46,7 +46,7 @@ body {
 }
 
 /* MAYBE WE DECIDE ON ONE COLOR FOR ALL HOVER */
-.trash-can:hover {
+/* .trash-can:hover {
     background-color: var(--mat-sys-secondary-fixed);
     color: rgb(32, 7, 255);
     border-radius: 4px;
@@ -54,10 +54,10 @@ body {
 }
 .trash-can {
     background-color: var(--mat-sys-primary-container);
-    /* color: rgb(10, 0, 66); */
+    color: rgb(10, 0, 66);
     border-radius: 10px;
     width: 40px;
-}
+} */
 .container {
     background-color: var(--mat-sys-secondary-fixed-dim);
     border-radius: 8px;
@@ -68,3 +68,6 @@ body {
 .alarm{
     color: rgb(32, 7, 255);
 }
+
+
+

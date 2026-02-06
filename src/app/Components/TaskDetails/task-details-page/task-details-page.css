@@ -8,19 +8,19 @@
 .delete-btn {
     position: relative;
     top: 50px;
-    left: 1350px;
+    left: 1325px;
     order: 3;
     background-color: red;
-    color: white;
-    width: 100px;
+     color: white;
+ /*   width: 100px;
     border: none;
     border-radius: 3px;
-    padding: 5px;
+    padding: 5px; */
 }
-.delete-btn:hover {
+/* .delete-btn:hover {
     background-color: rgb(101, 0, 0);
     cursor: pointer;
-}
+} */
 
 .notes-row{
     display: flex;

@@ -9,12 +9,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TaskService } from '../../../Services/TaskServices/task-service';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule, MatIcon, RouterLink, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule],
+  imports: [CommonModule, MatIcon, RouterLink, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule, MatButtonModule],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })

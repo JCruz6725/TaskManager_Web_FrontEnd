@@ -26,7 +26,7 @@
       <a routerLink="/taskDetails/{{task.id}}">
         <app-task [taskId]="task.id"></app-task>
       </a>
-      <button class="trash-can" (click)="onTaskDelClick(task.id)">
+      <button class="trash-can" matIconButton (click)="onTaskDelClick(task.id)">
         <mat-icon>delete outline icon</mat-icon>
      </button>
     }
@@ -38,7 +38,7 @@
   <!-- Tool Bar -->
 
   <span class="toolbar-location">
-    <button mat-icon-button class="custom-toolbar-btn" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
+    <button class="custom-toolbar-btn" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
       (mouseover)="menuTrigger.openMenu()">
       <mat-icon class="toolbar-tools">menu</mat-icon>
     </button>
