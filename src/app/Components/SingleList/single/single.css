@@ -68,12 +68,12 @@ padding: 25px;
   position: relative;
   left: 230px;
   bottom: 118px;
-  border: none;
-  width: 40px;
-  /* border-radius: 10px; */
-  /* width: 40px; */
 }
-/* .trash-can:hover {
-  background-color: rgb(73, 73, 73);
+
+
+.single-task{
+  font-weight: 500;
+}
+.single-task:hover {
   cursor: pointer;
-} */
+}
