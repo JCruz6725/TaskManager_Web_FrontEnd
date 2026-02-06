@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { Task } from '../task/task';
 import { RouterLink } from '@angular/router';
+import { CdkDropList, CdkDragDrop, CdkDrag } from '@angular/cdk/drag-drop';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from "@angular/forms";
@@ -15,7 +16,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule, MatIcon, RouterLink, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule, MatButtonModule],
+  imports: [CommonModule, MatIcon, RouterLink, CdkDropList, CdkDrag, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })
@@ -31,6 +32,7 @@ export class Single implements OnInit {
   listId = signal<string>('');
 
   @Output('getAllList') getAllList: EventEmitter<any> = new EventEmitter();
+  @Output('updateLists') updateList: EventEmitter<any> = new EventEmitter();
 
   public State = signal<'view' | 'edit' | 'delete'>('view')
 
@@ -100,4 +102,13 @@ export class Single implements OnInit {
     })
   }
 
+
+  drop(event: CdkDragDrop<any>){
+    if (event.previousContainer.data !== event.container.data){
+      this.service.MoveTask(event.container.data, event.item.data).subscribe((data:any) => {
+        console.log("successfully moved task " + event.item.data + " from list " + event.previousContainer.data + " to list " + event.container.data);
+        this.updateList.emit();
+      })
+    }
+  }
 }
