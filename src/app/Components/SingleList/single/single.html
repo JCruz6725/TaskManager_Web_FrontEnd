@@ -23,14 +23,14 @@
   <!-- This holds your todo items -->
   <div class="boarder"  >
     @for (task of listSize(); track task.id){
-      <div cdkDrag [cdkDragData]="task.id">
-          <div routerLink="/taskDetails/{{task.id}}">
-            <app-task [taskId]="task.id" ></app-task>
-          </div>
+      <div cdkDrag [cdkDragData]="task.id" class="single-task">
+        <div routerLink="/taskDetails/{{task.id}}">
+          <app-task [taskId]="task.id" ></app-task>
+        </div>
       </div>
       <button class="trash-can" matIconButton (click)="onTaskDelClick(task.id)">
         <mat-icon>delete outline icon</mat-icon>
-     </button>
+      </button>
     }
   </div>
 
