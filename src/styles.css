@@ -10,8 +10,8 @@ body {
 }
 
 .nav-bar{
-    /* background: var(--mat-sys-primary-container); */
-    background-color: var(--mat-sys-surface);
+    background: var(--mat-sys-primary-container);
+    /* background-color: var(--mat-sys-surface); */
 
 }
 
