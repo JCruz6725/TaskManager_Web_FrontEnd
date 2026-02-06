@@ -1,4 +1,4 @@
-import { Component, inject, Signal, signal, } from '@angular/core';
+import { Component, inject, signal, } from '@angular/core';
 import { Details } from '../details/details';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
@@ -53,6 +53,12 @@ export class TaskDetailsPage {
       console.log("Deleted task " + res.title);
       this.router.navigateByUrl('/home');
     })
+  }
+
+  ontoggleStatusChange(taskId: any){
+    this.urlTaskId.set(taskId);
+    //refresh our data after status change
+    this.getData();
   }
 
 }
