@@ -1,11 +1,11 @@
 <body>
     <div class="full-page-container">
         <div class="task-row" >
-            <app-details (getData)="getData()"></app-details>
-            
+            <app-details (getData)="getData()" (toggleStatusChange)="ontoggleStatusChange($event)"></app-details>
+
         </div>
         <div class="notes-row">
-            <app-view-notes></app-view-notes> 
+            <app-view-notes></app-view-notes>
             <app-create-notes></app-create-notes>
         </div>
         <button class="delete-btn" (click)="onDelClick()">
