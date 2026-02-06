@@ -42,14 +42,14 @@ export class Details {
     
   }
 
-
   onParentClick(){
     //update our child data in our shared service
     this.sharedSvc.transmitChildData(this.currentTask().parentId);
     //recall our parent component to re-render our page
     this.getData.emit();
   }
-onCompleteClick(){
+  
+  onCompleteClick(){
     this.taskSvc.statusTask(this.currentTask().id).subscribe((res:any) => {
       //refresh our data after status change
       this.sharedSvc.transmitChildData(res);
