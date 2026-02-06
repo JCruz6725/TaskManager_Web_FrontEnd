@@ -10,13 +10,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TaskService } from '../../../Services/TaskServices/task-service';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
 
 
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule, MatIcon, RouterLink, CdkDropList, CdkDrag, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule],
+  imports: [CommonModule, MatIcon, RouterLink, CdkDropList, CdkDrag, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule, MatIconButton],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })

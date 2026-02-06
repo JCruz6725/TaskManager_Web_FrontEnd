@@ -28,7 +28,7 @@
             <app-task [taskId]="task.id" ></app-task>
           </a>
       </div>
-      <button class="trash-can" (click)="onTaskDelClick(task.id)">
+      <button class="trash-can" matIconButton (click)="onTaskDelClick(task.id)">
         <mat-icon>delete outline icon</mat-icon>
      </button>
     }
