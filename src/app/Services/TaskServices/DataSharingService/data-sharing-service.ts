@@ -13,7 +13,7 @@ export class DataSharingService {
     this.childDataStream.next(newMessage);
   }
 
-  //Property to hold the child's parent data
+  //Property to hold the child's parent data 
   private parentDataStream = new BehaviorSubject<any>({});
   currentParentData$ = this.parentDataStream.asObservable();
   //Method to hydrate our proprty

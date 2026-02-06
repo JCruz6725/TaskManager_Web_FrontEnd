@@ -27,4 +27,8 @@ export class ListService {
   DeleteList(listId: string | undefined): Observable<any[]> {
     return this.Service.delete<any[]>('/list/' + listId);
   }
+
+  MoveTask(listId: string, taskId: string):any{
+    return this.Service.post<any>('/list/' + listId + '/move-task', {taskId: taskId});
+  }
 }

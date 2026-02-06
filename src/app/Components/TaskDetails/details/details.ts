@@ -11,7 +11,7 @@ import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, MatDatepickerModule,MatNativeDateModule, FormsModule],
+  imports: [ReactiveFormsModule, RouterLink, MatDatepickerModule,MatNativeDateModule, FormsModule, ],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
@@ -28,12 +28,18 @@ export class Details {
   @Output("getData") getData: EventEmitter<any> = new EventEmitter();
   @Output("postData") postData: EventEmitter<any> = new EventEmitter();
   @Input() urlListId : any; //used to pass into url
-
+  @Output() toggleStatusChange = new EventEmitter();
 
   ngOnInit() {
     //grab our task, parent, and list data from our shared service
     this.sharedSvc.currentChildData$.subscribe((data) => {
       this.currentTask.set(data);
+      if (this.currentTask().dueDate != null){
+        this.currentTaskDate.set((new Date(this.currentTask().dueDate).toLocaleDateString()));
+      }
+      else{
+        this.currentTaskDate.set('No Current Due Date');
+      }
     })
     this.sharedSvc.currentParentData$.subscribe((data) => {
       this.currentTaskParent.set(data);
@@ -41,15 +47,8 @@ export class Details {
     this.sharedSvc.currentListData$.subscribe((data) => { //this data is utilized within our editing state
       this.options = data;
     })
-    
-    if (this.currentTask().dueDate != null){
-      this.currentTaskDate.set(new Date(this.currentTask().dueDate));
-    }
-    else{
-      this.currentTaskDate.set('No Current Due Date');
-    }
-
   }
+
 
   onParentClick(){
     //recall our parent component with new taskId to re-render our page
@@ -62,6 +61,17 @@ export class Details {
     //grab all the tasks in our list to display for our parent search bar
     this.sharedSvc.currentListData$.subscribe((data) => {
       this.options = data;
+    })
+  }
+
+  onCompleteClick(){
+    console.log(this.currentTask().id)
+    this.taskSvc.statusTask(this.currentTask().id).subscribe((res:any) => {
+      //refresh our data after status change
+      this.sharedSvc.transmitChildData(res);
+      this.toggleStatusChange.emit(this.currentTask().id);
+      console.log("Task marked as complete: " + res.title);
+
     })
   }
 

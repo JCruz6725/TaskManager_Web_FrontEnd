@@ -24,5 +24,8 @@ export class TaskService {
     return this.Service.put<any>('/task/' + taskId, task);
   }
 
+  statusTask(taskId: string){
+    console.log("here")
+    return this.Service.post<any>('/task/' + taskId + '/status-change/complete', {});
+  }
 }
-

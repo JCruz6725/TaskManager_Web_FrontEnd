@@ -1,4 +1,4 @@
-import { Component, inject, Signal, signal, } from '@angular/core';
+import { Component, inject, signal, } from '@angular/core';
 import { Details } from '../details/details';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
@@ -38,9 +38,13 @@ export class TaskDetailsPage {
     //get task and parent data from service api & hydrate our shared service(for other components use)
     this.taskSvc.getTask(taskId).subscribe((res:any) => {
       this.sharedSvc.transmitChildData(res)
-      this.taskSvc.getTask(res.parentTaskId).subscribe((res:any) => {
-        this.sharedSvc.transmitParentData(res);
-      })
+      //get task data for our parent task from api
+      if (res.parentTaskId != null){
+        this.taskSvc.getTask(res.parentTaskId).subscribe((res:any) => {
+          //hydrate our shared service
+          this.sharedSvc.transmitParentData(res);
+        })
+      }
     });
 
     //grab all tasks (in a list) from api and store in shared service (for editing task usage)
@@ -63,6 +67,12 @@ export class TaskDetailsPage {
       console.log("Deleted task " + res.title);
       this.router.navigateByUrl('/home');
     })
+  }
+
+  ontoggleStatusChange(taskId: any){
+    this.urlTaskId.set(taskId);
+    //refresh our data after status change
+    this.getData(taskId);
   }
 
 }
