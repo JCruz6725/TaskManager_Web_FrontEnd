@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, ],
+  imports: [ReactiveFormsModule, RouterLink, MatButtonModule ],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
