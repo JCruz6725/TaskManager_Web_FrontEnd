@@ -28,8 +28,7 @@ export class ListService {
     return this.Service.delete<any[]>('/list/' + listId);
   }
 
-  MoveTask(inputlistId: string, inputtaskId: string):any{
-    const body = {taskId: inputtaskId};
-    return this.http.post('https://localhost:7177/list/' + inputlistId + '/move-task', body, { headers: this.MakeApiHeader()})
+  MoveTask(listId: string, taskId: string):any{
+    return this.Service.post<any>('/list/' + listId + '/move-task', {taskId: taskId});
   }
 }
