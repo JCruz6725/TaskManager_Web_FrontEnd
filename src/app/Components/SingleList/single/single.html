@@ -26,7 +26,7 @@
       <a routerLink="/taskDetails/{{task.id}}">
         <app-task [taskId]="task.id"></app-task>
       </a>
-      <button class="trash-can" (click)="onTaskDelClick(task.id)">
+      <button class="trash-can" (click)="onDelDialog(task.id)">
         <mat-icon>delete outline icon</mat-icon>
      </button>
     }

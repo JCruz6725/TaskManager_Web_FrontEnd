@@ -9,12 +9,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TaskService } from '../../../Services/TaskServices/task-service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { VerifyDialog } from '../../verify-dialog/verify-dialog';
+import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule, MatIcon, RouterLink, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule],
+  imports: [CommonModule, MatIcon, RouterLink, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule, MatDialogModule, MatButtonModule],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })
@@ -26,8 +30,10 @@ export class Single implements OnInit {
   showErrorMessage = signal<boolean>(false);
 
   private taskSvc : TaskService = inject(TaskService);
+  private sharedSvc : DataSharingService = inject(DataSharingService);
   service = inject(ListService);
   listId = signal<string>('');
+  private subscription: any;
 
   @Output('getAllList') getAllList: EventEmitter<any> = new EventEmitter();
 
@@ -96,6 +102,25 @@ export class Single implements OnInit {
     this.taskSvc.deleteTask(taskId).subscribe((res:any) => {
       console.log("Deleted task " + res.title);
       this.getSingleList();
+    })
+
+    this.subscription.unsubscribe();
+    this.sharedSvc.transmitDialogData({state: false, id: ''});
+  }
+
+  readonly dialog = inject(MatDialog)
+  onDelDialog(taskId: string){
+    const dialogRef = this.dialog.open(VerifyDialog, {
+      data: {
+        message: 'Delete task?',
+        id: taskId
+      }
+    });
+
+    this.subscription = this.sharedSvc.currentDialogData$.subscribe((res: {state: boolean, id: string}) => {
+      if (res.state){
+        this.onTaskDelClick(res.id);
+      }
     })
   }
 

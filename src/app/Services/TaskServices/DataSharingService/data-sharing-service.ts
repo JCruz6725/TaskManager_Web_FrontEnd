@@ -29,9 +29,15 @@ export class DataSharingService {
     this.listDataStream.next(newMessage);
   }
 
-   private noteDataStream = new BehaviorSubject<any>({});
-   currentNoteData$ = this.noteDataStream.asObservable();
-    transmitNoteData(newMessage: any) : void {
-      this.noteDataStream.next(newMessage);
-    }
+  private noteDataStream = new BehaviorSubject<any>({});
+  currentNoteData$ = this.noteDataStream.asObservable();
+  transmitNoteData(newMessage: any) : void {
+    this.noteDataStream.next(newMessage);
+  }
+
+  private dialogDataStream = new BehaviorSubject<any>({state: false, id: ''});
+  currentDialogData$ = this.noteDataStream.asObservable();
+  transmitDialogData(newMessage: {state: boolean, id: string}) : void {
+    this.noteDataStream.next(newMessage);
+  }
 }
