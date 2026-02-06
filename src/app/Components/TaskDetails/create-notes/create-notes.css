@@ -22,8 +22,8 @@
    height: 40px;
    margin: 10px auto;
     height: 40px;
-   background-color: purple;
-   color: white;
+    background-color: var(--mat-sys-surface);
+   color: black;
    font-size: 20px;
 }
-.submit-note:hover{background-color: rgb(29, 27, 28); color:white;}
+.submit-note:hover{background-color: #c3c1fd; color:black;}

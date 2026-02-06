@@ -10,7 +10,21 @@ body {
 }
 
 .nav-bar{
+    /* background: var(--mat-sys-primary-container); */
+    background-color: var(--mat-sys-surface);
+
+}
+
+.full-page-container{
     background: var(--mat-sys-primary-container);
 
+}
+
+.login-container{
+   background: var(--mat-sys-primary-container);
+}
+
+.sign-up-container{
+   background: var(--mat-sys-primary-container);
 
 }
