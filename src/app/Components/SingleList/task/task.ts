@@ -15,16 +15,23 @@ import { CdkDrag } from '@angular/cdk/drag-drop';
 export class Task {
   apiService : TaskService = inject(TaskService);
   taskId = input<string>("");
-  status : any;
-  errorMessage : any;
 
   taskName = signal<string>("");
   taskDueDate = signal<any>(null);
+  tempDueDate:string = '';
+  datePipe: any;
 
   ngOnInit(){
     this.apiService.getTask(this.taskId()).subscribe((res:any)=>{
       this.taskName.set(res.title);
-      this.taskDueDate.set(new Date(res.dueDate));
+      if (res.dueDate){
+        //this.taskDueDate.set('HAS DUE DATE')
+        this.taskDueDate.set((new Date(res.dueDate)).toLocaleDateString());
+      }
+      else{
+        this.taskDueDate.set('No current due date')
+      }
+        
     });
   }
 
