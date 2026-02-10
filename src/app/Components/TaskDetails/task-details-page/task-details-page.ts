@@ -5,6 +5,8 @@ import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { ViewNotes } from '../view-notes/view-notes';
 import { CreateNotes } from '../create-notes/create-notes';
+import { MatDialog } from '@angular/material/dialog';
+import { VerifyDialog } from '../../verify-dialog/verify-dialog';
 
 
 @Component({
@@ -20,6 +22,7 @@ export class TaskDetailsPage {
   private router = inject(Router);
 
   private urlTaskId = signal<any>(null);
+  private subscription: any;
 
   ngOnInit(){
     this.getData();
@@ -54,6 +57,25 @@ export class TaskDetailsPage {
     this.taskSvc.deleteTask(this.urlTaskId()).subscribe((res:any) => {
       console.log("Deleted task " + res.title);
       this.router.navigateByUrl('/home');
+    })
+
+    this.subscription.unsubscribe();
+    this.sharedSvc.transmitDialogData({state: false, id: ''});
+  }
+
+  readonly dialog = inject(MatDialog)
+  onDelDialog(){
+    const dialogRef = this.dialog.open(VerifyDialog, {
+      data: {
+        message: 'Delete task?',
+        //id: taskId
+      }
+    });
+
+    this.subscription = this.sharedSvc.currentDialogData$.subscribe((res: {state: boolean, id: string}) => {
+      if (res.state){
+        this.onDelClick();
+      }
     })
   }
 
