@@ -5,6 +5,8 @@ import { DataSharingService } from '../../../Services/TaskServices/DataSharingSe
 import { MatIconModule } from '@angular/material/icon';
 import { NoteService } from '../../../Services/NoteServices/note-service';
 import { TaskNote } from '../../../Models/task-note'
+import { MatDialog } from '@angular/material/dialog';
+import { VerifyDialog } from '../../verify-dialog/verify-dialog';
 
 @Component({
   selector: 'app-view-notes',
@@ -19,6 +21,7 @@ export class ViewNotes {
 
   public taskId = signal<string | null>(null)
   public notes = signal<TaskNote[]>([]);
+  private subscription:any;
 
   ngOnInit() {
     this.sharedSvc.currentChildData$.subscribe(task => {
@@ -53,7 +56,7 @@ export class ViewNotes {
     const taskId = this.taskId();
     if (!taskId)
       return;
-    if (!confirm('Are you sure you want to delete this note'))
+    if (!confirm('Are you sure you want to delete this note: ' + noteId))
       return;
     this.noteSvc.deleteNote(taskId, noteId)
       .subscribe({
@@ -61,6 +64,25 @@ export class ViewNotes {
           this.notes.update(n => n.filter(note => note.id !== noteId));
         }
       });
+
+    this.subscription.unsubscribe();
+    this.sharedSvc.transmitDialogData({state: false, id: ''});
+  }
+
+  readonly dialog = inject(MatDialog)
+  onDelDialog(noteId: string){
+    const dialogRef = this.dialog.open(VerifyDialog, {
+      data: {
+        message: 'Delete task?',
+        id: noteId
+      }
+    });
+
+    this.subscription = this.sharedSvc.currentDialogData$.subscribe((res: {state: boolean, id: string}) => {
+      if (res.state){
+        this.DeleteNote(res.id);
+      }
+    })
   }
 
 }

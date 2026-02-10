@@ -8,10 +8,10 @@
   }
   @for (note of notes(); track note.id) {
   <div readonly class="note-textarea">
-    <button class="delete-btn" (click)="DeleteNote(note.id)">
+    <button class="delete-btn" (click)="onDelDialog(note.id)">
       <mat-icon>delete</mat-icon>
     </button>
-    {{ note.note }}
+    {{ note.note }} {{note.id}}
   </div>
   <div class="note-meta">
     Created: {{ note.createdDate | date:'short' }}

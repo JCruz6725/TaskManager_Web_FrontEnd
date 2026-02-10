@@ -14,6 +14,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { VerifyDialog } from '../../verify-dialog/verify-dialog';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { MatButtonModule } from '@angular/material/button';
+import { DialogRef } from '@angular/cdk/dialog';
 
 
 
@@ -80,6 +81,7 @@ export class Single implements OnInit {
       }
     });
   }
+
   DeleteList(): void {
     this.showErrorMessage.set(false);
 
@@ -93,11 +95,16 @@ export class Single implements OnInit {
           setTimeout(() => {
             this.showErrorMessage.set(false);
           }, 3000);
-          this.showErrorMessage.set(true);
+          this.onDelDialog('error');
+/*
+          this.showErrorMessage.set(true); */
           return
         }
       }
     });
+
+    this.subscription.unsubscribe();
+    this.sharedSvc.transmitDialogData({state: false, id: ''});
   }
 
   onTaskDelClick(taskId:string){
@@ -111,19 +118,46 @@ export class Single implements OnInit {
   }
 
   readonly dialog = inject(MatDialog)
-  onDelDialog(taskId: string){
+  onDelDialog(type:string, taskId?: string){
+    let dialogMessage: string = '';
+    switch(type){
+      case 'task': {
+        dialogMessage = 'Delete task?'
+        break;
+      }
+      case 'list': {
+        dialogMessage = 'Are you sure you want to delete this list?'
+        break;
+      }
+      case 'error': {
+        dialogMessage = 'Cannot delete a list with tasks. Please remove all tasks first.'
+        break;
+      }
+    }
+
     const dialogRef = this.dialog.open(VerifyDialog, {
       data: {
-        message: 'Delete task?',
+        message: dialogMessage,
         id: taskId
       }
     });
 
     this.subscription = this.sharedSvc.currentDialogData$.subscribe((res: {state: boolean, id: string}) => {
       if (res.state){
-        this.onTaskDelClick(res.id);
+        if (type == 'task'){
+          this.onTaskDelClick(res.id);
+        }
+        else if (type == 'list'){
+          this.DeleteList();
+        }
+        else{ //error
+          this.subscription.unsubscribe();
+          this.sharedSvc.transmitDialogData({state: false, id: ''});
+          return;
+        }
       }
     })
+
   }
 
 

@@ -68,7 +68,6 @@ export class TaskDetailsPage {
     const dialogRef = this.dialog.open(VerifyDialog, {
       data: {
         message: 'Delete task?',
-        //id: taskId
       }
     });
 
