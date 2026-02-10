@@ -1,11 +1,11 @@
 .example-form-field {
   width: 200px;
 }
+
 /* Outer list container */
 .list-column {
   width: 280px;
   min-height: 200px;
-  /* background-color: #8f0f0f; */
   border-radius: 8px;
   padding: 16px;
   position: relative;
@@ -16,27 +16,20 @@
   position: absolute;
   top: 8px;
   left: 8px;
-  /* background-color: #c9c5ff; */
   padding: 6px 14px;
   border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
 }
+
 /* Area where error messages render */
 .boarder {
   margin-top: 48px;
 }
+
 .errorColor {
   color: red;
   font-size: large;
 padding: 25px;
 }
-/* Trash Button top-right
-.delete-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background-color: #0b0468;
-  border-radius: 6px;
-} */
 

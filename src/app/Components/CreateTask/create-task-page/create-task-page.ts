@@ -20,7 +20,7 @@ export class CreateTaskPage {
 
   private urlListId = signal<string>('');
   private taskData = signal<any>('');
-  taskObj : any;
+  taskObj: any;
 
   ngOnInit() {
     //grab list id from url
@@ -29,13 +29,13 @@ export class CreateTaskPage {
     })
 
     //grab all tasks (in a list) from api and store in shared service
-    this.listSvc.SingleList(this.urlListId()).subscribe((data:any) => {
+    this.listSvc.SingleList(this.urlListId()).subscribe((data: any) => {
       this.sharedSvc.transmitListData(data.taskItems);
     })
 
   }
 
-  onNotify(){
+  onNotify() {
     //when notified of new info, grab data from shared service
     this.sharedSvc.currentChildData$.subscribe((data) => {
       this.taskData.set(data);

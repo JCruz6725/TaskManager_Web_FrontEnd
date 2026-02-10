@@ -1,5 +1,5 @@
 import { ListService } from './../../../Services/ListServiceAll/get-all-list';
-import { Component, EventEmitter, inject, signal , OnInit,input,Output} from '@angular/core';;
+import { Component, EventEmitter, inject, signal, OnInit, input, Output } from '@angular/core';;
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { Task } from '../task/task';
@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TaskService } from '../../../Services/TaskServices/task-service';
-import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 
 
 
@@ -27,7 +27,7 @@ export class Single implements OnInit {
   listname = signal<string>('');
   showErrorMessage = signal<boolean>(false);
 
-  private taskSvc : TaskService = inject(TaskService);
+  private taskSvc: TaskService = inject(TaskService);
   service = inject(ListService);
   listId = signal<string>('');
 
@@ -95,17 +95,16 @@ export class Single implements OnInit {
     });
   }
 
-  onTaskDelClick(taskId:string){
-    this.taskSvc.deleteTask(taskId).subscribe((res:any) => {
+  onTaskDelClick(taskId: string) {
+    this.taskSvc.deleteTask(taskId).subscribe((res: any) => {
       console.log("Deleted task " + res.title);
       this.getSingleList();
     })
   }
 
-
-  drop(event: CdkDragDrop<any>){
-    if (event.previousContainer.data !== event.container.data){
-      this.service.MoveTask(event.container.data, event.item.data).subscribe((data:any) => {
+  drop(event: CdkDragDrop<any>) {
+    if (event.previousContainer.data !== event.container.data) {
+      this.service.MoveTask(event.container.data, event.item.data).subscribe((data: any) => {
         console.log("successfully moved task " + event.item.data + " from list " + event.previousContainer.data + " to list " + event.container.data);
         this.updateList.emit();
       })

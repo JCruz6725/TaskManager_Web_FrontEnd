@@ -8,13 +8,13 @@ import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, MatButtonModule ],
+  imports: [ReactiveFormsModule, RouterLink, MatButtonModule],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
 export class Details {
-  taskSvc : TaskService = inject(TaskService);
-  sharedSvc : DataSharingService = inject(DataSharingService);
+  taskSvc: TaskService = inject(TaskService);
+  sharedSvc: DataSharingService = inject(DataSharingService);
 
   public currentTask = signal<any>(null);
   public currentTaskDate = signal<any>(null);
@@ -29,29 +29,26 @@ export class Details {
     this.sharedSvc.currentChildData$.subscribe((data) => {
       this.currentTask.set(data);
 
-      if (this.currentTask().dueDate != null){
+      if (this.currentTask().dueDate != null) {
         this.currentTaskDate.set((new Date(this.currentTask().dueDate).toLocaleDateString()));
       }
-      else{
+      else {
         this.currentTaskDate.set('No Current Due Date');
       }
     })
     this.sharedSvc.currentParentData$.subscribe((data) => {
       this.currentTaskParent.set(data);
     })
-
-    
   }
 
-
-  onParentClick(){
+  onParentClick() {
     //update our child data in our shared service
     this.sharedSvc.transmitChildData(this.currentTask().parentId);
     //recall our parent component to re-render our page
     this.getData.emit();
   }
-onCompleteClick(){
-    this.taskSvc.statusTask(this.currentTask().id).subscribe((res:any) => {
+  onCompleteClick() {
+    this.taskSvc.statusTask(this.currentTask().id).subscribe((res: any) => {
       //refresh our data after status change
       this.sharedSvc.transmitChildData(res);
       this.toggleStatusChange.emit();
