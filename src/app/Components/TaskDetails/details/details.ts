@@ -19,7 +19,6 @@ export class Details {
   public currentTaskDate = signal<any>(null);
   public currentTaskParent = signal<any>(null);
 
-
   @Output("getData") getData: EventEmitter<any> = new EventEmitter();
   @Output() toggleStatusChange = new EventEmitter();
 
@@ -39,7 +38,6 @@ export class Details {
       this.currentTaskParent.set(data);
     })
 
-    
   }
 
   onParentClick(){

@@ -11,15 +11,6 @@
     <p class="errorColor"> List Name Cannot Be Empty </p>
   }
   }
-<!--   @if (State() == 'delete'){
-    <p>Are you sure you want to delete this list?</p>
-    <button (click)="DeleteList() ; State.set('view')">Yes</button>
-    <button (click)="State.set('view')">No</button>
-  }
-  @if(showErrorMessage()==true){
-    <p class="errorColor" > Cannot delete a list with tasks. Please remove all tasks first. </p>
-  }
- -->
   <!-- This holds your todo items -->
   <div class="boarder"  >
     @for (task of listSize(); track task.id){

@@ -65,7 +65,7 @@ export class TaskDetailsPage {
 
   readonly dialog = inject(MatDialog)
   onDelDialog(){
-    const dialogRef = this.dialog.open(VerifyDialog, {
+    this.dialog.open(VerifyDialog, {
       data: {
         message: 'Delete task?',
       }

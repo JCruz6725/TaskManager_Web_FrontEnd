@@ -14,7 +14,6 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { VerifyDialog } from '../../verify-dialog/verify-dialog';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { MatButtonModule } from '@angular/material/button';
-import { DialogRef } from '@angular/cdk/dialog';
 
 
 
@@ -61,9 +60,6 @@ export class Single implements OnInit {
     else if (this.State() === 'edit') {
       this.State.set('view');
     }
-    else if (this.State() === 'delete') {
-      this.State.set('view');
-    }
   }
 
   UpdateList(): void {
@@ -83,8 +79,6 @@ export class Single implements OnInit {
   }
 
   DeleteList(): void {
-    this.showErrorMessage.set(false);
-
     this.service.DeleteList(this.dataID()).subscribe({
       next: (response) => {
         this.State.set('view');
@@ -92,12 +86,7 @@ export class Single implements OnInit {
       },
       error: (err: { status: number; }) => {
         if (err.status === 400) {
-          setTimeout(() => {
-            this.showErrorMessage.set(false);
-          }, 3000);
           this.onDelDialog('error');
-/*
-          this.showErrorMessage.set(true); */
           return
         }
       }
@@ -135,7 +124,7 @@ export class Single implements OnInit {
       }
     }
 
-    const dialogRef = this.dialog.open(VerifyDialog, {
+    this.dialog.open(VerifyDialog, {
       data: {
         message: dialogMessage,
         id: taskId
@@ -159,7 +148,6 @@ export class Single implements OnInit {
     })
 
   }
-
 
   drop(event: CdkDragDrop<any>){
     if (event.previousContainer.data !== event.container.data){

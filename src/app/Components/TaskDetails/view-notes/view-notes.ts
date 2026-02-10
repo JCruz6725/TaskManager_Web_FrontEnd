@@ -36,7 +36,6 @@ export class ViewNotes {
       );
       this.notes.set(sortedNotes);
       this.taskId.set(task.id)
-
     });
 
     this.sharedSvc.currentNoteData$.subscribe(note => {
@@ -56,8 +55,6 @@ export class ViewNotes {
     const taskId = this.taskId();
     if (!taskId)
       return;
-    if (!confirm('Are you sure you want to delete this note: ' + noteId))
-      return;
     this.noteSvc.deleteNote(taskId, noteId)
       .subscribe({
         next: () => {
@@ -73,7 +70,7 @@ export class ViewNotes {
   onDelDialog(noteId: string){
     const dialogRef = this.dialog.open(VerifyDialog, {
       data: {
-        message: 'Delete task?',
+        message: 'Delete this note?',
         id: noteId
       }
     });
