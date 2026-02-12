@@ -7,6 +7,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DetailedTask } from '../../../Models/detailed-task';
 import { Input } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -49,7 +50,6 @@ export class Details {
     })
   }
 
-
   onParentClick(){
     //recall our parent component with new taskId to re-render our page
     this.getData.emit(this.currentTask().parentTaskId);
@@ -64,14 +64,25 @@ export class Details {
     })
   }
 
+  
   onCompleteClick(){
     console.log(this.currentTask().id)
-    this.taskSvc.statusTask(this.currentTask().id).subscribe((res:any) => {
-      //refresh our data after status change
-      this.sharedSvc.transmitChildData(res);
-      this.toggleStatusChange.emit(this.currentTask().id);
-      console.log("Task marked as complete: " + res.title);
-
+    this.taskSvc.statusTask(this.currentTask().id).subscribe({
+      next: (res:any) => {
+        //refresh our data after status change
+        this.sharedSvc.transmitChildData(res);
+        this.toggleStatusChange.emit(this.currentTask().id);
+        console.log("Task marked as complete: " + res.title);
+      },
+      error: (err: HttpErrorResponse) => {
+        if (err.status === 400){
+          this.sharedSvc.confirmDialog({
+            title: 'Error',
+            message: err.error,
+            confirmText: 'Close'
+          });
+        }
+      }
     })
   }
 

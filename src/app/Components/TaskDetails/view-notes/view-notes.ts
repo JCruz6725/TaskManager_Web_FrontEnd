@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NoteService } from '../../../Services/NoteServices/note-service';
 import { TaskNote } from '../../../Models/task-note'
 
+
 @Component({
   selector: 'app-view-notes',
   imports: [CommonModule, FormsModule, MatIconModule],
@@ -19,6 +20,7 @@ export class ViewNotes {
 
   public taskId = signal<string | null>(null)
   public notes = signal<TaskNote[]>([]);
+  private subscription:any;
 
   ngOnInit() {
     this.sharedSvc.currentChildData$.subscribe(task => {
@@ -33,7 +35,6 @@ export class ViewNotes {
       );
       this.notes.set(sortedNotes);
       this.taskId.set(task.id)
-
     });
 
     this.sharedSvc.currentNoteData$.subscribe(note => {
@@ -53,14 +54,21 @@ export class ViewNotes {
     const taskId = this.taskId();
     if (!taskId)
       return;
-    if (!confirm('Are you sure you want to delete this note'))
-      return;
-    this.noteSvc.deleteNote(taskId, noteId)
-      .subscribe({
-        next: () => {
-          this.notes.update(n => n.filter(note => note.id !== noteId));
-        }
-      });
+
+    this.sharedSvc.confirmDialog({
+      message: 'Delete this note?',
+      confirmText: 'Delete',
+      cancelText: 'Keep'
+    }).subscribe((res: boolean) => {
+      if (res){
+        this.noteSvc.deleteNote(taskId, noteId)
+        .subscribe({
+          next: () => {
+            this.notes.update(n => n.filter(note => note.id !== noteId));
+          }
+        });
+      }
+    })
   }
 
 }

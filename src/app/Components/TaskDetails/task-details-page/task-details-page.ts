@@ -23,6 +23,7 @@ export class TaskDetailsPage {
 
   private urlTaskId = signal<any>(null);
   public urlListId = signal<any>(null);
+  private subscription: any;
 
   ngOnInit(){
     //grab task and list id from url, pass taskid to getData()
@@ -63,9 +64,17 @@ export class TaskDetailsPage {
   }
 
   onDelClick(){
-    this.taskSvc.deleteTask(this.urlTaskId()).subscribe((res:any) => {
-      console.log("Deleted task " + res.title);
-      this.router.navigateByUrl('/home');
+    this.subscription = this.sharedSvc.confirmDialog({
+      message: 'Delete task?',
+      confirmText: 'Delete',
+      cancelText: 'Keep'
+    }).subscribe((res: boolean) => {
+      if (res){
+        this.taskSvc.deleteTask(this.urlTaskId()).subscribe((res:any) => {
+          console.log("Deleted task " + res.title);
+          this.router.navigateByUrl('/home');
+        })
+      }
     })
   }
 
