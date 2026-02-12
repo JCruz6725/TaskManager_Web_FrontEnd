@@ -42,7 +42,7 @@ export class CreateDetails {
     title: '',
     dueDate: null,
     priority: 0,
-    parentId: null,
+    parentTaskId: null,
   };
 
   //triggered everytime something is typed in parent search bar
@@ -60,7 +60,7 @@ export class CreateDetails {
   //triggered when a task is selected from dropdown menu
   onSelectTask(task:any){
     this.searchParent.set(task.title);
-    this.newTask.parentId = task.id; 
+    this.newTask.parentTaskId = task.id; 
     this.barIsActive = false;
   }
 

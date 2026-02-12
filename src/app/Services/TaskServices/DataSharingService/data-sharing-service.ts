@@ -8,7 +8,6 @@ import { VerifyDialog } from '../../../Components/verify-dialog/verify-dialog';
   providedIn: 'root',
 })
 export class DataSharingService {
-
   //Property to hold current child task data
   private childDataStream = new BehaviorSubject<any>({});
   currentChildData$ = this.childDataStream.asObservable();
@@ -23,6 +22,14 @@ export class DataSharingService {
   //Method to hydrate our proprty
   transmitParentData(newMessage: any) : void {
     this.parentDataStream.next(newMessage);
+  }
+
+  //property to hold data being edited
+  private editDataStream = new BehaviorSubject<any>({});
+  currentEditData$ = this.editDataStream.asObservable();
+  //Method to hydrate our proprty
+  transmitEditData(newMessage: any) : void {
+    this.editDataStream.next(newMessage);
   }
 
   //to hold all tasks in a list data

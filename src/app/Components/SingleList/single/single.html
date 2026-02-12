@@ -15,7 +15,7 @@
   <div class="boarder"  >
     @for (task of listSize(); track task.id){
       <div cdkDrag [cdkDragData]="task.id">
-          <a routerLink="/taskDetails/{{task.id}}">
+          <a routerLink="/taskDetails/{{task.id}}/{{dataID()}}">
             <app-task [taskId]="task.id" ></app-task>
           </a>
       </div>
