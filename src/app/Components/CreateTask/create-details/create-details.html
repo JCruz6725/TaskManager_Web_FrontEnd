@@ -13,7 +13,7 @@
 
     <form #taskForm="ngForm"  class="right-details">
         <label for="priority" class="text-box-label">Priority</label> 
-        <input id="priority" name="priority" class="text-box" type="text" placeholder="Enter your task priority" [(ngModel)]="newTask.priority"/>
+        <input id="priority" name="priority" class="text-box" type="number" placeholder="Enter your task priority" [(ngModel)]="newTask.priority"/>
 
         <div class="parent-task-container">
             <label for="parent" class="text-box-label"> Parent Task</label>  

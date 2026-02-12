@@ -20,7 +20,11 @@ export class TaskService {
     return this.Service.post<any>('/task', task);
   }
 
-  statusTask(taskId: string) {
+  putTask(task: any, taskId:string){
+    return this.Service.put<any>('/task/' + taskId, task);
+  }
+
+  statusTask(taskId: string){
     return this.Service.post<any>('/task/' + taskId + '/status-change/complete', {});
   }
 }

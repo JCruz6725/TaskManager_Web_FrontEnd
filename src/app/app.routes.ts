@@ -33,7 +33,7 @@ export const routes: Routes = [
     },
 
     {
-        path:'taskDetails/:id',
+        path:'taskDetails/:taskId/:listId',
         component : TaskDetailsPage
 
     },

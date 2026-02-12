@@ -39,14 +39,14 @@ export class CreateTaskPage {
     //when notified of new info, grab data from shared service
     this.sharedSvc.currentChildData$.subscribe((data) => {
       this.taskData.set(data);
-    })
+    }).unsubscribe();
 
     //create task
     this.taskObj = {
       title: this.taskData().title,
       dueDate: this.taskData().dueDate,
       priority: this.taskData().priority,
-      parentTaskId: this.taskData().parentId,
+      parentTaskId: this.taskData().parentTaskId,
       listId: this.urlListId()
     };
 

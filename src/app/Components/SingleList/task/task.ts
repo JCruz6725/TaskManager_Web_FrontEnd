@@ -1,14 +1,11 @@
 import { Component, input, inject } from '@angular/core';
 import { TaskService } from '../../../Services/TaskServices/task-service';
 import { signal } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
-import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task',
-  imports: [DatePipe, MatIconModule],
+  imports: [MatIconModule],
   templateUrl: './task.html',
   styleUrl: './task.css',
 })
