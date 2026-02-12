@@ -43,6 +43,7 @@
 }
 
 .edit-button{
+    background-color: var(--mat-sys-secondary-fixed-dim);
     position: relative;
     left: 750px;
     bottom: 250px;
@@ -53,6 +54,7 @@
 .complete-button{
     position: relative;
     left: 75px;
+    background-color: var(--mat-sys-secondary-fixed-dim);
 /*     padding: 10px;
     border: none;
     border-radius: 20px;

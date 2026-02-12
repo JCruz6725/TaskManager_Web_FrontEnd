@@ -15,8 +15,9 @@
 }
 
 .submit-note{
-   text-align: center;
-   cursor: pointer;
-   position: relative;
-   left: 16px;
+    background-color: var(--mat-sys-secondary-fixed-dim);
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    left: 16px;
 }
