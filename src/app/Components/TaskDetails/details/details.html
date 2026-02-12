@@ -8,7 +8,7 @@
 
         <label for="status" class="text-box-label">Status</label>
         <div id="status" class="text-box" >{{currentTask().currentStatus.name}}
-        <button class="complete-button"  (click)="onCompleteClick()">Mark as Complete</button>
+        <button class="complete-button" matButton="tonal" (click)="onCompleteClick()">Mark as Complete</button>
         </div>
         <div class="text-box">Date Created:  {{currentTask().createdDate}}</div>
     </div>
