@@ -94,7 +94,8 @@ export class Single implements OnInit {
             if (err.status === 400) {
               this.sharedSvc.confirmDialog({
                 title: 'Error',
-                message: 'Cannot delete a list with tasks. Please remove all tasks first.'
+                message: 'Cannot delete a list with tasks. Please remove all tasks first.',
+                confirmText: 'Close'
               })
             }
           }

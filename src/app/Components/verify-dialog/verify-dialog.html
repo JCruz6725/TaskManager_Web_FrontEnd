@@ -3,6 +3,8 @@
     <p>{{data.message}}</p>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button matButton (click)="onCancel()" cdkFocusInitial>{{data.cancelText || 'Cancel'}}</button>
+    @if(data.cancelText){
+        <button matButton (click)="onCancel()" cdkFocusInitial>{{data.cancelText}}</button>
+    }
     <button matButton (click)="onConfirm()">{{data.confirmText ||'Confirm'}}</button>
 </mat-dialog-actions>
