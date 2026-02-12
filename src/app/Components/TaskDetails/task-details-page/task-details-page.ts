@@ -72,5 +72,4 @@ export class TaskDetailsPage {
     this.getData();
   }
 
-  ngOnDestroy(){this.subscription.unsubscribe()}
 }

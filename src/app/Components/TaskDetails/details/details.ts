@@ -3,6 +3,7 @@ import { ReactiveFormsModule} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TaskService } from '../../../Services/TaskServices/task-service';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -48,12 +49,22 @@ export class Details {
   }
   
   onCompleteClick(){
-    this.taskSvc.statusTask(this.currentTask().id).subscribe((res:any) => {
-      //refresh our data after status change
-      this.sharedSvc.transmitChildData(res);
-      this.toggleStatusChange.emit();
-      console.log("Task marked as complete: " + res.title);
-
+    this.taskSvc.statusTask(this.currentTask().id).subscribe({
+      next: (res:any) => {
+        //refresh our data after status change
+        this.sharedSvc.transmitChildData(res);
+        this.toggleStatusChange.emit();
+        console.log("Task marked as complete: " + res.title);
+      },
+      error: (err: HttpErrorResponse) => {
+        if (err.status === 400){
+          this.sharedSvc.confirmDialog({
+            title: 'Error',
+            message: err.error,
+            confirmText: 'Close'
+          });
+        }
+      }
     })
   }
 }
