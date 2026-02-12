@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
+import { Component, Inject, inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogContent, MatDialogModule, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { DataSharingService } from '../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { MatButtonModule } from '@angular/material/button';
+import { ConfirmDialogData } from '../../Models/confirm-dialog';
 
 @Component({
   selector: 'app-verify-dialog',
@@ -10,12 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './verify-dialog.css',
 })
 export class VerifyDialog {
-  data : {message: string, id: string} = inject(MAT_DIALOG_DATA);
-  private sharedSvc : DataSharingService = inject(DataSharingService)
-  readonly dialog = inject(MatDialog)
+    constructor(public dialogRef: MatDialogRef<VerifyDialog>,
+      @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData
+    ){}
 
-  onConfirm(){
-    this.sharedSvc.transmitDialogData({state: true, id: this.data.id})
-    this.dialog.closeAll();
-  }
+    onConfirm() {this.dialogRef.close(true);}
+    onCancel() {this.dialogRef.close(false);}
 }

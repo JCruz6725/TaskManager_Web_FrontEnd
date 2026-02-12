@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ConfirmDialogData} from '../../../Models/confirm-dialog';
+import { VerifyDialog } from '../../../Components/verify-dialog/verify-dialog';
 
 @Injectable({
   providedIn: 'root',
@@ -39,5 +42,11 @@ export class DataSharingService {
   currentDialogData$ = this.dialogDataStream.asObservable();
   transmitDialogData(newMessage: {state: boolean, id: string}) : void {
     this.dialogDataStream.next(newMessage);
+  }
+
+  constructor(private dialog: MatDialog){}
+  confirmDialog(confirmData: ConfirmDialogData): Observable<boolean>{
+    const dialogRef = this.dialog.open(VerifyDialog, {data: confirmData});
+    return dialogRef.afterClosed();
   }
 }

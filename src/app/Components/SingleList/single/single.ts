@@ -65,7 +65,7 @@ export class Single implements OnInit {
   UpdateList(): void {
     if (!this.listname() || this.listname().trim() === '') {
       this.showErrorMessage.set(true);
-      console.log(' Error : Input is empty');
+      console.log('Error : Input is empty');
       return;
     }
     this.showErrorMessage.set(false);
@@ -79,74 +79,44 @@ export class Single implements OnInit {
   }
 
   DeleteList(): void {
-    this.service.DeleteList(this.dataID()).subscribe({
-      next: (response) => {
-        this.State.set('view');
-        this.getAllList.emit();
-      },
-      error: (err: { status: number; }) => {
-        if (err.status === 400) {
-          this.onDelDialog('error');
-          return
-        }
+    this.subscription = this.sharedSvc.confirmDialog({
+      message: 'Are you sure you want to delete this list?',
+      confirmText: 'Yes',
+      cancelText: 'No'
+    }).subscribe((res: boolean) => {
+      if (res){
+        this.service.DeleteList(this.dataID()).subscribe({
+          next: (response) => {
+            this.State.set('view');
+            this.getAllList.emit();
+          },
+          error: (err: { status: number; }) => {
+            if (err.status === 400) {
+              this.sharedSvc.confirmDialog({
+                title: 'Error',
+                message: 'Cannot delete a list with tasks. Please remove all tasks first.'
+              })
+            }
+          }
+        });
       }
-    });
+    })
 
-    this.subscription.unsubscribe();
-    this.sharedSvc.transmitDialogData({state: false, id: ''});
   }
 
   onTaskDelClick(taskId:string){
-    this.taskSvc.deleteTask(taskId).subscribe((res:any) => {
-      console.log("Deleted task " + res.title);
-      this.getSingleList();
+    this.subscription = this.sharedSvc.confirmDialog({
+      message: 'Delete task?',
+      confirmText: 'Delete',
+      cancelText: 'Keep'
+    }).subscribe((res: boolean) => {
+      if (res){
+        this.taskSvc.deleteTask(taskId).subscribe((res:any) => {
+          console.log("Deleted task " + res.title);
+          this.getSingleList();
+        })
+      } 
     })
-
-    this.subscription.unsubscribe();
-    this.sharedSvc.transmitDialogData({state: false, id: ''});
-  }
-
-  readonly dialog = inject(MatDialog)
-  onDelDialog(type:string, taskId?: string){
-    let dialogMessage: string = '';
-    switch(type){
-      case 'task': {
-        dialogMessage = 'Delete task?'
-        break;
-      }
-      case 'list': {
-        dialogMessage = 'Are you sure you want to delete this list?'
-        break;
-      }
-      case 'error': {
-        dialogMessage = 'Cannot delete a list with tasks. Please remove all tasks first.'
-        break;
-      }
-    }
-
-    this.dialog.open(VerifyDialog, {
-      data: {
-        message: dialogMessage,
-        id: taskId
-      }
-    });
-
-    this.subscription = this.sharedSvc.currentDialogData$.subscribe((res: {state: boolean, id: string}) => {
-      if (res.state){
-        if (type == 'task'){
-          this.onTaskDelClick(res.id);
-        }
-        else if (type == 'list'){
-          this.DeleteList();
-        }
-        else{ //error
-          this.subscription.unsubscribe();
-          this.sharedSvc.transmitDialogData({state: false, id: ''});
-          return;
-        }
-      }
-    })
-
   }
 
   drop(event: CdkDragDrop<any>){
@@ -157,4 +127,5 @@ export class Single implements OnInit {
       })
     }
   }
+
 }
