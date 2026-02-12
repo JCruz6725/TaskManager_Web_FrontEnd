@@ -1,6 +1,5 @@
-import { Component, Inject, inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogContent, MatDialogModule, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
-import { DataSharingService } from '../../Services/TaskServices/DataSharingService/data-sharing-service';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogContent, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { ConfirmDialogData } from '../../Models/confirm-dialog';
 

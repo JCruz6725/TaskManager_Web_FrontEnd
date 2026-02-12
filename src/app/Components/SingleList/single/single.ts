@@ -10,8 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from "@angular/forms";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TaskService } from '../../../Services/TaskServices/task-service';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { VerifyDialog } from '../../verify-dialog/verify-dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { MatButtonModule } from '@angular/material/button';
 

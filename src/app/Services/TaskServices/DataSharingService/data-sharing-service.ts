@@ -38,12 +38,7 @@ export class DataSharingService {
     this.noteDataStream.next(newMessage);
   }
 
-  private dialogDataStream = new BehaviorSubject<any>({state: false, id: ''});
-  currentDialogData$ = this.dialogDataStream.asObservable();
-  transmitDialogData(newMessage: {state: boolean, id: string}) : void {
-    this.dialogDataStream.next(newMessage);
-  }
-
+  //to transfer data between component & dialog
   constructor(private dialog: MatDialog){}
   confirmDialog(confirmData: ConfirmDialogData): Observable<boolean>{
     const dialogRef = this.dialog.open(VerifyDialog, {data: confirmData});

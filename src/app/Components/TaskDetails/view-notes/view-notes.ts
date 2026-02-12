@@ -5,8 +5,7 @@ import { DataSharingService } from '../../../Services/TaskServices/DataSharingSe
 import { MatIconModule } from '@angular/material/icon';
 import { NoteService } from '../../../Services/NoteServices/note-service';
 import { TaskNote } from '../../../Models/task-note'
-import { MatDialog } from '@angular/material/dialog';
-import { VerifyDialog } from '../../verify-dialog/verify-dialog';
+
 
 @Component({
   selector: 'app-view-notes',
