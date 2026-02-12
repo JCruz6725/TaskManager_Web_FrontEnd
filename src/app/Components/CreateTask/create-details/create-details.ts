@@ -21,22 +21,22 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './create-details.css',
 })
 export class CreateDetails {
-  private sharedSvc : DataSharingService = inject(DataSharingService);
+  private sharedSvc: DataSharingService = inject(DataSharingService);
   notify = output<string>();
-  newDate:any;
+  newDate: any;
   private router = inject(Router);
 
   public searchParent = signal<string>('');
   public searchResult = signal<Array<any>>([]);
   public barIsActive: boolean = true;
   private options: Array<DetailedTask> = [];
-  
-  ngOnInit(){
+
+  ngOnInit() {
     //grab all the tasks in our list to display for our parent search bar
     this.sharedSvc.currentListData$.subscribe((data) => {
       this.options = data;
     })
-  } 
+  }
 
   //generic interface
   newTask: CreateTask = {
@@ -47,8 +47,8 @@ export class CreateDetails {
   };
 
   //triggered everytime something is typed in parent search bar
-  fetchParentTask(task: any){
-    if (task.target.value === ''){ //if nothing in search bar, set result to empty
+  fetchParentTask(task: any) {
+    if (task.target.value === '') { //if nothing in search bar, set result to empty
       return this.searchResult.set([]);
     }
     //filter our options with what matches in our search bar
@@ -59,16 +59,16 @@ export class CreateDetails {
   }
 
   //triggered when a task is selected from dropdown menu
-  onSelectTask(task:any){
+  onSelectTask(task: any) {
     this.searchParent.set(task.title);
-    this.newTask.parentId = task.id; 
+    this.newTask.parentId = task.id;
     this.barIsActive = false;
   }
 
 
   onSubmit(path: string) {
     //format our dueDate
-    if (this.newTask.dueDate != null){
+    if (this.newTask.dueDate != null) {
       this.newDate = formatDate(this.newTask.dueDate, 'yyyy-MM-dd', 'en')
       this.newTask.dueDate = this.newDate
     }
@@ -80,5 +80,4 @@ export class CreateDetails {
     //navigate back to home
     this.router.navigateByUrl(path);
   }
-
 }

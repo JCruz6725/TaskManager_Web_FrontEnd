@@ -9,7 +9,7 @@
     order: 1;
 }
 
-.complex-details {  
+.complex-details {
     order: 2;
 }
 
@@ -42,21 +42,13 @@
     cursor: pointer;
 }
 
-
 .edit-button{
     position: relative;
     left: 750px;
     bottom: 250px;
     font-weight: 500;
- /*    padding: 10px;
-    border: none;
-    border-radius: 20px;
-    background-color: var(--mat-sys-surface); */
+   bottom:315px;
 }
-/* .edit-button:hover {
-    background-color:#c3c1fd;
-    cursor: pointer;
-} */
 
 .complete-button{
     position: relative;

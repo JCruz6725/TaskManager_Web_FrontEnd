@@ -32,15 +32,15 @@
                 Password is required
             </div>
             <br><br>
+             <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
 </div>
-            <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
                <br><br>
         </form>
 
         <p *ngIf="errorMessage()" style="color: red;"> {{ errorMessage() }}
         </p>
         <p *ngIf="successMessage()" style="color: green;"> {{ successMessage() }} </p>
-
+  
         <a routerLink="/login">Login here</a>
     </div>
 </div>
