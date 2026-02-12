@@ -1,40 +1,93 @@
 <div class="container">
-    <div class="simple-details">
-        <label for="title" class="text-box-label">Title</label>
-        <div id="title" class="text-box">{{currentTask().title}}</div>
-
-        <label for="due-date" class="text-box-label">Due Date</label>
-        <div id="due-date" class="text-box">{{currentTaskDate()}}</div>
-
-        <label for="status" class="text-box-label">Status</label>
-        <div id="status" class="text-box" >{{currentTask().currentStatus.name}}
-        <button class="complete-button"  (click)="onCompleteClick()">Mark as Complete</button>
+    <!--Viewing state-->
+    @if (!isEditing()){
+        <div class="left-details">
+            <label for="title" class="text-box-label">Title</label>
+            <div id="title" class="text-box">{{currentTask().title}}</div>
+    
+            <label for="due-date" class="text-box-label">Due Date</label>
+            <div id="due-date" class="text-box">{{currentTaskDate()}}</div>
+    
+            <label for="status" class="text-box-label">Status</label>
+            <div id="status" class="text-box" >{{currentTask().currentStatus.name}}
+                <button class="complete-button"  (click)="onCompleteClick()">Mark as Complete</button>
+            </div>
+            <div class="text-box">Date Created:  {{currentTask().createdDate}}</div>
         </div>
-        <div class="text-box">Date Created:  {{currentTask().createdDate}}</div>
-    </div>
-    <div class="complex-details">
-        <div class="Priority-container">
-            <label for="priority" class="text-box-label">Priority</label>
-            <div id="priority" class="text-box">{{currentTask().priority}}</div>
-        </div>
+        <div class="right-details">
+            <div class="Priority-container">
+                <label for="priority" class="text-box-label">Priority</label>
+                <div id="priority" class="text-box">{{currentTask().priority}}</div>
+            </div>
 
-        <div class="parent-container">
-            <label for="parent" class="text-box-label"> Parent Task</label>
-            @if (currentTask().parentId != null){
-                <div id="parent" class="clickable-task" routerLink="/taskDetails/{{currentTask().parentId}}" (click)="onParentClick()">
-                    {{currentTaskParent().title}} <br>
-                    Id: {{currentTask().parentId}}
+            <div class="parent-container">
+                <label for="parent" class="text-box-label"> Parent Task</label>
+                @if (currentTask().parentTaskId != null){
+                    <div id="parent" class="clickable-task" routerLink="/taskDetails/{{currentTask().parentTaskId}}/{{urlListId}}" (click)="onParentClick()">
+                        {{currentTaskParent().title}} <br>
+                        Id: {{currentTask().parentTaskId}}
+                    </div>
+                }
+                @else{
+                    <div id="parent" class="text-box">No current Parent task</div>
+                }
+            </div>
+        </div>
+    }
+    <!--Editing state-->
+    @else{
+        <form #taskForm="ngForm"  class="left-details">
+            <label for="title" class="text-box-label">Title</label>
+            <div>
+                <input type="text" name="title" id="title" class="text-box" placeholder="{{currentTask().title}}" [(ngModel)]="currentTask().title"/>
+            </div>
+
+
+            <label for="due-date" class="text-box-label">Due Date</label>
+            <div>
+                <input class="text-box" name="due-date" matInput [matDatepicker]="picker" placeholder="{{currentTaskDate()}}" [(ngModel)]="currentTask().dueDate"> 
+                <mat-datepicker-toggle matSuffix [for]="picker" class="date-picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </div>
+
+            <!--Not editable-->
+            <label for="status" class="text-box-label">Status</label>
+            <div id="status" class="text-box">{{currentTask().currentStatus.name}}</div>
+        </form>
+        <form #taskForm="ngForm"  class="right-details">
+            <div class="Priority-container">
+                <label for="priority" class="text-box-label">Priority</label>
+                <div>
+                    <input type="number" name="priority" id="priority" class="text-box" min="0" placeholder="{{currentTask().priority}}" [(ngModel)]="currentTask().priority"/>
                 </div>
-            }
-            @else{
-                <div id="parent" class="text-box">No current Parent task</div>
-            }
-        </div>
+            </div>
 
-    </div>
+            <div class="parent-task-container">
+                <label for="parent" class="text-box-label"> Parent Task</label>  
+                <div>
+                    <input id="parent" name="parent" class="text-box" type="text" 
+                        (keyup)="fetchParentTask($event)"
+                        placeholder="{{currentTaskParent().title}}" [(ngModel)]="searchParent"
+                    /> 
+                </div>
+                @if (barIsActive){
+                    <div class="dropdown-container">
+                        @for(task of searchResult(); track task){
+                            <p class="dropdown-options" (click)="onSelectTask(task)">{{task.title}}</p>
+                        }
+                    </div>
+                }
+            </div>
 
+        </form>
+    }
 
 </div>
 
-<button class="edit-button" routerLink="/editTaskDetails">Edit</button>
+@if (!isEditing()){
+    <button class="edit-save-button" (click)="onEditClick()">Edit</button>
+}
+@else{
+    <button class="edit-save-button" (click)="onSaveClick()">Save Changes</button>
+}
 

@@ -1,7 +1,7 @@
 <body>
     <div class="full-page-container">
         <div class="task-row" >
-            <app-details (getData)="getData()" (toggleStatusChange)="ontoggleStatusChange($event)"></app-details>
+            <app-details (getData)="getData($event)" (postData)="postData($event)" [urlListId]="urlListId()" (toggleStatusChange)="ontoggleStatusChange($event)"></app-details>
 
         </div>
         <div class="notes-row">
