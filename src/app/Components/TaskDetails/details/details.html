@@ -85,8 +85,8 @@
 </div>
 
 @if (!isEditing()){
-    <button matButton="tonal" class="edit-save-button" (click)="onEditClick()">Edit</button>
+    <button matButton="tonal" class="edit-button" (click)="onEditClick()">Edit</button>
 }
 @else{
-    <button class="edit-save-button" (click)="onSaveClick()">Save Changes</button>
+    <button matButton="tonal" class="save-button" (click)="onSaveClick()">Save Changes</button>
 }

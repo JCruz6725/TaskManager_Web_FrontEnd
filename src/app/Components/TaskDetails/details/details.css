@@ -42,18 +42,21 @@
     cursor: pointer;
 }
 
-.edit-save-button{
+.edit-button{
     background-color: var(--mat-sys-secondary-fixed-dim);
     position: relative;
     left: 750px;
-    bottom: 250px;
     font-weight: 500;
-   bottom:315px;
+    bottom:315px;
 }
-.edit-save-button:hover {
-    background-color: rgb(47, 23, 70);
-    cursor: pointer;
+.save-button{
+    background-color: var(--mat-sys-secondary-fixed-dim);
+    position: relative;
+    left: 780px;
+    font-weight: 500;
+    bottom:248px;
 }
+
 
 .complete-button{
     position: relative;
