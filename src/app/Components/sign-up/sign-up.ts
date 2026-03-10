@@ -49,11 +49,6 @@ export class SignupComponent {
           message: error.error,
           confirmText: 'Close'
         });
-/*         if (error.status === 400) {
-          this.errorMessage.set("Email already in use. Please use a different email.");
-        } else {
-          this.errorMessage.set('Registration failed. Please try again.');
-        } */
       }
     });
   }
