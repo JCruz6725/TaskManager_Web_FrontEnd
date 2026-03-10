@@ -31,6 +31,7 @@
             <div *ngIf="password.invalid && password.touched" class="error" style="color: red;">
                 Password is required
             </div>
+            <p><i>Password must contain at least 8 characters and one special character</i></p>
             <br><br>
 </div>
             <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>

@@ -5,6 +5,8 @@ import { RegisterUser } from '../../Models/register-user';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DataSharingService } from '../../Services/TaskServices/DataSharingService/data-sharing-service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,6 +17,8 @@ import { RequestHelperService } from '../../Services/BaseService/request-helper-
 })
 export class SignupComponent {
   private authService = inject(UserAuthService);
+  private sharedSvc : DataSharingService = inject(DataSharingService);
+
   model: RegisterUser = {
     firstName: '',
     lastName: '',
@@ -39,12 +43,17 @@ export class SignupComponent {
         console.log('User registered successfully', response);
         this.Service.SetUserIdToken(response as string);
       },
-      error: (error) => {
-        if (error.status === 400) {
+      error: (error : HttpErrorResponse) => {
+        this.sharedSvc.confirmDialog({
+          title: 'Error',
+          message: error.error,
+          confirmText: 'Close'
+        });
+/*         if (error.status === 400) {
           this.errorMessage.set("Email already in use. Please use a different email.");
         } else {
           this.errorMessage.set('Registration failed. Please try again.');
-        }
+        } */
       }
     });
   }
