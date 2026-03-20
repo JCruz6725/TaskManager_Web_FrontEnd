@@ -5,6 +5,7 @@ import { UserAuthService } from '../../Services/auth/auth.service';
 import { LoginUser } from '../../Models/login-user';
 import { Router, RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
+import {CookieService} from 'ngx-cookie-service'
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,7 @@ export class LoginComponent {
   errorMessage = signal<string | null>(null);
   successMessage = signal<string | null>(null);
   private Service = inject(RequestHelperService);
+  private CookieService = inject(CookieService);
 
   submitForm(form: any) {
     this.errorMessage.set(null);
@@ -37,8 +39,7 @@ export class LoginComponent {
       next: (response) => {
         this.successMessage.set('Login successful!');
         console.log('User logged in successfully', response);
-        this.Service.SetUserIdToken(response as string);
-
+        this.CookieService.set('UserIdToken', response as string, { expires: .0208}); // Cookie expires in 30mins
         this.router.navigate(['/home']);
       },
       error: (error) => {

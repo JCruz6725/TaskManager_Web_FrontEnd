@@ -5,6 +5,8 @@ import { RegisterUser } from '../../Models/register-user';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
+import {CookieService} from 'ngx-cookie-service'
+
 
 @Component({
   selector: 'app-sign-up',
@@ -24,6 +26,8 @@ export class SignupComponent {
   errorMessage = signal<string | null>(null);
   successMessage = signal<string | null>(null);
   private Service = inject(RequestHelperService);
+  private CookieService = inject(CookieService);
+
 
   submitForm(form: any) {
     this.errorMessage.set(null);
@@ -37,7 +41,7 @@ export class SignupComponent {
       next: (response) => {
         this.successMessage.set('Registration successful!');
         console.log('User registered successfully', response);
-        this.Service.SetUserIdToken(response as string);
+        this.CookieService.set('UserIdToken', response as string, { expires: .0208}); // Cookie expires in 30mins
       },
       error: (error) => {
         if (error.status === 400) {
