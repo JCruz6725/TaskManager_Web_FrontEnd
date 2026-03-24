@@ -50,7 +50,7 @@
 }
 
 
-.complete-button{
+.complete-btn{
     position: relative;
     left: 75px;
     background-color: var(--mat-sys-secondary-fixed-dim);

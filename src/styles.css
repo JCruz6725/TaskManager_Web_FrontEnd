@@ -20,10 +20,6 @@ body {
     background: var(--mat-sys-primary-container);
 }
 
-/* .sign-up-container{
-   background: var(--mat-sys-primary-container);
-} */
-
 .addList-btn{
     background: var(--mat-sys-secondary-fixed-dim);
 }

@@ -9,11 +9,12 @@ import { DetailedTask } from '../../../Models/detailed-task';
 import { Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, MatDatepickerModule,MatNativeDateModule, FormsModule, MatButtonModule],
+  imports: [ReactiveFormsModule, RouterLink, MatDatepickerModule,MatNativeDateModule, FormsModule, MatButtonModule, MatIcon],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
