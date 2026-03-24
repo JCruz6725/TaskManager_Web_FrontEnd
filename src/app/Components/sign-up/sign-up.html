@@ -5,26 +5,26 @@
     <div class="form-container">
         <form #signUpForm="ngForm" (ngSubmit)="submitForm(signUpForm)">
             <div class="form-group">
-                <label class="fname" for="firstName">First Name:</label>
+                <label class="fname" for="firstName">First Name</label>
                 <input type="text" id="firstName" [(ngModel)]="model.firstName" name="firstName" required  #firstName="ngModel" />
                 <div *ngIf="firstName.invalid && firstName.touched" class="error" style="color: red;">
                     First Name is required.
                 </div>
 
-                <label for="lastName">Last Name:</label>
+                <label for="lastName">Last Name</label>
                 <input type="text" id="lastName" name="lastName" [(ngModel)]="model.lastName" required #lastName="ngModel" />
                 <div *ngIf="lastName.invalid && lastName.touched" class="error" style="color: red;">
                     Last name is required
                 </div>
 
-                <label for="email">Email:</label>
+                <label for="email">Email</label>
                 <input type="email" id="email" name="email" [(ngModel)]="model.email" required email #email="ngModel" />
                 <div *ngIf="email.invalid && email.touched" class="error" style="color: red;">
                     <span *ngIf="email.errors?.['required']">Email is required</span>
                     <span *ngIf="email.errors?.['email']">Enter a valid email</span>
                 </div>
 
-                <label for="password">Password:</label>
+                <label for="password">Password</label>
                 <input type="password" id="password" name="password" [(ngModel)]="model.password" required #password="ngModel" />
                 <div *ngIf="password.invalid && password.touched" class="error" style="color: red;">
                     Password is required
