@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { RegisterUser } from "../../Models/register-user";
 import { LoginUser } from "../../Models/login-user";
+import { ResetPassword } from "../../Models/reset-password";
 
 @Injectable({ providedIn: 'root' })
 export class UserAuthService {
@@ -14,6 +15,10 @@ export class UserAuthService {
 
     loginUser(userLogin: LoginUser) {
         return this.http.post(`${this.baseUrl}user/login`, userLogin);
+    }
+
+    resetPassword(resetPsw: ResetPassword) {
+        return this.http.post(`${this.baseUrl}user/reset`, resetPsw)
     }
 }
 
