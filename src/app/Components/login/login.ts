@@ -6,7 +6,6 @@ import { LoginUser } from '../../Models/login-user';
 import { Router, RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
