@@ -27,11 +27,23 @@
             <br><br>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" [(ngModel)]="model.password" required #password="ngModel" />
+            <input type="password" id="password" name="password" [(ngModel)]="model.password" required #password="ngModel" minlength="8"/>
             <div *ngIf="password.invalid && password.touched" class="error" style="color: red;">
                 Password is required
             </div>
             <p><i>Password must contain at least 8 characters and one special character</i></p>
+<!--             <label for="password">Password</label>
+            <input type="password" id="password" name="password" required minlength="8" [(ngModel)]="model.password" #password="ngModel"/>
+            @if (password.invalid && name.touched) {
+                <div class="alert">
+                    @if (password.hasError('required')) {
+                        <div>Password is required.</div>
+                    }
+                    @if (name.hasError('minlength') {
+                        <div>Password must be at least 8 character long.</div>
+                    })
+                </div>
+            } -->
             <br><br>
 </div>
             <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>

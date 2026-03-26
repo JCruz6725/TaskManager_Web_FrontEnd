@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
 import { RegisterUser } from '../../Models/register-user';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,16 @@ import { RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataSharingService } from '../../Services/TaskServices/DataSharingService/data-sharing-service';
+
+/* export class CustomValidators {
+  passwordValidator(control: FormControl): {[key: string]: boolean} {
+    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    if (control.value && nameRegexp.test(control.value)) {
+      return {invalidName: true};
+    }
+  }
+} */
+
 
 @Component({
   selector: 'app-sign-up',
@@ -25,6 +35,7 @@ export class SignupComponent {
     email: '',
     password: ''
   };
+  
   errorMessage = signal<string | null>(null);
   successMessage = signal<string | null>(null);
   private Service = inject(RequestHelperService);
