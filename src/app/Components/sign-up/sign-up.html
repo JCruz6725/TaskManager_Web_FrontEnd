@@ -5,65 +5,71 @@
     <div class="form-container">
 
         <form [formGroup]="signUpForm" (ngSubmit)="submitForm()">
-            <label class="fname" for="firstName">First Name</label>
+            <label for="firstName" class="text-box-label">First Name</label>
             <div>
                 <input type="text" name="firstName" id="firstName" class="text-box" required formControlName="firstName"/>
             </div>
             @if (signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched){
-                <p lcass="error" style="color: red;">First Name is required.</p>
+                <p class="error">First Name is required.</p>
             }
 
-            <label for="lastName">Last Name</label>
+            <label for="lastName" class="text-box-label">Last Name</label>
             <div>
                 <input type="text" name="lastName" id="lastName" class="text-box" required formControlName="lastName"/>
             </div>
             @if (signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched){
-                <p class="error" style="color: red;">Last name is required.</p>
+                <p class="error">Last name is required.</p>
             }
 
-            <label for="email">Email:</label>
+            <label for="email" class="text-box-label">Email</label>
             <div>
                 <input type="email" name="email" id="email" class="text-box" required email formControlName="email"/>
             </div>
             @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
                 @if (signUpForm.get('email')?.hasError('required')){
-                    <p class="error" style="color: red;">Email is required.</p>
+                    <p class="error">Email is required.</p>
                 }
                 @if (signUpForm.get('email')?.hasError('email')){
-                    <p class="error" style="color: red;">Enter a valid email.</p>
+                    <p class="error">Enter a valid email.</p>
                 }
             }
 
-            <label for="password">Password:</label>
+            <label for="password" class="text-box-label">Password</label>
             <div>
                 <input type="password" name="password" id="password" class="text-box" required formControlName="password"/>
             </div>
             @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched){
-                <p class="error" style="color: red;">Password is required.</p>
+                <p class="error">Password is required.</p>
             }
-            <ul>
+            <ul style="padding-left: 30px;">
                 @if (signUpForm.get('password')?.touched){
                     @if (signUpForm.get('password')?.hasError('specialCharMissing')) {
-                        <li style="color: red;">Password must contain at least 1 special character.</li>
+                        <li style="color: red; font-size: small;">Password must contain at least 1 special character.</li>
                     }
                     @else {
-                        <li style="color: green;">Password must contain at least 1 special character.</li>
+                        <li style="color: green; font-size: small;">Password must contain at least 1 special character.</li>
                     }
                     @if (signUpForm.get('password')?.value.length < 8){
-                        <li style="color: red;">Pasword must contain at least 8 characters.</li>
+                        <li style="color: red; font-size: small;">Pasword must contain at least 8 characters.</li>
                     }
                     @else{
-                        <li style="color: green">Password must contain at least 8 characters.</li>
+                        <li style="color: green; font-size: small;">Password must contain at least 8 characters.</li>
                     }
                 }
             </ul>
 
+            <button class="submit-btn" matButton="tonal" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+
         </form>
 
-        <p *ngIf="errorMessage()" style="color: red;"> {{ errorMessage() }}
-        </p>
-        <p *ngIf="successMessage()" style="color: green;"> {{ successMessage() }} </p>
+        @if (successMessage()) {
+            <p style="color: green;">{{successMessage()}}</p>
+            <a routerLink="/login">Return to Login</a> 
+        }
+        @if (errorMessage()) {
+            <p style="color: red;"> {{errorMessage()}} </p>
+        }
 
-        <a routerLink="/login">Login here</a>
+        <a routerLink="/login" style="margin-left: 130px;">Login here</a>
     </div>
 </div>

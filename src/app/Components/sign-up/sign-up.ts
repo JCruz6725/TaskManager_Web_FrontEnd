@@ -7,12 +7,13 @@ import { RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataSharingService } from '../../Services/TaskServices/DataSharingService/data-sharing-service';
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink, MatButton],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',
 })
@@ -55,10 +56,16 @@ export class SignupComponent {
   submitForm() {
     this.errorMessage.set(null);
     this.successMessage.set(null);
+    
     if (this.signUpForm.invalid) {
       this.errorMessage.set('Please fill in all required fields correctly.');
       return;
     }
+
+    this.model.firstName = this.signUpForm.value.firstName;
+    this.model.lastName = this.signUpForm.value.lastName;
+    this.model.email = this.signUpForm.value.email;
+    this.model.password = this.signUpForm.value.password;
 
     this.authService.registerUser(this.model).subscribe({
       next: (response) => {

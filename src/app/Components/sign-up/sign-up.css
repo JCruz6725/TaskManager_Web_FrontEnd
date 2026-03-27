@@ -1,15 +1,9 @@
 .sign-up-container {
-    text-align: center;
-    border-style: solid;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    text-align: center;
-    label {
-        display :block;
-        margin-bottom: 5px;
-    }
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 800px;
 }
 
 .text-box-label {
@@ -25,4 +19,19 @@
     background-color: white;
     border-radius: 6px;
     border: none;
+}
+
+.submit-btn {
+    margin: 20px;
+    left: 95px;
+    width: 50;
+}
+
+.error {
+    width: 150px;
+    padding-left: 18px;
+    margin: 0px;
+    margin-bottom: 15px;
+    color: red;
+    font-size: small;
 }
