@@ -40,7 +40,7 @@ export class ResetPasswordComponent {
     this.resetForm = this.formBuilder.group({
       email: '',
       oldPassword: '',
-      newPassword: ['', [Validators.required, Validators.minLength(8), this.passwordValidator()]]
+      newPassword: ['', [Validators.required, this.passwordValidator()]]
     });
 
   }
@@ -62,7 +62,5 @@ export class ResetPasswordComponent {
       }
     })
   }
-
-
 
 }

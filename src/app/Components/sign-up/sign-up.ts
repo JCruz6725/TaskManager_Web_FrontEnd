@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
 import { RegisterUser } from '../../Models/register-user';
 import { CommonModule } from '@angular/common';
@@ -7,15 +7,6 @@ import { RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataSharingService } from '../../Services/TaskServices/DataSharingService/data-sharing-service';
-
-/* export class CustomValidators {
-  passwordValidator(control: FormControl): {[key: string]: boolean} {
-    const nameRegexp: RegExp = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-    if (control.value && nameRegexp.test(control.value)) {
-      return {invalidName: true};
-    }
-  }
-} */
 
 
 @Component({
@@ -29,6 +20,19 @@ export class SignupComponent {
   private authService = inject(UserAuthService);
   private sharedSvc : DataSharingService = inject(DataSharingService);
 
+  errorMessage = signal<string | null>(null);
+  successMessage = signal<string | null>(null);
+  private Service = inject(RequestHelperService);
+
+  private passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+     const password = control.value;
+     const hasSpecialChar: boolean = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+ 
+     return hasSpecialChar ? null : {specialCharMissing: true};
+    }
+  }
+
   model: RegisterUser = {
     firstName: '',
     lastName: '',
@@ -36,14 +40,22 @@ export class SignupComponent {
     password: ''
   };
   
-  errorMessage = signal<string | null>(null);
-  successMessage = signal<string | null>(null);
-  private Service = inject(RequestHelperService);
+  signUpForm!: FormGroup;
 
-  submitForm(form: any) {
+  constructor(private formBuilder: FormBuilder) {
+    this.signUpForm = this.formBuilder.group({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ['', [Validators.required, this.passwordValidator()]]
+    });
+
+  }
+
+  submitForm() {
     this.errorMessage.set(null);
     this.successMessage.set(null);
-    if (form.invalid) {
+    if (this.signUpForm.invalid) {
       this.errorMessage.set('Please fill in all required fields correctly.');
       return;
     }
