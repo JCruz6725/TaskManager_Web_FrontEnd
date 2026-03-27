@@ -11,3 +11,18 @@
         margin-bottom: 5px;
     }
 }
+
+.text-box-label {
+    width: 300px;
+    padding: 8px;
+    margin: 10px;
+}
+
+.text-box {
+    width: 300px;
+    padding: 8px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 6px;
+    border: none;
+}
