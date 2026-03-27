@@ -5,6 +5,7 @@ import { Home } from './Components/Home/home';
 import { TaskDetailsPage } from './Components/TaskDetails/task-details-page/task-details-page';
 import { CreateTaskPage } from './Components/CreateTask/create-task-page/create-task-page';
 import { authGuardGuard } from './auth-guard-guard';
+import { ResetPasswordComponent } from './Components/reset-password/reset-password';
 
 export const routes: Routes = [
     {
@@ -41,6 +42,11 @@ export const routes: Routes = [
     {
         path: 'createTask/:id',
         component: CreateTaskPage
+    },
+
+    {
+        path: 'resetPassword',
+        component: ResetPasswordComponent
     }
 
 ];

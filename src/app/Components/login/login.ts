@@ -5,6 +5,7 @@ import { UserAuthService } from '../../Services/auth/auth.service';
 import { LoginUser } from '../../Models/login-user';
 import { Router, RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -41,11 +42,8 @@ export class LoginComponent {
 
         this.router.navigate(['/home']);
       },
-      error: (error) => {
-        if (error.status === 400) {
-          this.errorMessage.set("Login failed. Please try again.");
-          console.log('Login failed:', error);
-        }
+      error: (error : HttpErrorResponse) => {
+        this.errorMessage.set(error.error);
       }
     });
   }
