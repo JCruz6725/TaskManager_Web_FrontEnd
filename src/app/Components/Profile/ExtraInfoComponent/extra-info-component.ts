@@ -4,7 +4,7 @@ import { FormGroup, FormsModule, FormBuilder, ReactiveFormsModule } from '@angul
 import { Router, RouterLink } from '@angular/router';
 import { UserAuthService } from '../../../Services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { RequestHelperService } from '../../../Services/BaseService/request-helper-service';
+// import { RequestHelperService } from '../../../Services/BaseService/request-helper-service';
 import { MatButton } from '@angular/material/button';
 import { ExtraInfo } from '../../../Models/extrainfo';
 
@@ -18,7 +18,7 @@ import { ExtraInfo } from '../../../Models/extrainfo';
 export class ExtraInfoComponent {
   private router = inject(Router);
   private authService = inject(UserAuthService);
-  private Service = inject(RequestHelperService);
+  // private Service = inject(RequestHelperService);
 
   errorMessage = signal<string | null>(null);
   successMessage = signal<string | null>(null);
