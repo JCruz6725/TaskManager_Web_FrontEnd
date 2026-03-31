@@ -38,7 +38,7 @@ export class LoginComponent {
       next: (response: any) => {
         this.successMessage.set('Login successful!');
         console.log('User logged in successfully', response);
-        this.Service.SetUserIdToken(response as string);
+        this.Service.SetUserIdToken(response.userId);
 
         if(response.requiresExtraInfo) {
           this.router.navigate(['/extra-info']);

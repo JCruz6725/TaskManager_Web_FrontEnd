@@ -6,9 +6,7 @@ import { UserAuthService } from '../../../Services/auth/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RequestHelperService } from '../../../Services/BaseService/request-helper-service';
 import { MatButton } from '@angular/material/button';
-
-
-
+import { ExtraInfo } from '../../../Models/extrainfo';
 
 @Component({
   selector: 'app-extra-info-component',
@@ -30,10 +28,11 @@ export class ExtraInfoComponent {
   city: '',
   state:'',
   zipCode: '',
-  dateOfBirth: '',
+  dateOfBirth:undefined,
   phoneNumber: '',
   gender:'',
   education:'',
+  employer: '',
   jobTitle:'',
   licenseTitle:'',
   purposeTitle:''
@@ -47,10 +46,11 @@ constructor(private FormBuilder: FormBuilder) {
     city: '',
     state: '',
     zipCode: '',
-    dateOfBirth: '',
+    dateOfBirth: undefined,
     phoneNumber: '',
     gender: '',
     education: '',
+    employer: '',
     jobTitle: '',
     licenseTitle: '',
     purposeTitle: ''
@@ -69,6 +69,7 @@ submitForm() {
   this.model.phoneNumber = this.profileForm.value.phoneNumber;
   this.model.gender = this.profileForm.value.gender;
   this.model.education = this.profileForm.value.education;
+  this.model.employer = this.profileForm.value.employer;
   this.model.jobTitle = this.profileForm.value.jobTitle;
   this.model.licenseTitle = this.profileForm.value.licenseTitle;
   this.model.purposeTitle = this.profileForm.value.purposeTitle;
@@ -83,6 +84,7 @@ submitForm() {
       },
       error: (error : HttpErrorResponse) => {
         this.errorMessage.set(error.error);
+        console.log(error);
       }
     });
   }

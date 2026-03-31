@@ -6,6 +6,7 @@ import { LoginUser } from "../../Models/login-user";
 import { ResetPassword } from "../../Models/reset-password";
 import { ExtraInfoComponent } from "../../Components/Profile/ExtraInfoComponent/extra-info-component";
 import { RequestHelperService } from "../BaseService/request-helper-service";
+import { ExtraInfo } from "../../Models/extrainfo";
 
 @Injectable({ providedIn: 'root' })
 export class UserAuthService {
@@ -26,7 +27,7 @@ export class UserAuthService {
     }
 
     postProfileUser(extraInfo: ExtraInfo) {
-      return this.Service.post<any>('/user/extrainfo/' + userid, extraInfo);
+      return this.Service.post<any>('/user/extrainfo/', extraInfo);
 
     }
 
