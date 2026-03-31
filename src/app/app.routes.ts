@@ -5,6 +5,7 @@ import { Home } from './Components/Home/home';
 import { TaskDetailsPage } from './Components/TaskDetails/task-details-page/task-details-page';
 import { CreateTaskPage } from './Components/CreateTask/create-task-page/create-task-page';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password';
+import { ExtraInfoComponent } from './Components/Profile/ExtraInfoComponent/extra-info-component';
 
 export const routes: Routes = [
     {
@@ -36,7 +37,7 @@ export const routes: Routes = [
         component : TaskDetailsPage
 
     },
-    
+
     {
         path: 'createTask/:id',
         component: CreateTaskPage
@@ -45,6 +46,12 @@ export const routes: Routes = [
     {
         path: 'resetPassword',
         component: ResetPasswordComponent
-    }
+    },
 
+    {
+      path: 'extra-info',
+      component:ExtraInfoComponent,
+      title: 'Complete Your Profile'
+
+    }
 ];

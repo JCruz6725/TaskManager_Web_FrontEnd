@@ -1,0 +1,67 @@
+<!-- <!-- <div class="login-container"> -->
+
+<div class="profile-container">
+  <h1>Pofile Creation</h1>
+  <h3>Please enter your credentials to access your account.</h3>
+
+  <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
+
+      <label for = "address1" class="text-box-label">Address:</label>
+      <div>
+      <input type = "text" name = "address1" id = "address1" class="text-box" required formControlName="address1"/>
+      </div>
+
+        <!-- <br><br> -->
+      <label for = "city" class="text-box-label">City:</label>
+      <div>
+      <input type = "text" name = "city" id = "city" class="text-box" required formControlName="city" />
+      </div>
+
+       <label for ="state" class="text-box-label">State:</label>
+      <div>
+       <input type = "text" name = "state" id = "state" class="text-box" required formControlName= "state"/>
+      </div>
+        <label for = "zipCode" class="text-box-label">Zip Code:</label>
+             <div>
+        <input type = "text" name = "zipCode" id = "zipCode" class="text-box" required formControlName="zipCode" />
+      </div>
+        <label for = "dateOfBirth" class="text-box-label">Date Of Birth:</label>
+             <div>
+        <input type = "text" name = "dateOfBirth" id = "dateOfBirth" class="text-box" required formControlName="dateOfBirth" />
+      </div>
+        <label for = "phoneNumber" class="text-box-label">Phone Number:</label>
+         <div>
+        <input type = "text" name = "phoneNumber" id = "phoneNumber" class="text-box" required formControlName="phoneNumber"/>
+      </div>
+        <label for ="gender" class="text-box-label">Gender:</label>
+        <div>
+        <input type = "gender" name = "gender" id = "gender" class="text-box" required formControlName="gender" />
+      </div>
+        <label for = "education" class="text-box-label">Education:</label>
+        <div>
+        <input type = "text" name = "education" id = "education" class="text-box" required formControlName="education"/>
+      </div>
+        <label for = "jobTitle" class="text-box-label">Job Title:</label>
+        <div>
+        <input type = "text" name = "jobTitle" id = "jobTitle" class="text-box" required formControlName="jobTitle"/>
+      </div>
+        <label for = "licenseTitle" class="text-box-label">License Title:</label>
+        <div>
+        <input type = "text" name = "licenseTitle" id = "licenseTitle" class="text-box" required formControlName="licenseTitle"/>
+      </div>
+        <label for = "purposeTitle" class="text-box-label">Purpose Title:</label>
+        <div>
+        <input type = "text" name = "purposeTitle" id = "purposeTitle" class="text-box" required formControlName="purposeTitle"/>
+      </div>
+  <button  matButton="tonal" type="submit" (click)="submitForm()">Submit</button>
+
+    </form>
+
+      <p *ngIf="errorMessage()" style="color: red;">
+    {{ errorMessage() }}
+    </p>
+  <p *ngIf="successMessage()" style="color: green;">
+    {{ successMessage() }}
+  </p>
+
+</div>

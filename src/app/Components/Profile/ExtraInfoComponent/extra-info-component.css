@@ -1,0 +1,33 @@
+.profile-container {
+    flex-direction: column;
+     display: flex;
+     align-items: center;
+    justify-content: center;
+
+
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: center;
+    label {
+        display :block;
+        margin-bottom: 5px;
+    }
+}
+
+.text-box-label {
+    width: 300px;
+    padding: 8px;
+    margin: 10px;
+    text-align: left;
+}
+
+.text-box {
+    width: 300px;
+    padding: 8px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 6px;
+    border: none;
+}
