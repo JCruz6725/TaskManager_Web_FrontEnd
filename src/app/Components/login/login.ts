@@ -6,11 +6,12 @@ import { LoginUser } from '../../Models/login-user';
 import { Router, RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, MatButton],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })

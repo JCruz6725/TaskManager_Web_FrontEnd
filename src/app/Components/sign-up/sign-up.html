@@ -2,28 +2,28 @@
     <h1>Welcome to the Sign Up Page</h1>
     <h3>Please fill in the details to create an account.</h3>
 
-    <div class="form-container">
+    <div class="form-group">
 
         <form [formGroup]="signUpForm" (ngSubmit)="submitForm()">
-            <label for="firstName" class="text-box-label">First Name</label>
+            <label for="firstName">First Name</label>
             <div>
-                <input type="text" name="firstName" id="firstName" class="text-box" required formControlName="firstName"/>
+                <input type="text" name="firstName" id="firstName" required formControlName="firstName"/>
             </div>
             @if (signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched){
                 <p class="error">First Name is required.</p>
             }
 
-            <label for="lastName" class="text-box-label">Last Name</label>
+            <label for="lastName">Last Name</label>
             <div>
-                <input type="text" name="lastName" id="lastName" class="text-box" required formControlName="lastName"/>
+                <input type="text" name="lastName" id="lastName" required formControlName="lastName"/>
             </div>
             @if (signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched){
                 <p class="error">Last name is required.</p>
             }
 
-            <label for="email" class="text-box-label">Email</label>
+            <label for="email">Email</label>
             <div>
-                <input type="email" name="email" id="email" class="text-box" required email formControlName="email"/>
+                <input type="email" name="email" id="email" required email formControlName="email"/>
             </div>
             @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
                 @if (signUpForm.get('email')?.hasError('required')){
@@ -34,9 +34,9 @@
                 }
             }
 
-            <label for="password" class="text-box-label">Password</label>
+            <label for="password">Password</label>
             <div>
-                <input type="password" name="password" id="password" class="text-box" required formControlName="password"/>
+                <input type="password" name="password" id="password" required formControlName="password"/>
             </div>
             @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched){
                 <p class="error">Password is required.</p>
@@ -61,15 +61,15 @@
             <button class="submit-btn" matButton="tonal" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
 
         </form>
-
-        @if (successMessage()) {
-            <p style="color: green;">{{successMessage()}}</p>
-            <a routerLink="/login">Return to Login</a> 
-        }
-        @if (errorMessage()) {
-            <p style="color: red;"> {{errorMessage()}} </p>
-        }
-
-        <a routerLink="/login" style="margin-left: 130px;">Login here</a>
     </div>
+
+    @if (successMessage()) {
+        <p style="color: green;">{{successMessage()}}</p>
+        <a routerLink="/login">Return to Login</a> 
+    }
+    @if (errorMessage()) {
+        <p style="color: red;"> {{errorMessage()}} </p>
+    }
+    <a routerLink="/login">Login here</a>
+    
 </div>
