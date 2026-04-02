@@ -1,27 +1,27 @@
 <div class="list-column" cdkDropList (cdkDropListDropped)="drop($event)" [cdkDropListData]="dataID()">
   <!-- Title (looks like a button, not clickable) -->
   @if(State() == 'view'){
-    <div class="list-title">
-      {{ listname() }}
-    </div>
+  <div class="list-title">
+    {{ listname() }}
+  </div>
   }
   @if(State() == 'edit'){
-    <input class="list-title" type="text" [(ngModel)]="listname" (keydown.enter)="UpdateList()" />
+  <input class="list-title" type="text" [(ngModel)]="listname" (keydown.enter)="UpdateList()" />
   @if (listname() == '') {
-    <p class="errorColor"> List Name Cannot Be Empty </p>
+  <p class="errorColor"> List Name Cannot Be Empty </p>
   }
   }
   <!-- This holds your todo items -->
-  <div class="boarder"  >
+  <div class="boarder">
     @for (task of listSize(); track task.id){
-      <div cdkDrag [cdkDragData]="task.id">
-          <a routerLink="/taskDetails/{{task.id}}/{{dataID()}}">
-            <app-task [taskId]="task.id" ></app-task>
-          </a>
+    <div cdkDrag [cdkDragData]="task.id" class="single-task">
+      <div routerLink="/taskDetails/{{task.id}}/{{dataID()}}">
+        <app-task [taskId]="task.id"></app-task>
       </div>
-      <button class="trash-can" (click)="onTaskDelClick(task.id)">
-        <mat-icon>delete outline icon</mat-icon>
-     </button>
+    </div>
+    <button class="trash-can" matIconButton (click)="onTaskDelClick(task.id)">
+      <mat-icon>delete outline icon</mat-icon>
+    </button>
     }
   </div>
 
@@ -31,9 +31,9 @@
   <!-- Tool Bar -->
 
   <span class="toolbar-location">
-    <button mat-icon-button class="custom-toolbar-btn" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
+    <button class="custom-toolbar-btn" [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger"
       (mouseover)="menuTrigger.openMenu()">
-      <mat-icon>menu</mat-icon>
+      <mat-icon class="toolbar-tools">menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
       <span (mouseleave)="menuTrigger.closeMenu()">

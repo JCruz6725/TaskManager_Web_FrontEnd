@@ -46,7 +46,5 @@ export class LoginComponent {
         this.errorMessage.set(error.error);
       }
     });
-
   }
-
 }
