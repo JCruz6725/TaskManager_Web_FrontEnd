@@ -1,5 +1,5 @@
 import { ListService } from './../../../Services/ListServiceAll/get-all-list';
-import { Component, EventEmitter, inject, signal , OnInit,input,Output} from '@angular/core';;
+import { Component, EventEmitter, inject, signal, OnInit, input, Output } from '@angular/core';;
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { Task } from '../task/task';
@@ -13,12 +13,13 @@ import { TaskService } from '../../../Services/TaskServices/task-service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconButton } from '@angular/material/button';
 
 
 
 @Component({
   selector: 'app-single',
-  imports: [CommonModule, MatIcon, RouterLink, CdkDropList, CdkDrag, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule, MatDialogModule, MatButtonModule],
+  imports: [CommonModule, MatIcon, RouterLink, CdkDropList, CdkDrag, Task, MatToolbarModule, MatMenuModule, FormsModule, MatFormFieldModule, MatDialogModule, MatButtonModule, MatIconButton],
   templateUrl: './single.html',
   styleUrl: './single.css',
 })

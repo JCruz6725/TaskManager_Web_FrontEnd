@@ -1,4 +1,88 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+}
+
 body {
-  background-color: lightgray;
+    background: var(--mat-sys-primary-container);
+    background-color: var(--mat-sys-surface);
+}
+
+.list-column{
+    background: var(--mat-sys-primary-container);
+}
+
+.nav-bar{
+    background: var(--mat-sys-primary-container);
+}
+
+.full-page-container{
+    background: var(--mat-sys-primary-container);
+}
+
+.addList-btn{
+    background: var(--mat-sys-secondary-fixed-dim);
+}
+
+.list-title {
+    background: var(--mat-sys-secondary-fixed-dim);
+}
+
+.add-btn {
+    background: var(--mat-sys-secondary-fixed-dim);
+}
+
+.custom-toolbar-btn {
+    background-color: var(--mat-sys-secondary-fixed-dim);
+    color: rgb(0, 0, 2);
+    border-radius: 4px;
+    border: none;
+}
+
+.container {
+    background-color: var(--mat-sys-secondary-fixed-dim);
+    border-radius: 8px;
+    padding: 10px;
+    margin: 3px;
+}
+
+.alarm{
+    color: rgb(32, 7, 255);
+}
+
+.text-box {
+    width: 300px;
+    padding: 8px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: center;
+    label {
+        text-align: left;
+        padding-left: 10px;;
+        display :block;
+    }
+    input {
+        width: 300px;
+        padding: 8px;
+        margin: 10px;
+        background-color: white;
+        border-radius: 6px;
+    }
+    .login-btn {
+        width: 323px;
+        padding: 8px;
+        border-radius: 6px;
+        color: black;
+        background-color: var(--mat-sys-tertiary-fixed);
+        font-weight: bold;
+    }
+    .login-btn:hover {
+        background-color: var(--mat-sys-tertiary-fixed-dim);
+        cursor: pointer;
+    }
 }

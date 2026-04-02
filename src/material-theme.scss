@@ -12,10 +12,12 @@ html {
     color: (
       primary: mat.$azure-palette,
       tertiary: mat.$blue-palette,
+      theme-type: light,
     ),
     typography: Roboto,
     density: 0,
   ));
+
 }
 
 body {
@@ -35,3 +37,10 @@ body {
   margin: 0;
   height: 100%;
 }
+
+/* :root {
+  @include mat.fab-overrides((
+    container-elevation-shadow: 0,
+  ));
+} */
+

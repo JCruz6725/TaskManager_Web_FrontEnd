@@ -36,7 +36,7 @@ export const routes: Routes = [
         component : TaskDetailsPage
 
     },
-    
+
     {
         path: 'createTask/:id',
         component: CreateTaskPage

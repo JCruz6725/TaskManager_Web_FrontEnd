@@ -8,17 +8,19 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DetailedTask } from '../../../Models/detailed-task';
 import { Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-details',
-  imports: [ReactiveFormsModule, RouterLink, MatDatepickerModule,MatNativeDateModule, FormsModule, ],
+  imports: [ReactiveFormsModule, RouterLink, MatDatepickerModule,MatNativeDateModule, FormsModule, MatButtonModule, MatIcon],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
 export class Details {
-  taskSvc : TaskService = inject(TaskService);
-  sharedSvc : DataSharingService = inject(DataSharingService);
+  taskSvc: TaskService = inject(TaskService);
+  sharedSvc: DataSharingService = inject(DataSharingService);
 
   public currentTask = signal<any>(null);
   public currentTaskDate = signal<any>(null);
@@ -38,7 +40,7 @@ export class Details {
       if (this.currentTask().dueDate != null){
         this.currentTaskDate.set((new Date(this.currentTask().dueDate).toLocaleDateString()));
       }
-      else{
+      else {
         this.currentTaskDate.set('No Current Due Date');
       }
     })
@@ -49,8 +51,7 @@ export class Details {
       this.options = data;
     })
   }
-
-  onParentClick(){
+  onParentClick() {
     //recall our parent component with new taskId to re-render our page
     this.getData.emit(this.currentTask().parentTaskId);
   }
@@ -65,10 +66,10 @@ export class Details {
   }
 
   
-  onCompleteClick(){
+  onCompleteClick() {
     console.log(this.currentTask().id)
     this.taskSvc.statusTask(this.currentTask().id).subscribe({
-      next: (res:any) => {
+      next: (res: any) => {
         //refresh our data after status change
         this.sharedSvc.transmitChildData(res);
         this.toggleStatusChange.emit(this.currentTask().id);
