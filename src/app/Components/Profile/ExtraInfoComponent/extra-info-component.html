@@ -1,17 +1,17 @@
 <!-- <!-- <div class="login-container"> -->
+  <div class ="title-container">
+  <h1>Profile Creation</h1>
+  <h3>Please enter your credentials to access your account.</h3>
+  </div>
 
 <div class="profile-container">
-  <h1>Pofile Creation</h1>
-  <h3>Please enter your credentials to access your account.</h3>
-
   <form [formGroup]="profileForm" (ngSubmit)="submitForm()">
-
+<div class="left-details">
       <label for = "address1" class="text-box-label">Address:</label>
       <div>
       <input type = "text" name = "address1" id = "address1" class="text-box" required formControlName="address1"/>
       </div>
 
-        <!-- <br><br> -->
       <label for = "city" class="text-box-label">City:</label>
       <div>
       <input type = "text" name = "city" id = "city" class="text-box" required formControlName="city" />
@@ -33,6 +33,8 @@
          <div>
         <input type = "text" name = "phoneNumber" id = "phoneNumber" class="text-box" required formControlName="phoneNumber"/>
       </div>
+</div>
+<div class="right-details">
         <label for ="gender" class="text-box-label">Gender:</label>
         <div>
         <input type = "gender" name = "gender" id = "gender" class="text-box" required formControlName="gender" />
@@ -49,16 +51,20 @@
         <div>
         <input type = "text" name = "jobTitle" id = "jobTitle" class="text-box" required formControlName="jobTitle"/>
       </div>
-        <label for = "licenseTitle" class="text-box-label">License Title:</label>
-        <div>
-        <input type = "text" name = "licenseTitle" id = "licenseTitle" class="text-box" required formControlName="licenseTitle"/>
-      </div>
-        <label for = "purposeTitle" class="text-box-label">Purpose Title:</label>
-        <div>
-        <input type = "text" name = "purposeTitle" id = "purposeTitle" class="text-box" required formControlName="purposeTitle"/>
-      </div>
-  <button  matButton="tonal" type="submit" (click)="submitForm()">Submit</button>
-
+      <div>
+<select class="select-box-label"class="select-box"formControlName="licenseTitle">
+  <option value="">Select License Title</option>
+  <option *ngFor="let license of licenseTitle" [value]="license.Id">{{ license.name }}</option>
+</select>
+</div>
+<div>
+<select class="select-box-label"class="select-box" formControlName="purposeTitle">
+  <option value="">Select Purpose Title</option>
+  <option *ngFor="let purpose of purposeTitle" [value]="purpose.Id">{{ purpose.name }}</option>
+</select>
+</div>
+  <button  class="submit-box-label" matButton="tonal" type="submit" (click)="submitForm()">Submit</button>
+</div>
     </form>
 
       <p *ngIf="errorMessage()" style="color: red;">
@@ -67,5 +73,4 @@
   <p *ngIf="successMessage()" style="color: green;">
     {{ successMessage() }}
   </p>
-
 </div>

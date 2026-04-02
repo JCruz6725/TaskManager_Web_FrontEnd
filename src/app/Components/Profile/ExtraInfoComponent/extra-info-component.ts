@@ -37,7 +37,15 @@ export class ExtraInfoComponent {
   licenseTitle:'',
   purposeTitle:''
 };
-
+licenseTitle=[
+  {Id:'A6698723-1FBC-48D6-B30E-A42EAADA7453', name :'Free'},
+  {Id:'F92D11CA-B47D-45C8-AD09-83FA0E99C073', name :'Paid'},
+];
+purposeTitle=[
+  {Id:'2E0DD98D-F3EC-4C65-B5DF-19C7D52B24D4', name:'Education'},
+  {Id:'C3722436-57B3-44E0-9923-D7B177311ABA', name:'Personal'},
+  {Id:'99DAFECC-0A8C-47F6-8135-DBD783594F9B', name:'Work'}
+];
   profileForm! : FormGroup;
 
 constructor(private FormBuilder: FormBuilder) {
