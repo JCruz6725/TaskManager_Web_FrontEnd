@@ -1,18 +1,13 @@
 .profile-container {
-  flex-direction: row;
   display: flex;
+  justify-content: center;
 }
 .title-container {
     text-align: center;
     margin-bottom: 20px;
 }
-.left-details{
-    margin-top: 100px;
-    order: 1;
-}
-.right-details {
-    margin-top: 100px;
-    order: 2;
+.details{
+    flex:1;
 }
 .form-group {
     margin-bottom: 15px;
@@ -45,10 +40,20 @@
     background-color: white;
     border-radius: 6px;
     border: none;
-}
-
-.submit-box-label {
-
+    column-gap: 20px;
 }
 
 
+.form-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+}
+
+.submit-container {
+  display: flex ;
+  margin-top: 30px;
+  margin-left: 1220px;
+
+}
