@@ -4,14 +4,10 @@
 
   <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="form-group">
     <label for="email">Email</label>
-    <div>
-      <input type="email" id="email" name="email" required formControlName="email"/>
-    </div>
+    <input type="email" id="email" name="email" required formControlName="email"/>
 
     <label for="password">Password</label>
-    <div>
-      <input type="password" id="password" name="password" required formControlName="password"/>
-    </div>
+    <input type="password" id="password" name="password" required formControlName="password"/>
 
     <p style="padding-left: 120px;">
       <a routerLink="/resetPassword">Reset Password</a>

@@ -4,25 +4,19 @@
 
     <form [formGroup]="signUpForm" (ngSubmit)="submitForm()" class="form-group">
         <label for="firstName">First Name</label>
-        <div>
-            <input type="text" name="firstName" id="firstName" required formControlName="firstName"/>
-        </div>
+        <input type="text" name="firstName" id="firstName" required formControlName="firstName"/>
         @if (signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched){
             <p class="error">First Name is required.</p>
         }
 
         <label for="lastName">Last Name</label>
-        <div>
-            <input type="text" name="lastName" id="lastName" required formControlName="lastName"/>
-        </div>
+        <input type="text" name="lastName" id="lastName" required formControlName="lastName"/>
         @if (signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched){
             <p class="error">Last name is required.</p>
         }
 
         <label for="email">Email</label>
-        <div>
-            <input type="email" name="email" id="email" required email formControlName="email"/>
-        </div>
+        <input type="email" name="email" id="email" required email formControlName="email"/>
         @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
             @if (signUpForm.get('email')?.hasError('required')){
                 <p class="error">Email is required.</p>
@@ -33,9 +27,7 @@
         }
 
         <label for="password">Password</label>
-        <div>
-            <input type="password" name="password" id="password" required formControlName="password"/>
-        </div>
+        <input type="password" name="password" id="password" required formControlName="password"/>
         @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched){
             <p class="error">Password is required.</p>
         }

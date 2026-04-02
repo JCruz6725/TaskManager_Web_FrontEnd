@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
 import { LoginUser } from '../../Models/login-user';
 import { Router, RouterLink } from '@angular/router';
@@ -11,7 +11,7 @@ import { MatButton } from '@angular/material/button';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, MatButton],
+  imports: [CommonModule, FormsModule, RouterLink, MatButton, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -37,11 +37,11 @@ export class LoginComponent {
     })
   }
 
-  submitForm(form: any) {
+  submitForm() {
     this.errorMessage.set(null);
     this.successMessage.set(null);
 
-    if (form.invalid) {
+    if (this.loginForm.invalid) {
       this.errorMessage.set('Please fill in all required fields correctly.');
       return;
     }
