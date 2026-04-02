@@ -2,66 +2,63 @@
     <h1>Welcome to the Sign Up Page</h1>
     <h3>Please fill in the details to create an account.</h3>
 
-    <div class="form-group">
+    <form [formGroup]="signUpForm" (ngSubmit)="submitForm()" class="form-group">
+        <label for="firstName">First Name</label>
+        <div>
+            <input type="text" name="firstName" id="firstName" required formControlName="firstName"/>
+        </div>
+        @if (signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched){
+            <p class="error">First Name is required.</p>
+        }
 
-        <form [formGroup]="signUpForm" (ngSubmit)="submitForm()">
-            <label for="firstName">First Name</label>
-            <div>
-                <input type="text" name="firstName" id="firstName" required formControlName="firstName"/>
-            </div>
-            @if (signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched){
-                <p class="error">First Name is required.</p>
+        <label for="lastName">Last Name</label>
+        <div>
+            <input type="text" name="lastName" id="lastName" required formControlName="lastName"/>
+        </div>
+        @if (signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched){
+            <p class="error">Last name is required.</p>
+        }
+
+        <label for="email">Email</label>
+        <div>
+            <input type="email" name="email" id="email" required email formControlName="email"/>
+        </div>
+        @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
+            @if (signUpForm.get('email')?.hasError('required')){
+                <p class="error">Email is required.</p>
             }
-
-            <label for="lastName">Last Name</label>
-            <div>
-                <input type="text" name="lastName" id="lastName" required formControlName="lastName"/>
-            </div>
-            @if (signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched){
-                <p class="error">Last name is required.</p>
+            @if (signUpForm.get('email')?.hasError('email')){
+                <p class="error">Enter a valid email.</p>
             }
+        }
 
-            <label for="email">Email</label>
-            <div>
-                <input type="email" name="email" id="email" required email formControlName="email"/>
-            </div>
-            @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
-                @if (signUpForm.get('email')?.hasError('required')){
-                    <p class="error">Email is required.</p>
+        <label for="password">Password</label>
+        <div>
+            <input type="password" name="password" id="password" required formControlName="password"/>
+        </div>
+        @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched){
+            <p class="error">Password is required.</p>
+        }
+        <ul style="padding-left: 30px;">
+            @if (signUpForm.get('password')?.touched){
+                @if (signUpForm.get('password')?.hasError('specialCharMissing')) {
+                    <li style="color: red; font-size: small;">Password must contain at least 1 special character.</li>
                 }
-                @if (signUpForm.get('email')?.hasError('email')){
-                    <p class="error">Enter a valid email.</p>
+                @else {
+                    <li style="color: green; font-size: small;">Password must contain at least 1 special character.</li>
+                }
+                @if (signUpForm.get('password')?.value.length < 8){
+                    <li style="color: red; font-size: small;">Pasword must contain at least 8 characters.</li>
+                }
+                @else{
+                    <li style="color: green; font-size: small;">Password must contain at least 8 characters.</li>
                 }
             }
+        </ul>
 
-            <label for="password">Password</label>
-            <div>
-                <input type="password" name="password" id="password" required formControlName="password"/>
-            </div>
-            @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched){
-                <p class="error">Password is required.</p>
-            }
-            <ul style="padding-left: 30px;">
-                @if (signUpForm.get('password')?.touched){
-                    @if (signUpForm.get('password')?.hasError('specialCharMissing')) {
-                        <li style="color: red; font-size: small;">Password must contain at least 1 special character.</li>
-                    }
-                    @else {
-                        <li style="color: green; font-size: small;">Password must contain at least 1 special character.</li>
-                    }
-                    @if (signUpForm.get('password')?.value.length < 8){
-                        <li style="color: red; font-size: small;">Pasword must contain at least 8 characters.</li>
-                    }
-                    @else{
-                        <li style="color: green; font-size: small;">Password must contain at least 8 characters.</li>
-                    }
-                }
-            </ul>
+        <button class="submit-btn" matButton="tonal" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
 
-            <button class="submit-btn" matButton="tonal" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
-
-        </form>
-    </div>
+    </form>
 
     @if (successMessage()) {
         <p style="color: green;">{{successMessage()}}</p>
@@ -69,6 +66,7 @@
     @if (errorMessage()) {
         <p style="color: red;"> {{errorMessage()}} </p>
     }
+
     <a routerLink="/login">Login here</a>
     
 </div>

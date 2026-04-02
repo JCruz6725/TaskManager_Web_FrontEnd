@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
 import { LoginUser } from '../../Models/login-user';
 import { Router, RouterLink } from '@angular/router';
@@ -18,13 +18,24 @@ import { MatButton } from '@angular/material/button';
 export class LoginComponent {
   private router = inject(Router);
   private authService = inject(UserAuthService);
+
+  errorMessage = signal<string | null>(null);
+  successMessage = signal<string | null>(null);
+  private Service = inject(RequestHelperService);
+
   model: LoginUser = {
     email: '',
     password: ''
   };
-  errorMessage = signal<string | null>(null);
-  successMessage = signal<string | null>(null);
-  private Service = inject(RequestHelperService);
+
+  loginForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder){
+    this.loginForm = this.formBuilder.group({
+      email: '',
+      password: ''
+    })
+  }
 
   submitForm(form: any) {
     this.errorMessage.set(null);
@@ -34,6 +45,9 @@ export class LoginComponent {
       this.errorMessage.set('Please fill in all required fields correctly.');
       return;
     }
+
+    this.model.email = this.loginForm.value.email;
+    this.model.password = this.loginForm.value.password;
 
     this.authService.loginUser(this.model).subscribe({
       next: (response) => {
