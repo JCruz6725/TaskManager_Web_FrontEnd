@@ -74,11 +74,7 @@ export class SignupComponent {
         this.Service.SetUserIdToken(response as string);
       },
       error: (error : HttpErrorResponse) => {
-        this.sharedSvc.confirmDialog({
-          title: 'Error',
-          message: error.error,
-          confirmText: 'Close'
-        });
+        this.errorMessage.set(error.error);
       }
     });
   }
