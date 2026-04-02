@@ -1,13 +1,16 @@
 .sign-up-container {
     text-align: center;
-    border-style: solid;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    text-align: center;
-    label {
-        display :block;
-        margin-bottom: 5px;
-    }
+    border-width: 1px;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 8px;
+    padding: 40px;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 5px 10px lightgray;
 }

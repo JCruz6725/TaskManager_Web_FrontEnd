@@ -10,7 +10,7 @@
     
             <label for="status" class="text-box-label">Status</label>
             <div id="status" class="text-box" >{{currentTask().currentStatus.name}}
-                <button class="complete-button"  (click)="onCompleteClick()">Mark as Complete</button>
+                <button class="complete-btn" matButton="tonal" (click)="onCompleteClick()">Mark as Complete</button>
             </div>
             <div class="text-box">Date Created:  {{currentTask().createdDate}}</div>
         </div>
@@ -85,9 +85,8 @@
 </div>
 
 @if (!isEditing()){
-    <button class="edit-save-button" (click)="onEditClick()">Edit</button>
+    <button matButton="tonal" class="edit-button" (click)="onEditClick()"><mat-icon>edit</mat-icon>Edit</button>
 }
 @else{
-    <button class="edit-save-button" (click)="onSaveClick()">Save Changes</button>
+    <button matButton="tonal" class="save-button" (click)="onSaveClick()">Save Changes</button>
 }
-
