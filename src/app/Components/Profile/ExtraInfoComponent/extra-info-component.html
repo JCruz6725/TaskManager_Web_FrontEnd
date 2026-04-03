@@ -54,14 +54,14 @@
         <label for="licenseTitle" class="text-box-label">License Title:</label>
         <select  class="select-box" formControlName="licenseTitle">
           <option value="">Select an option</option>
-          <option *ngFor="let license of licenseTitle" [value]="license.Id">{{ license.name }}</option>
+          <option *ngFor="let license of licenseTitle" [value]="license">{{ license }}</option>
         </select>
       </div>
       <div>
         <label for="purposeTitle" class="text-box-label">Purpose Title:</label>
         <select  class="select-box" formControlName="purposeTitle">
           <option value="">Select an option</option>
-          <option *ngFor="let purpose of purposeTitle" [value]="purpose.Id">{{ purpose.name }}</option>
+          <option *ngFor="let purpose of purposeTitle" [value]="purpose">{{ purpose }}</option>
         </select>
       </div>
 
