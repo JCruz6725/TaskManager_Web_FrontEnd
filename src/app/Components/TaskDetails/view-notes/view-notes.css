@@ -21,7 +21,6 @@
 .note-meta {
     font-size: 15px;
     margin-left: 10px;
-    background-color: white;
     width: 190px;
     padding: 1px;
     border-radius: 5px;
@@ -45,21 +44,8 @@
 }
 
 .delete-btn {
-    background-color: purple;
     position: absolute;
-    /* left: 382px; */
-    top: 8px;
+    top: 10px;
     right: 10px;
-    border-radius: 10px;
-    padding: 4px;
     cursor: pointer;
-    /* margin-top: -10px; */
-    color: white;
-
-
-}
-
-.delete-btn:hover {
-    background-color: black;
-    color: red;
 }

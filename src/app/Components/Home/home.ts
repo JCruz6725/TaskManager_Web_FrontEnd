@@ -22,17 +22,16 @@ export class Home implements OnInit {
 
   newList = false;
 
-
   toggleInput(): void {
     this.newList = !this.newList;
     if (this.newList) {
       // Focus on the input field when it becomes visible
       setTimeout(() => {
         this.listCreation?.focusOnListTitle();
-      }, );
+      },);
     }
   }
-  constructor(private service: ListService) {}
+  constructor(private service: ListService) { }
 
   ngOnInit(): void {
     this.getAllList();
@@ -43,7 +42,7 @@ export class Home implements OnInit {
     });
   }
 
-  updateLists(){
+  updateLists() {
     this.singleList?.forEach(element => {
       element.getSingleList();
     });
