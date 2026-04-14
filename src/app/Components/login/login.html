@@ -4,20 +4,19 @@
 
   <form #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
     <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" [(ngModel)]="model.email" name="email"
-        required />
+      <label for="email">Email</label>
+      <input type="email" id="email" [(ngModel)]="model.email" name="email" required />
 
+      <label for="password">Password</label>
+      <input type="password" id="password" [(ngModel)]="model.password" name="password" required />
       <br><br>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" [(ngModel)]="model.password"
-        name="password" required />
-      <br><br>
+      <p>
+        <a routerLink="/resetPassword">Reset Password</a>
+      </p>
 
-      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+      <button class="login-btn" type="submit" [disabled]="loginForm.invalid">Log In</button>
     </div>
-    <a routerLink="/signup">Sign up here</a>
   </form>
 
   <p *ngIf="errorMessage()" style="color: red;">
@@ -27,7 +26,8 @@
     {{ successMessage() }}
   </p>
 
-  <p *ngIf="errorMessage()">
+  <p> 
     Don't have an account? <a routerLink="/signup">Sign up here</a>
   </p>
+
 </div>

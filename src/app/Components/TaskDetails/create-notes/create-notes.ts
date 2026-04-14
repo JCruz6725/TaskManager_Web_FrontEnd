@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { DataSharingService } from '../../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { NoteService } from '../../../Services/NoteServices/note-service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-create-notes',
-  imports: [ CommonModule, FormsModule, MatIconModule],
+  imports: [ CommonModule, FormsModule, MatIconModule, MatButtonModule],
   templateUrl: './create-notes.html',
   styleUrl: './create-notes.css',
 })

@@ -13,13 +13,13 @@ export class App {
   protected readonly title = signal('TaskManagerFrontEnd');
   public Links = [
     {
-      DisplayName : "Home", Path : "/home"
+      DisplayName : "Login", Path : "/login"
     },
     {
       DisplayName : "Sign Up", Path : "/signup"
     },
     {
-      DisplayName : "Login", Path : "/login"
+      DisplayName : "Home", Path : "/home"
     }
   ];
 }
