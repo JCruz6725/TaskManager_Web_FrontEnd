@@ -2,42 +2,63 @@
     <h1>Welcome to the Sign Up Page</h1>
     <h3>Please fill in the details to create an account.</h3>
 
-    <div class="form-container">
-        <form #signUpForm="ngForm" (ngSubmit)="submitForm(signUpForm)">
-            <div class="form-group">
-                <label class="fname" for="firstName">First Name</label>
-                <input type="text" id="firstName" [(ngModel)]="model.firstName" name="firstName" required  #firstName="ngModel" />
-                <div *ngIf="firstName.invalid && firstName.touched" class="error" style="color: red;">
-                    First Name is required.
-                </div>
+    <form [formGroup]="signUpForm" (ngSubmit)="submitForm()" class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" id="firstName" required formControlName="firstName"/>
+        @if (signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched){
+            <p class="error">First Name is required.</p>
+        }
 
-                <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" [(ngModel)]="model.lastName" required #lastName="ngModel" />
-                <div *ngIf="lastName.invalid && lastName.touched" class="error" style="color: red;">
-                    Last name is required
-                </div>
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" id="lastName" required formControlName="lastName"/>
+        @if (signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched){
+            <p class="error">Last name is required.</p>
+        }
 
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" [(ngModel)]="model.email" required email #email="ngModel" />
-                <div *ngIf="email.invalid && email.touched" class="error" style="color: red;">
-                    <span *ngIf="email.errors?.['required']">Email is required</span>
-                    <span *ngIf="email.errors?.['email']">Enter a valid email</span>
-                </div>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" required email formControlName="email"/>
+        @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched){
+            @if (signUpForm.get('email')?.hasError('required')){
+                <p class="error">Email is required.</p>
+            }
+            @if (signUpForm.get('email')?.hasError('email')){
+                <p class="error">Enter a valid email.</p>
+            }
+        }
 
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" [(ngModel)]="model.password" required #password="ngModel" />
-                <div *ngIf="password.invalid && password.touched" class="error" style="color: red;">
-                    Password is required
-                </div>
-                <br><br>
-                <button class="login-btn" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
-            </div>
-        </form>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required formControlName="password"/>
+        @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched){
+            <p class="error">Password is required.</p>
+        }
+        <ul style="padding-left: 30px;">
+            @if (signUpForm.get('password')?.touched){
+                @if (signUpForm.get('password')?.hasError('specialCharMissing')) {
+                    <li style="color: red; font-size: small;">Password must contain at least 1 special character.</li>
+                }
+                @else {
+                    <li style="color: green; font-size: small;">Password must contain at least 1 special character.</li>
+                }
+                @if (signUpForm.get('password')?.value.length < 8){
+                    <li style="color: red; font-size: small;">Pasword must contain at least 8 characters.</li>
+                }
+                @else{
+                    <li style="color: green; font-size: small;">Password must contain at least 8 characters.</li>
+                }
+            }
+        </ul>
 
-        <p *ngIf="errorMessage()" style="color: red;"> {{ errorMessage() }}
-        </p>
-        <p *ngIf="successMessage()" style="color: green;"> {{ successMessage() }} </p>
-  
-        <a routerLink="/login">Login here</a>
-    </div>
+        <button class="submit-btn" matButton="tonal" type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
+
+    </form>
+
+    @if (successMessage()) {
+        <p style="color: green;">{{successMessage()}}</p>
+    }
+    @if (errorMessage()) {
+        <p style="color: red;"> {{errorMessage()}} </p>
+    }
+
+    <a routerLink="/login">Login here</a>
+    
 </div>

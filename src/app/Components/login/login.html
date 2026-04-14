@@ -2,29 +2,27 @@
   <h1>Login</h1>
   <h3>Please enter your credentials to access your account.</h3>
 
-  <form #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" id="email" [(ngModel)]="model.email" name="email" required />
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm()" class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required formControlName="email"/>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" [(ngModel)]="model.password" name="password" required />
-      <br><br>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required formControlName="password"/>
 
-      <p>
-        <a routerLink="/resetPassword">Reset Password</a>
-      </p>
+    <p style="padding-left: 120px;">
+      <a routerLink="/resetPassword">Reset Password</a>
+    </p>
 
-      <button class="login-btn" type="submit" [disabled]="loginForm.invalid">Log In</button>
-    </div>
+    <button class="submit-btn" matButton="tonal" type="submit" [disabled]="loginForm.invalid">Log In</button>
   </form>
 
-  <p *ngIf="errorMessage()" style="color: red;">
-    {{ errorMessage() }}
-  </p>
-  <p *ngIf="successMessage()" style="color: green;">
-    {{ successMessage() }}
-  </p>
+
+  @if (successMessage()) {
+    <p style="color: green;">{{successMessage()}}</p>
+  }
+  @if (errorMessage()) {
+      <p style="color: red;"> {{errorMessage()}} </p>
+  }
 
   <p> 
     Don't have an account? <a routerLink="/signup">Sign up here</a>
