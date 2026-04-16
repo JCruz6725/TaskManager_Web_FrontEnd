@@ -34,18 +34,21 @@ export const routes: Routes = [
 
     {
         path:'taskDetails/:taskId/:listId',
-        component : TaskDetailsPage
+        component : TaskDetailsPage,
+        canActivate: [authGuard]
 
     },
 
     {
         path: 'createTask/:id',
-        component: CreateTaskPage
+        component: CreateTaskPage,
+        canActivate: [authGuard]
+
     },
 
     {
         path: 'resetPassword',
-        component: ResetPasswordComponent
+        component: ResetPasswordComponent,
     }
 
 ];
