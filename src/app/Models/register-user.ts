@@ -1,3 +1,5 @@
+import { ValidatorFn } from "@angular/forms";
+
 export interface RegisterUser {
     firstName: string;
     lastName: string;

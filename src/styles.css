@@ -60,7 +60,6 @@ body {
 
 .form-group {
     margin-bottom: 15px;
-    text-align: center;
     label {
         text-align: left;
         padding-left: 10px;;
@@ -70,19 +69,21 @@ body {
         width: 300px;
         padding: 8px;
         margin: 10px;
-        background-color: white;
+        background-color: rgb(229, 241, 253);
         border-radius: 6px;
+        border: none
     }
-    .login-btn {
+    .submit-btn {
+        margin-left: 7px;
         width: 323px;
         padding: 8px;
         border-radius: 6px;
         color: black;
-        background-color: var(--mat-sys-tertiary-fixed);
+        background-color: var(--mat-sys-primary-container);
         font-weight: bold;
     }
-    .login-btn:hover {
-        background-color: var(--mat-sys-tertiary-fixed-dim);
+    .submit-btn:hover {
+        background-color: var(--mat-sys-primary-fixed-dim);
         cursor: pointer;
     }
 }
