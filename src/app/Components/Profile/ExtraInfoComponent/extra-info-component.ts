@@ -39,7 +39,7 @@ export class ExtraInfoComponent {
 };
 licenseTitle=[ 'Free', 'Paid'];
 
-purposeTitle=['Education ', 'Personal', 'Work'];
+purposeTitle=['Education', 'Personal', 'Work'];
 
   profileForm! : FormGroup;
 
