@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root',
 })
@@ -32,19 +33,19 @@ export class RequestHelperService {
   }
   post<T>(url: string, body: any) {
     if (this.UserIdToken === null) {
-      return this.http.get<T>(`${this.baseUrl}${url}`);
+      return this.http.post<T>(`${this.baseUrl}${url}`, body);
     }
     return this.http.post<T>(`${this.baseUrl}${url}`, body, { headers: this.MakeApiHeader() });
   }
   put<T>(url: string, body: any) {
     if (this.UserIdToken === null) {
-      return this.http.get<T>(`${this.baseUrl}${url}`);
+      return this.http.put<T>(`${this.baseUrl}${url}`, body);
     }
     return this.http.put<T>(`${this.baseUrl}${url}`, body, { headers: this.MakeApiHeader() });
   }
   delete<T>(url: string) {
     if (this.UserIdToken === null) {
-      return this.http.get<T>(`${this.baseUrl}${url}`);
+      return this.http.delete<T>(`${this.baseUrl}${url}`);
     }
     return this.http.delete<T>(`${this.baseUrl}${url}`, { headers: this.MakeApiHeader() });
   }

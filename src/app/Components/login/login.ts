@@ -50,12 +50,16 @@ export class LoginComponent {
     this.model.password = this.loginForm.value.password;
 
     this.authService.loginUser(this.model).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         this.successMessage.set('Login successful!');
         console.log('User logged in successfully', response);
-        this.Service.SetUserIdToken(response as string);
+        this.Service.SetUserIdToken(response.userId);
 
+        if(response.requiresExtraInfo) {
+          this.router.navigate(['/extra-info']);
+        }else {
         this.router.navigate(['/home']);
+          }
       },
       error: (error : HttpErrorResponse) => {
         this.errorMessage.set(error.error);
