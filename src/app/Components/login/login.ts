@@ -38,6 +38,8 @@ export class LoginComponent {
   }
 
   submitForm() {
+
+
     this.errorMessage.set(null);
     this.successMessage.set(null);
 
@@ -49,17 +51,32 @@ export class LoginComponent {
     this.model.email = this.loginForm.value.email;
     this.model.password = this.loginForm.value.password;
 
+    let userId = "";
+
+
     this.authService.loginUser(this.model).subscribe({
       next: (response) => {
         this.successMessage.set('Login successful!');
         console.log('User logged in successfully', response);
         this.Service.SetUserIdToken(response as string);
 
-        this.router.navigate(['/home']);
+       userId = response as string; //  the response is the user ID token
+
       },
-      error: (error : HttpErrorResponse) => {
-        this.errorMessage.set(error.error);
-      }
+      });
+      if (userId == "") {
+   this.errorMessage.set('Login failed. Please check your credentials and try again.');
+  return;
+}
+     this.authService.deviceDatum(userId).subscribe({
+      next: (response) => {
+      console.log('Device data sent successfully', response);},
     });
+
+     this.router.navigate(['/home']);
   }
 }
+
+
+
+
