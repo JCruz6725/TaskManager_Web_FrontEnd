@@ -38,8 +38,6 @@ export class LoginComponent {
   }
 
   submitForm() {
-
-
     this.errorMessage.set(null);
     this.successMessage.set(null);
 
@@ -51,29 +49,37 @@ export class LoginComponent {
     this.model.email = this.loginForm.value.email;
     this.model.password = this.loginForm.value.password;
 
-    let userId = "";
-
-
     this.authService.loginUser(this.model).subscribe({
       next: (response) => {
         this.successMessage.set('Login successful!');
         console.log('User logged in successfully', response);
         this.Service.SetUserIdToken(response as string);
 
-       userId = response as string; //  the response is the user ID token
+        //userId = response as string;  //  the response is the user ID token
+        let t = { userId: this.Service.GetUserIdToken() } ;
 
+        this.authService.deviceDatum(t).subscribe({
+          next: (Deviceresponse) => {
+            console.log('Device data sent successfully', Deviceresponse);
+          },
+          error(err) {
+            console.error('Error sending device data', err);
+          },
+        });
+           this.router.navigate(['/home']);
       },
-      });
-      if (userId == "") {
-   this.errorMessage.set('Login failed. Please check your credentials and try again.');
-  return;
-}
-     this.authService.deviceDatum(userId).subscribe({
-      next: (response) => {
-      console.log('Device data sent successfully', response);},
     });
 
-     this.router.navigate(['/home']);
+
+
+
+
+
+    // if (this.Service.GetUserIdToken() == "") {
+    //   this.errorMessage.set('Login failed. Please check your credentials and try again.');
+    //   return;
+    // }
+
   }
 }
 
