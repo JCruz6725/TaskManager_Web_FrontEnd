@@ -5,6 +5,7 @@ import { RegisterUser } from '../../Models/register-user';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
+import {CookieService} from 'ngx-cookie-service'
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataSharingService } from '../../Services/TaskServices/DataSharingService/data-sharing-service';
 import { MatButton } from '@angular/material/button';
@@ -24,12 +25,13 @@ export class SignupComponent {
   errorMessage = signal<string | null>(null);
   successMessage = signal<string | null>(null);
   private Service = inject(RequestHelperService);
+  private CookieService = inject(CookieService)
 
   private passwordValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
      const password = control.value;
      const hasSpecialChar: boolean = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
- 
+
      return hasSpecialChar ? null : {specialCharMissing: true};
     }
   }
@@ -40,7 +42,7 @@ export class SignupComponent {
     email: '',
     password: ''
   };
-  
+
   signUpForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -56,7 +58,7 @@ export class SignupComponent {
   submitForm() {
     this.errorMessage.set(null);
     this.successMessage.set(null);
-    
+
     if (this.signUpForm.invalid) {
       this.errorMessage.set('Please fill in all required fields correctly.');
       return;
@@ -71,7 +73,7 @@ export class SignupComponent {
       next: (response) => {
         this.successMessage.set('Registration successful!');
         console.log('User registered successfully', response);
-        this.Service.SetUserIdToken(response as string);
+        this.CookieService.set('UserIdToken', response as string, { expires: .0208}); // Cookie expires in 30mins
       },
       error: (error : HttpErrorResponse) => {
         this.errorMessage.set(error.error);

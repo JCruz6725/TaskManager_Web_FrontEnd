@@ -6,6 +6,7 @@ import { LoginUser } from '../../Models/login-user';
 import { Router, RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
 import { HttpErrorResponse } from '@angular/common/http';
+import {CookieService} from 'ngx-cookie-service';
 import { MatButton } from '@angular/material/button';
 
 @Component({
@@ -18,15 +19,13 @@ import { MatButton } from '@angular/material/button';
 export class LoginComponent {
   private router = inject(Router);
   private authService = inject(UserAuthService);
-
-  errorMessage = signal<string | null>(null);
-  successMessage = signal<string | null>(null);
-  private Service = inject(RequestHelperService);
-
   model: LoginUser = {
     email: '',
     password: ''
   };
+  errorMessage = signal<string | null>(null);
+  successMessage = signal<string | null>(null);
+  private CookieService = inject(CookieService);
 
   loginForm!: FormGroup;
 
@@ -53,7 +52,8 @@ export class LoginComponent {
       next: (response) => {
         this.successMessage.set('Login successful!');
         console.log('User logged in successfully', response);
-        this.Service.SetUserIdToken(response as string);
+        this.CookieService.set('UserIdToken', response as string, { expires: .0208}); // Cookie expires in 30mins
+
 
         this.router.navigate(['/home']);
       },
