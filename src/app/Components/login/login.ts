@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAuthService } from '../../Services/auth/auth.service';
 import { LoginUser } from '../../Models/login-user';
 import { Router, RouterLink } from '@angular/router';
 import { RequestHelperService } from '../../Services/BaseService/request-helper-service';
 import { HttpErrorResponse } from '@angular/common/http';
 import {CookieService} from 'ngx-cookie-service';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
+  imports: [CommonModule, FormsModule, RouterLink, MatButton, ReactiveFormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -24,17 +25,28 @@ export class LoginComponent {
   };
   errorMessage = signal<string | null>(null);
   successMessage = signal<string | null>(null);
-  private Service = inject(RequestHelperService);
   private CookieService = inject(CookieService);
 
-  submitForm(form: any) {
+  loginForm!: FormGroup;
+
+  constructor(private formBuilder: FormBuilder){
+    this.loginForm = this.formBuilder.group({
+      email: '',
+      password: ''
+    })
+  }
+
+  submitForm() {
     this.errorMessage.set(null);
     this.successMessage.set(null);
 
-    if (form.invalid) {
+    if (this.loginForm.invalid) {
       this.errorMessage.set('Please fill in all required fields correctly.');
       return;
     }
+
+    this.model.email = this.loginForm.value.email;
+    this.model.password = this.loginForm.value.password;
 
     this.authService.loginUser(this.model).subscribe({
       next: (response) => {
