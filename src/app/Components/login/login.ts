@@ -55,7 +55,7 @@ export class LoginComponent {
         console.log('User logged in successfully', response);
         this.Service.SetUserIdToken(response as string);
 
-        //userId = response as string;  //  the response is the user ID token
+        //  the response is the user ID token
         let t = { userId: this.Service.GetUserIdToken() } ;
 
         this.authService.deviceDatum(t).subscribe({
