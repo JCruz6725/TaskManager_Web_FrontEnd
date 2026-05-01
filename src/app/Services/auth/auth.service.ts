@@ -20,6 +20,11 @@ export class UserAuthService {
     resetPassword(resetPsw: ResetPassword) {
         return this.http.post(`${this.baseUrl}user/reset`, resetPsw)
     }
+    deviceDatum(userId:any) {
+        return this.http.post(`${this.baseUrl}user/device`, userId);
+  }
 }
+
+
 
 

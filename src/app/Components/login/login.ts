@@ -55,11 +55,34 @@ export class LoginComponent {
         console.log('User logged in successfully', response);
         this.Service.SetUserIdToken(response as string);
 
-        this.router.navigate(['/home']);
+        //  the response is the user ID token
+        let t = { userId: this.Service.GetUserIdToken() } ;
+
+        this.authService.deviceDatum(t).subscribe({
+          next: (Deviceresponse) => {
+            console.log('Device data sent successfully', Deviceresponse);
+          },
+          error(err) {
+            console.error('Error sending device data', err);
+          },
+        });
+           this.router.navigate(['/home']);
       },
-      error: (error : HttpErrorResponse) => {
-        this.errorMessage.set(error.error);
-      }
     });
+
+
+
+
+
+
+    // if (this.Service.GetUserIdToken() == "") {
+    //   this.errorMessage.set('Login failed. Please check your credentials and try again.');
+    //   return;
+    // }
+
   }
 }
+
+
+
+
